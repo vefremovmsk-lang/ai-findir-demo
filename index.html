@@ -3,585 +3,721 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Action Dashboard (Demo) — Отдел экологических услуг Q2</title>
+<title>Action Dashboard — Экологические услуги, Q2 [DEMO]</title>
 <style>
-  * { box-sizing: border-box; margin: 0; padding: 0; }
-  body { font-family: 'Segoe UI', Arial, sans-serif; background: #f0f2f5; color: #1a1a2e; font-size: 14px; line-height: 1.5; }
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+  body { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Arial, sans-serif; background: #0f1117; color: #e2e8f0; font-size: 14px; line-height: 1.5; }
 
-  /* ---------- DEMO BANNER ---------- */
-  .demo-banner { background: #4a235a; color: #fff; text-align: center; padding: 8px 32px; font-size: 12px; letter-spacing: 0.3px; }
-  .demo-banner strong { color: #f0c040; }
+  /* DEMO BANNER */
+  .demo-banner { background: #1c1205; border-bottom: 2px solid #d97706; padding: 8px 24px; text-align: center; font-size: 13px; color: #fbbf24; font-weight: 600; letter-spacing: .04em; }
 
-  /* ---------- HEADER ---------- */
-  .header { background: #1a1a2e; color: #fff; padding: 20px 32px 16px; }
-  .header-top { display: flex; justify-content: space-between; align-items: baseline; flex-wrap: wrap; gap: 8px; }
-  .header h1 { font-size: 18px; font-weight: 700; letter-spacing: 0.3px; }
-  .header-meta { font-size: 12px; color: #aab; }
-  .header-question { margin-top: 10px; font-size: 22px; font-weight: 700; color: #f0c040; line-height: 1.3; }
+  /* HEADER */
+  .header { background: #1a1d2e; border-bottom: 2px solid #3b4280; padding: 14px 24px; display: flex; justify-content: space-between; align-items: center; }
+  .header-title { font-size: 18px; font-weight: 700; color: #a5b4fc; }
+  .header-meta { font-size: 12px; color: #64748b; text-align: right; }
+  .header-meta span { display: block; }
 
-  /* ---------- DIAGNOSIS BANNER ---------- */
-  .diagnosis { background: #c0392b; color: #fff; padding: 18px 32px; }
-  .diagnosis-label { font-size: 11px; font-weight: 700; text-transform: uppercase; letter-spacing: 1px; opacity: 0.8; margin-bottom: 6px; }
-  .diagnosis-text { font-size: 16px; font-weight: 600; line-height: 1.4; }
-  .diagnosis-text span { background: rgba(255,255,255,0.2); padding: 2px 6px; border-radius: 3px; }
-
-  /* ---------- LAYOUT ---------- */
-  .main { padding: 24px 32px; max-width: 1400px; }
+  /* LAYOUT */
+  .page { max-width: 1280px; margin: 0 auto; padding: 20px 24px 40px; }
   .section { margin-bottom: 28px; }
-  .section-title { font-size: 13px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.8px; color: #555; margin-bottom: 14px; padding-bottom: 6px; border-bottom: 2px solid #dde; }
+  .section-title { font-size: 13px; font-weight: 700; text-transform: uppercase; letter-spacing: .08em; color: #64748b; margin-bottom: 12px; padding-bottom: 6px; border-bottom: 1px solid #1e2640; }
 
-  /* ---------- ALERTS ---------- */
-  .alert-row { display: flex; gap: 12px; flex-wrap: wrap; margin-bottom: 20px; }
-  .alert { flex: 1; min-width: 240px; padding: 12px 16px; border-radius: 6px; border-left: 4px solid; }
-  .alert-red { background: #fdf0ee; border-color: #c0392b; }
-  .alert-orange { background: #fdf5e8; border-color: #e67e22; }
-  .alert-red strong, .alert-orange strong { display: block; font-size: 12px; font-weight: 700; margin-bottom: 3px; }
-  .alert-red strong { color: #c0392b; }
-  .alert-orange strong { color: #d35400; }
+  /* DIAGNOSIS BANNER */
+  .diagnosis { background: linear-gradient(135deg, #1e2640 0%, #1a1d2e 100%); border: 1px solid #3b4280; border-left: 4px solid #6366f1; border-radius: 8px; padding: 18px 24px; display: grid; grid-template-columns: repeat(4, 1fr); gap: 16px; }
+  .diag-item { text-align: center; }
+  .diag-label { font-size: 11px; color: #64748b; text-transform: uppercase; letter-spacing: .06em; margin-bottom: 4px; }
+  .diag-value { font-size: 24px; font-weight: 800; }
+  .diag-value.red { color: #f87171; }
+  .diag-value.yellow { color: #fbbf24; }
+  .diag-value.orange { color: #fb923c; }
+  .diag-value.indigo { color: #818cf8; }
+  .diag-sub { font-size: 11px; color: #94a3b8; margin-top: 2px; }
 
-  /* ---------- ACTION CARDS (week 1) ---------- */
-  .cards { display: flex; gap: 16px; flex-wrap: wrap; }
-  .card { flex: 1; min-width: 260px; background: #fff; border-radius: 8px; border: 1px solid #e0e0e8; overflow: hidden; box-shadow: 0 1px 4px rgba(0,0,0,0.06); }
-  .card-head { padding: 12px 16px; display: flex; justify-content: space-between; align-items: flex-start; gap: 8px; }
-  .card-head-red { background: #c0392b; color: #fff; }
-  .card-num { font-size: 20px; font-weight: 800; opacity: 0.7; }
-  .card-deadline { font-size: 11px; font-weight: 700; background: rgba(255,255,255,0.25); padding: 3px 8px; border-radius: 10px; white-space: nowrap; }
-  .card-body { padding: 14px 16px; }
-  .card-title { font-size: 14px; font-weight: 700; margin-bottom: 8px; color: #1a1a2e; }
-  .card-row { display: flex; gap: 6px; margin-bottom: 4px; font-size: 12px; }
-  .card-label { color: #888; min-width: 62px; flex-shrink: 0; }
-  .card-val { color: #1a1a2e; }
-  .card-effect { margin-top: 10px; background: #f0f7ee; border-radius: 4px; padding: 7px 10px; font-size: 12px; }
-  .card-effect-num { font-size: 15px; font-weight: 700; color: #27ae60; }
-  .card-warn { margin-top: 8px; background: #fdf5e8; border-radius: 4px; padding: 7px 10px; font-size: 11px; color: #8a5700; }
+  /* ALERTS */
+  .alerts-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 10px; }
+  .alert { border-radius: 8px; padding: 12px 16px; border-left: 4px solid; }
+  .alert.crit { background: #2d1515; border-color: #ef4444; }
+  .alert.warn { background: #2d2010; border-color: #f59e0b; }
+  .alert.info { background: #1a2535; border-color: #3b82f6; }
+  .alert-title { font-size: 13px; font-weight: 700; margin-bottom: 4px; }
+  .alert.crit .alert-title { color: #fca5a5; }
+  .alert.warn .alert-title { color: #fcd34d; }
+  .alert.info .alert-title { color: #93c5fd; }
+  .alert-body { font-size: 12px; color: #94a3b8; }
 
-  /* ---------- CHECKLIST ---------- */
-  .checklist { background: #fff; border-radius: 8px; border: 1px solid #e0e0e8; overflow: hidden; }
-  .checklist-warn { background: #fff8e1; padding: 10px 16px; font-size: 12px; color: #7a5200; border-bottom: 1px solid #ffe082; }
-  .checklist-item { display: flex; align-items: flex-start; gap: 12px; padding: 11px 16px; border-bottom: 1px solid #f0f0f5; }
-  .checklist-item:last-child { border-bottom: none; }
-  .check-box { width: 18px; height: 18px; border: 2px solid #bbb; border-radius: 3px; flex-shrink: 0; margin-top: 1px; }
-  .check-num { font-size: 11px; font-weight: 700; color: #aaa; flex-shrink: 0; width: 16px; margin-top: 2px; }
-  .check-text { flex: 1; }
-  .check-text strong { display: block; font-size: 13px; font-weight: 600; color: #1a1a2e; margin-bottom: 1px; }
-  .check-text span { font-size: 11px; color: #888; }
-  .check-who { font-size: 11px; color: #c0392b; font-weight: 600; margin-left: auto; flex-shrink: 0; white-space: nowrap; padding-left: 12px; padding-top: 2px; }
+  /* FIRST-SCREEN GRID */
+  .firstscreen { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; }
+  @media (max-width: 900px) { .firstscreen { grid-template-columns: 1fr; } }
 
-  /* ---------- CAPACITY / CASH ---------- */
-  .two-col { display: flex; gap: 16px; flex-wrap: wrap; }
-  .panel { flex: 1; min-width: 280px; background: #fff; border-radius: 8px; border: 1px solid #e0e0e8; overflow: hidden; }
-  .panel-head { padding: 11px 16px; font-size: 12px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.6px; }
-  .panel-head-red { background: #c0392b; color: #fff; }
-  .panel-head-navy { background: #1a1a2e; color: #fff; }
-  .panel-body { padding: 14px 16px; }
-  .panel-body p { font-size: 13px; margin-bottom: 8px; }
-  .panel-body p:last-child { margin-bottom: 0; }
-  .cutoff-row { display: flex; align-items: center; gap: 10px; padding: 9px 0; border-bottom: 1px solid #f0f0f5; }
-  .cutoff-row:last-child { border-bottom: none; }
-  .cutoff-date { font-size: 16px; font-weight: 800; color: #c0392b; min-width: 70px; }
-  .cutoff-desc { font-size: 12px; color: #555; }
-  .cash-table { width: 100%; border-collapse: collapse; font-size: 12px; }
-  .cash-table th { background: #f5f5fa; padding: 7px 10px; text-align: left; font-weight: 600; color: #555; border-bottom: 2px solid #e0e0e8; }
-  .cash-table td { padding: 8px 10px; border-bottom: 1px solid #f0f0f5; vertical-align: top; }
-  .cash-table tr:last-child td { border-bottom: none; }
-  .tag-q2 { background: #27ae60; color: #fff; font-size: 10px; font-weight: 700; padding: 2px 6px; border-radius: 3px; }
-  .tag-q3 { background: #e67e22; color: #fff; font-size: 10px; font-weight: 700; padding: 2px 6px; border-radius: 3px; }
-  .tag-promise { background: #95a5a6; color: #fff; font-size: 10px; font-weight: 700; padding: 2px 6px; border-radius: 3px; }
+  /* TODAY CARDS */
+  .today-cards { display: flex; flex-direction: column; gap: 10px; }
+  .today-card { background: #1a1d2e; border: 1px solid #2d3561; border-radius: 8px; padding: 14px 16px; }
+  .today-card-header { display: flex; justify-content: space-between; align-items: flex-start; margin-bottom: 6px; }
+  .today-card-who { font-size: 13px; font-weight: 700; color: #a5b4fc; }
+  .today-card-deadline { font-size: 11px; background: #2d1515; color: #fca5a5; padding: 2px 8px; border-radius: 10px; white-space: nowrap; }
+  .today-card-deadline.warn { background: #2d2010; color: #fcd34d; }
+  .today-card-task { font-size: 13px; color: #cbd5e1; margin-bottom: 4px; }
+  .today-card-effect { font-size: 11px; color: #64748b; }
+  .today-card-effect span { color: #34d399; font-weight: 600; }
 
-  /* ---------- EFFECT SUMMARY ---------- */
-  .effect-box { background: #fff; border-radius: 8px; border: 1px solid #e0e0e8; padding: 20px 24px; }
-  .effect-numbers { display: flex; gap: 0; margin-bottom: 18px; flex-wrap: wrap; }
-  .effect-col { flex: 1; min-width: 140px; text-align: center; padding: 12px 16px; }
-  .effect-col + .effect-col { border-left: 1px solid #e8e8f0; }
-  .effect-big { font-size: 28px; font-weight: 800; }
-  .effect-big-red { color: #c0392b; }
-  .effect-big-green { color: #27ae60; }
-  .effect-big-orange { color: #e67e22; }
-  .effect-sub { font-size: 11px; color: #888; margin-top: 3px; }
-  .gap-label { text-align: center; font-size: 12px; font-weight: 700; color: #c0392b; margin-bottom: 10px; }
-  .bar-track { height: 28px; background: #f0f0f5; border-radius: 6px; overflow: hidden; position: relative; margin-bottom: 6px; }
-  .bar-fill { height: 100%; border-radius: 6px; display: flex; align-items: center; padding-left: 10px; font-size: 11px; font-weight: 700; color: #fff; white-space: nowrap; }
-  .bar-label { font-size: 11px; color: #666; margin-bottom: 10px; }
-  .scenarios { width: 100%; border-collapse: collapse; font-size: 12px; margin-top: 14px; }
-  .scenarios th { background: #f5f5fa; padding: 7px 12px; text-align: left; font-weight: 600; color: #555; border-bottom: 2px solid #e0e0e8; }
-  .scenarios td { padding: 8px 12px; border-bottom: 1px solid #f0f0f5; }
-  .scenarios tr:last-child td { border-bottom: none; }
-  .pct-green { color: #27ae60; font-weight: 700; }
-  .pct-red { color: #c0392b; font-weight: 700; }
-  .conclusion-box { margin-top: 16px; background: #fff8e1; border-left: 4px solid #e67e22; padding: 12px 14px; border-radius: 0 6px 6px 0; font-size: 12px; color: #7a4f00; }
-  .conclusion-box strong { display: block; font-size: 13px; margin-bottom: 4px; }
+  /* ACTION STATUS TABLE */
+  .action-table { width: 100%; border-collapse: collapse; }
+  .action-table th { font-size: 11px; text-transform: uppercase; letter-spacing: .06em; color: #475569; padding: 6px 10px; text-align: left; border-bottom: 1px solid #1e2640; }
+  .action-table td { padding: 9px 10px; border-bottom: 1px solid #1a1f35; font-size: 13px; vertical-align: top; }
+  .action-table tr:last-child td { border-bottom: none; }
+  .badge { display: inline-block; padding: 2px 9px; border-radius: 10px; font-size: 11px; font-weight: 600; white-space: nowrap; }
+  .badge.green { background: #052e16; color: #4ade80; }
+  .badge.yellow { background: #2d2010; color: #fcd34d; }
+  .badge.red { background: #2d1515; color: #fca5a5; }
+  .badge.gray { background: #1e293b; color: #94a3b8; }
+  .q2-val { font-weight: 600; color: #e2e8f0; }
+  .reason { font-size: 11px; color: #64748b; margin-top: 2px; }
 
-  /* ---------- WEEKLY PLAN ---------- */
-  .week-table { width: 100%; border-collapse: collapse; background: #fff; border-radius: 8px; overflow: hidden; border: 1px solid #e0e0e8; }
-  .week-table th { background: #1a1a2e; color: #fff; padding: 10px 14px; text-align: left; font-size: 12px; font-weight: 600; }
-  .week-table td { padding: 11px 14px; border-bottom: 1px solid #f0f0f5; font-size: 12px; vertical-align: top; }
+  /* COVERAGE BAR */
+  .coverage-wrap { background: #1a1d2e; border: 1px solid #2d3561; border-radius: 8px; padding: 20px 24px; }
+  .bar-row { margin-bottom: 14px; }
+  .bar-label { display: flex; justify-content: space-between; font-size: 12px; margin-bottom: 5px; }
+  .bar-label-name { color: #94a3b8; }
+  .bar-label-val { color: #e2e8f0; font-weight: 600; }
+  .bar-track { height: 20px; background: #1e293b; border-radius: 4px; overflow: hidden; }
+  .bar-fill { height: 100%; border-radius: 4px; }
+  .bar-fill.deficit { background: #ef4444; width: 100%; }
+  .bar-fill.q2-min { background: #f59e0b; width: 28%; }
+  .bar-fill.q2-target { background: #6366f1; width: 57%; }
+  .bar-fill.q2-max { background: #34d399; width: 100%; }
+  .coverage-verdict { margin-top: 14px; padding: 10px 14px; background: #2d1515; border-radius: 6px; border-left: 3px solid #ef4444; font-size: 13px; color: #fca5a5; }
+
+  /* Q2 vs Q3 TABLE */
+  .q23-table { width: 100%; border-collapse: collapse; }
+  .q23-table th { font-size: 11px; text-transform: uppercase; letter-spacing: .06em; color: #475569; padding: 7px 10px; text-align: left; border-bottom: 1px solid #1e2640; }
+  .q23-table td { padding: 8px 10px; border-bottom: 1px solid #1a1f35; font-size: 13px; }
+  .q23-table tr:last-child td { border-bottom: none; }
+  .q23-table .total-row td { background: #1a1d2e; font-weight: 700; color: #a5b4fc; }
+  .q2-pos { color: #4ade80; font-weight: 600; }
+  .q3-pos { color: #fbbf24; font-weight: 600; }
+  .q2-zero { color: #ef4444; font-weight: 600; }
+
+  /* COMPETITORS */
+  .comp-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 10px; }
+  .comp-card { background: #1a1d2e; border: 1px solid #2d3561; border-radius: 8px; padding: 14px 16px; }
+  .comp-card.not-comp { border-color: #374151; opacity: .75; }
+  .comp-name { font-size: 14px; font-weight: 700; color: #a5b4fc; margin-bottom: 4px; }
+  .comp-card.not-comp .comp-name { color: #6b7280; }
+  .comp-threat { font-size: 11px; margin-bottom: 6px; }
+  .threat-hi { color: #f87171; }
+  .threat-mid { color: #fbbf24; }
+  .threat-lo { color: #94a3b8; }
+  .comp-detail { font-size: 12px; color: #64748b; }
+  .comp-detail span { color: #cbd5e1; }
+  .comp-price { font-size: 12px; color: #34d399; font-weight: 600; margin-top: 4px; }
+  .comp-disclaimer { font-size: 11px; color: #4b5563; margin-top: 4px; font-style: italic; }
+
+  /* WEEK TABLE */
+  .week-table { width: 100%; border-collapse: collapse; }
+  .week-table th { font-size: 11px; text-transform: uppercase; letter-spacing: .06em; color: #475569; padding: 7px 10px; text-align: left; border-bottom: 1px solid #1e2640; }
+  .week-table td { padding: 9px 10px; border-bottom: 1px solid #1a1f35; font-size: 13px; vertical-align: top; }
   .week-table tr:last-child td { border-bottom: none; }
-  .week-num { font-size: 18px; font-weight: 800; color: #1a1a2e; }
-  .week-dates { font-size: 11px; color: #888; }
-  .week-current { background: #fffbf0; }
-  .week-current .week-num { color: #c0392b; }
-  .checkpoint { display: inline-block; background: #e8f5e9; color: #2e7d32; font-size: 11px; font-weight: 600; padding: 3px 8px; border-radius: 3px; margin-top: 4px; }
-  .rhythm-note { margin-top: 12px; background: #f5f5fa; border-radius: 6px; padding: 10px 14px; font-size: 12px; color: #555; }
+  .action-ref { font-weight: 700; color: #818cf8; margin-right: 6px; }
 
-  /* ---------- INDICATORS ---------- */
-  .ind-table { width: 100%; border-collapse: collapse; background: #fff; border-radius: 8px; overflow: hidden; border: 1px solid #e0e0e8; }
-  .ind-table th { background: #1a1a2e; color: #fff; padding: 10px 14px; text-align: left; font-size: 12px; font-weight: 600; }
-  .ind-table td { padding: 11px 14px; border-bottom: 1px solid #f0f0f5; font-size: 12px; vertical-align: top; }
-  .ind-table tr:last-child td { border-bottom: none; }
-  .ind-target { font-weight: 700; color: #1a1a2e; }
-  .status-pending { display: inline-block; background: #e8eaf6; color: #3949ab; font-size: 10px; font-weight: 700; padding: 2px 8px; border-radius: 10px; }
-  .red-zone { margin-top: 12px; background: #fdf0ee; border-left: 4px solid #c0392b; padding: 12px 14px; border-radius: 0 6px 6px 0; font-size: 12px; }
-  .red-zone strong { color: #c0392b; display: block; margin-bottom: 2px; }
+  /* MANUAL CHECKLIST */
+  .check-table { width: 100%; border-collapse: collapse; }
+  .check-table th { font-size: 11px; text-transform: uppercase; letter-spacing: .06em; color: #475569; padding: 7px 10px; text-align: left; border-bottom: 1px solid #1e2640; }
+  .check-table td { padding: 9px 10px; border-bottom: 1px solid #1a1f35; font-size: 13px; vertical-align: top; }
+  .check-table tr:last-child td { border-bottom: none; }
+  .check-table input[type=checkbox] { accent-color: #6366f1; width: 15px; height: 15px; cursor: pointer; }
+  .deadline-cell { white-space: nowrap; font-size: 12px; }
+  .deadline-cell.urgent { color: #fca5a5; font-weight: 700; }
+  .who-cell { font-size: 12px; color: #94a3b8; }
 
-  /* ---------- DONT LIST ---------- */
-  .dont-list { background: #fff; border-radius: 8px; border: 1px solid #e0e0e8; overflow: hidden; }
-  .dont-item { display: flex; gap: 12px; padding: 11px 16px; border-bottom: 1px solid #f0f0f5; align-items: flex-start; }
-  .dont-item:last-child { border-bottom: none; }
-  .dont-x { color: #c0392b; font-size: 16px; font-weight: 800; flex-shrink: 0; line-height: 1.4; }
-  .dont-text strong { display: block; font-size: 13px; font-weight: 600; color: #1a1a2e; margin-bottom: 2px; }
-  .dont-text span { font-size: 11px; color: #888; }
+  /* FOOTER */
+  .footer { margin-top: 40px; border-top: 1px solid #1e2640; padding: 20px 0 0; }
+  .footer-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 16px; }
+  .footer-col-title { font-size: 11px; text-transform: uppercase; letter-spacing: .06em; color: #475569; margin-bottom: 8px; }
+  .footer-col-body { font-size: 12px; color: #64748b; }
+  .footer-note { margin-top: 14px; font-size: 11px; color: #374151; text-align: center; }
 
-  /* ---------- FOOTER ---------- */
-  .footer { background: #1a1a2e; color: #778; font-size: 11px; padding: 14px 32px; margin-top: 8px; }
+  /* DIVIDER */
+  .divider { height: 1px; background: #1e2640; margin: 8px 0 20px; }
+
+  /* LABEL */
+  .partial-label { font-size: 11px; color: #6366f1; font-style: italic; margin-left: 6px; }
 </style>
 </head>
 <body>
 
 <!-- DEMO BANNER -->
 <div class="demo-banner">
-  <strong>DEMO-версия.</strong> Все цифры и имена условны — для иллюстрации методологии AI-Findir. Реальные данные не публикуются.
+  ⚠ ДЕМО-ВЕРСИЯ — данные обезличены и изменены в иллюстративных целях · Реальные названия, суммы и сотрудники заменены
 </div>
 
 <!-- HEADER -->
 <div class="header">
-  <div class="header-top">
-    <h1>Отдел экологических услуг — Q2</h1>
-    <span class="header-meta">Demo &nbsp;·&nbsp; AI-Findir Action Dashboard &nbsp;·&nbsp; Месяц 1 квартала = факт, месяцы 2–3 = план</span>
+  <div>
+    <div class="header-title">Action Dashboard — Отдел экологических услуг, Q2 [DEMO]</div>
+    <div style="font-size:12px;color:#475569;margin-top:3px;">Компания [DEMO] · Данные прогона: Q2 · Dashboard v3</div>
   </div>
-  <div class="header-question">Что делать в месяцах 2 и 3, чтобы закрыть квартал в плюс?</div>
-</div>
-
-<!-- DIAGNOSIS -->
-<div class="diagnosis">
-  <div class="diagnosis-label">Диагноз квартала</div>
-  <div class="diagnosis-text">
-    Месяц 1 закрыт с убытком <span>−1 100 000 руб.</span> при выполнении плана по выручке на <span>36%</span>.
-    Текущий план месяцев 2+3 оставляет квартал в минусе.
-    Чтобы квартал ≥ 0, нужно <span>+960 000 руб.</span> сверх плана за два месяца.
-    Главный рычаг — <span>продажи</span>, а не перенос цифр.
+  <div class="header-meta">
+    <span>Месяц 1 = факт</span>
+    <span>Месяцы 2–3 = план</span>
+    <span style="color:#6366f1;margin-top:4px;">Агенты 03 · 04 · 05</span>
   </div>
 </div>
 
-<div class="main">
+<div class="page">
+
+  <!-- DIAGNOSIS -->
+  <div class="section">
+    <div class="diagnosis">
+      <div class="diag-item">
+        <div class="diag-label">Дефицит квартала</div>
+        <div class="diag-value red">~960К ₽</div>
+        <div class="diag-sub">gap выше текущего плана</div>
+      </div>
+      <div class="diag-item">
+        <div class="diag-label">Q2-эффект (реалист.)</div>
+        <div class="diag-value yellow">450–650К ₽</div>
+        <div class="diag-sub">по 7 действиям action plan</div>
+      </div>
+      <div class="diag-item">
+        <div class="diag-label">Покрытие дефицита</div>
+        <div class="diag-value orange">47–67%</div>
+        <div class="diag-sub">остаток 310–510К ₽</div>
+      </div>
+      <div class="diag-item">
+        <div class="diag-label">Q3-перенос</div>
+        <div class="diag-value indigo">400–800К ₽</div>
+        <div class="diag-sub">реалистичный объём</div>
+      </div>
+    </div>
+  </div>
 
   <!-- ALERTS -->
-  <div class="alert-row">
-    <div class="alert alert-red">
-      <strong>Дефицит не закрыт даже при выполнении всех действий</strong>
-      Консервативный эффект топ-10 действий = 650 000 руб. (68% от 960К). Остаток разрыва ~310 000 руб.
-    </div>
-    <div class="alert alert-orange">
-      <strong>В месяце 3 нет ни одного продажного действия</strong>
-      Цикл продажи услуг — 2–4 недели. Сделки месяца 3 нужно запускать уже в первой половине месяца 2. Сейчас.
-    </div>
-    <div class="alert alert-orange">
-      <strong>Cash-cutoff: последний день договора для квартальной выручки — конец месяца 2</strong>
-      Стандартный цикл исполнения 2–4 нед. Договор позже → акт в следующем квартале → выручка Q3.
-    </div>
-  </div>
-
-  <!-- BLOCK 1: THREE ACTIONS THIS WEEK -->
   <div class="section">
-    <div class="section-title">Три главных действия — первая неделя</div>
-    <div class="cards">
-
-      <div class="card">
-        <div class="card-head card-head-red">
-          <span class="card-num">№ 2</span>
-          <span class="card-deadline">день 1–2</span>
-        </div>
-        <div class="card-body">
-          <div class="card-title">Разбор провала Менеджера 2 — реактивация незакрытых сделок</div>
-          <div class="card-row"><span class="card-label">Что:</span><span class="card-val">РО + Менеджер 2 разбирают каждую незакрытую сделку месяца 1. Для каждой — план действий и дата закрытия.</span></div>
-          <div class="card-row"><span class="card-label">Кто:</span><span class="card-val">Менеджер 2 + РО</span></div>
-          <div class="card-row"><span class="card-label">Контекст:</span><span class="card-val">Месяц 1 — ~25% плана (факт ~140К при плане ~570К). В предыдущем квартале ~83%. Разрыв месяца 1 = ~430К.</span></div>
-          <div class="card-effect"><span class="card-effect-num">+100 000–160 000 руб.</span> сверх плана месяца 2 (гипотеза)</div>
-        </div>
+    <div class="section-title">Критичные алерты</div>
+    <div class="alerts-grid">
+      <div class="alert crit">
+        <div class="alert-title">Q2 закроется в минус</div>
+        <div class="alert-body">Реалистичный эффект 450–650К не покрывает дефицит ~960К. Остаток 310–510К ₽ уходит в Q3 или требует сверхплана по ключевым сделкам.</div>
       </div>
-
-      <div class="card">
-        <div class="card-head card-head-red">
-          <span class="card-num">№ 1</span>
-          <span class="card-deadline">день 2–3</span>
-        </div>
-        <div class="card-body">
-          <div class="card-title">Аудит прорыва Менеджера 3 в месяце 1 — перенос паттерна</div>
-          <div class="card-row"><span class="card-label">Что:</span><span class="card-val">РО + Менеджер 3: какие сделки и клиенты дали 227% плана? Список ≥5 аналогичных на месяц 2.</span></div>
-          <div class="card-row"><span class="card-label">Кто:</span><span class="card-val">Менеджер 3 + РО</span></div>
-          <div class="card-row"><span class="card-label">Контекст:</span><span class="card-val">Месяц 1: 227% — единственный зафиксированный прорыв. Но предыдущий квартал всего 45%. Выброс или паттерн — нужно разобрать.</span></div>
-          <div class="card-effect"><span class="card-effect-num">+100 000–250 000 руб.</span> (гипотеза, после подтверждения месяца 1)</div>
-          <div class="card-warn">Считать 227% нормой нельзя. До разбора — плановая планка Менеджера 3 = 100% его плана.</div>
-        </div>
+      <div class="alert crit">
+        <div class="alert-title">⏰ Cash-cutoff 20-е число 2-го месяца</div>
+        <div class="alert-body">Договоры с циклом &gt;4 нед., подписанные после контрольной даты, попадают в Q3. Длинные продукты (разрешения, сопровождение) — под угрозой переноса.</div>
       </div>
-
-      <div class="card">
-        <div class="card-head card-head-red">
-          <span class="card-num">№ 5</span>
-          <span class="card-deadline">день 3–4</span>
-        </div>
-        <div class="card-body">
-          <div class="card-title">Закрыть незакрытые акты месяца 1 — зафиксировать уже заработанное</div>
-          <div class="card-row"><span class="card-label">Что:</span><span class="card-val">Аудит всех незакрытых актов и счетов за месяц 1. Приоритетное закрытие в первые дни месяца 2.</span></div>
-          <div class="card-row"><span class="card-label">Кто:</span><span class="card-val">РО + бухгалтерия / операционный блок</span></div>
-          <div class="card-row"><span class="card-label">Контекст:</span><span class="card-val">Выполненные работы без закрытых актов — это заработанная, но непризнанная выручка. Фиксируем в начале месяца 2.</span></div>
-          <div class="card-effect"><span class="card-effect-num">+50 000–150 000 руб.</span> (гипотеза, зависит от объёма незакрытых актов)</div>
-        </div>
+      <div class="alert warn">
+        <div class="alert-title">Разрешительная документация → Q3</div>
+        <div class="alert-body">Действие 4 (Менеджер 3): без тёплой воронки прямо сейчас Q2-эффект ≈ 0. Цикл 1–3 мес. делает его Q3-инвестицией.</div>
       </div>
-
-    </div>
-  </div>
-
-  <!-- BLOCK 2: DATA CHECKLIST -->
-  <div class="section">
-    <div class="section-title">Данные, которые нужны до запуска — без них действия не запустить</div>
-    <div class="checklist">
-      <div class="checklist-warn">
-        Без этих данных менеджеры будут «активировать базу», не зная её размера. Планёрка, не запуск. Срок сбора: 1–2 дня.
+      <div class="alert warn">
+        <div class="alert-title">Менеджер 1 — до конца 1-й недели</div>
+        <div class="alert-body">Источник результата прошлого месяца не установлен. Разница между 0 ₽ и +500К Q2 зависит от разбора паттерна.</div>
       </div>
-      <div class="checklist-item">
-        <div class="check-num">1</div>
-        <div class="check-box"></div>
-        <div class="check-text">
-          <strong>Открытые сделки на конец месяца 1 по каждому менеджеру</strong>
-          <span>Список: клиент, услуга, сумма, стадия, дата ожидаемого закрытия</span>
-        </div>
-        <div class="check-who">Менеджер 1, 2, 3</div>
-      </div>
-      <div class="checklist-item">
-        <div class="check-num">2</div>
-        <div class="check-box"></div>
-        <div class="check-text">
-          <strong>Размер активной клиентской базы по менеджерам</strong>
-          <span>Сколько клиентов у каждого, из них активных (договор за последние 12 мес.)</span>
-        </div>
-        <div class="check-who">Менеджер 1, 2, 3</div>
-      </div>
-      <div class="checklist-item">
-        <div class="check-num">3</div>
-        <div class="check-box"></div>
-        <div class="check-text">
-          <strong>Объяснение расхождения: сумма фактов менеджеров ≠ выручке отдела</strong>
-          <span>В данных обнаружено расхождение ~3,8×. Причина не установлена — требует прояснения у финансов.</span>
-        </div>
-        <div class="check-who">РО → финансы</div>
-      </div>
-      <div class="checklist-item">
-        <div class="check-num">4</div>
-        <div class="check-box"></div>
-        <div class="check-text">
-          <strong>Производственная мощность на месяцы 2–3</strong>
-          <span>Сколько работ физически выполняется при текущем производственном ФОТ? Есть ли свободные мощности?</span>
-        </div>
-        <div class="check-who">РО → производственный блок</div>
-      </div>
-      <div class="checklist-item">
-        <div class="check-num">5</div>
-        <div class="check-box"></div>
-        <div class="check-text">
-          <strong>Учётная политика: момент признания выручки</strong>
-          <span>Дата договора, акта или оплаты? Без однозначного ответа метрика «выручка квартала» неоднозначна.</span>
-        </div>
-        <div class="check-who">РО → бухгалтерия</div>
-      </div>
-      <div class="checklist-item">
-        <div class="check-num">6</div>
-        <div class="check-box"></div>
-        <div class="check-text">
-          <strong>Каталог услуг с ценами и средним чеком</strong>
-          <span>Без прайса менеджер не может отправить КП клиенту.</span>
-        </div>
-        <div class="check-who">РО</div>
-      </div>
-      <div class="checklist-item">
-        <div class="check-num">7</div>
-        <div class="check-box"></div>
-        <div class="check-text">
-          <strong>Полномочия менеджеров на скидку</strong>
-          <span>Максимальный % без согласования с РО и собственником.</span>
-        </div>
-        <div class="check-who">РО → собственник</div>
+      <div class="alert info">
+        <div class="alert-title">Партнёрский канал — единственный незаконкурированный</div>
+        <div class="alert-body">Все остальные каналы под давлением верифицированных конкурентов. Партнёрский контур активировать немедленно.</div>
       </div>
     </div>
   </div>
 
-  <!-- BLOCK 3: CAPACITY + CASH -->
-  <div class="section">
-    <div class="section-title">Производственная мощность и cash-cutoff — проверить на первой неделе</div>
-    <div class="two-col">
+  <!-- FIRST SCREEN: today + action statuses -->
+  <div class="firstscreen">
 
-      <div class="panel">
-        <div class="panel-head panel-head-red">Производственная мощность</div>
-        <div class="panel-body">
-          <p><strong>Цель = план + 32%.</strong> Если отдел укомплектован под план — продать +32% не значит произвести +32%.</p>
-          <p>Договоры подписаны, но услуги не оказаны в срок → акты не закрыты → выручка не признана → дефицит не закрыт.</p>
-          <p><strong>Что принести собственнику в начале квартала:</strong></p>
-          <div class="cutoff-row">
-            <div class="cutoff-desc"><strong>Capacity-потолок:</strong> максимальная выручка при текущем ФОТ = (фонд часов) × (чек/час). Цифра в рублях.</div>
+    <!-- TODAY -->
+    <div>
+      <div class="section-title">Что делать сегодня</div>
+      <div class="today-cards">
+
+        <div class="today-card">
+          <div class="today-card-header">
+            <div class="today-card-who">1. Менеджер 1 — разбор апрельского результата</div>
+            <div class="today-card-deadline">до конца недели — СРОЧНО</div>
           </div>
-          <div class="cutoff-row">
-            <div class="cutoff-desc"><strong>Зазор:</strong> потолок − квартальный план. Хватает ли физически для +960К?</div>
-          </div>
-          <div class="cutoff-row">
-            <div class="cutoff-desc"><strong>Если зазор &lt; 960К:</strong> субподряд, сверхурочные, найм или минимизация убытка как цель квартала.</div>
-          </div>
+          <div class="today-card-task">Запросить список закрытых сделок прошлого месяца и источник сверхвыполнения. Без разбора нельзя включить в Q2-прогноз.</div>
+          <div class="today-card-effect">Потенциал при подтверждении паттерна: <span>+300–500К Q2</span></div>
         </div>
-      </div>
 
-      <div class="panel">
-        <div class="panel-head panel-head-navy">Cash vs выручка vs договор</div>
-        <div class="panel-body">
-          <table class="cash-table">
-            <tr>
-              <th>Этап</th>
-              <th>Влияние на квартал</th>
-            </tr>
-            <tr>
-              <td>Договор подписан</td>
-              <td><span class="tag-promise">Обещание</span>&nbsp; Не выручка</td>
-            </tr>
-            <tr>
-              <td>Акт подписан до конца месяца 3</td>
-              <td><span class="tag-q2">Выручка квартала</span></td>
-            </tr>
-            <tr>
-              <td>Деньги поступили</td>
-              <td><span class="tag-q3">Кэш</span>&nbsp; Может быть следующий квартал</td>
-            </tr>
-          </table>
-          <div style="margin-top:14px;">
-            <div class="cutoff-row">
-              <div class="cutoff-date">Конец мес. 2</div>
-              <div class="cutoff-desc">Последний день договора для квартальной выручки при стандартном цикле (2–4 нед.)</div>
-            </div>
-            <div class="cutoff-row">
-              <div class="cutoff-date">~20 мес. 3</div>
-              <div class="cutoff-desc">Для коротких услуг (≤ 7 дней)</div>
-            </div>
-            <div class="cutoff-row">
-              <div class="cutoff-desc" style="color:#c0392b; font-weight:600;">Договоры позже стандартного cutoff → формально продано, но выручка следующего квартала.</div>
-            </div>
+        <div class="today-card">
+          <div class="today-card-header">
+            <div class="today-card-who">2. Менеджер 3 — воронка разрешительной документации</div>
+            <div class="today-card-deadline warn">до 12-го числа</div>
           </div>
+          <div class="today-card-task">Запросить текущую воронку по длинным продуктам: есть ли тёплые лиды прямо сейчас. Cash-cutoff — 20-е число 2-го месяца.</div>
+          <div class="today-card-effect">Q2-эффект без воронки: <span style="color:#ef4444">0 ₽</span> · с воронкой: <span>0–150К Q2</span></div>
         </div>
-      </div>
 
+        <div class="today-card">
+          <div class="today-card-header">
+            <div class="today-card-who">3. Менеджер 2 — реестр тендеров</div>
+            <div class="today-card-deadline warn">до 12-го числа</div>
+          </div>
+          <div class="today-card-task">Запросить реестр уже поданных тендерных заявок с датой вскрытия в пределах квартала. Только они дают Q2-выручку.</div>
+          <div class="today-card-effect">Новые заявки текущего месяца: <span style="color:#ef4444">0 ₽ Q2</span> · вскрытие до конца Q2: потенциал Q2</div>
+        </div>
+
+        <div class="today-card">
+          <div class="today-card-header">
+            <div class="today-card-who">4. РО — партнёрский контур</div>
+            <div class="today-card-deadline warn">до 12-го числа</div>
+          </div>
+          <div class="today-card-task">Выяснить активные контакты внутри партнёрского контура и ответственного. Единственный незаконкурированный канал.</div>
+          <div class="today-card-effect">Потенциал Q2: <span>0–200К</span> · Q3: 100–300К</div>
+        </div>
+
+        <div class="today-card">
+          <div class="today-card-header">
+            <div class="today-card-who">5. Стоп — новые тендерные заявки</div>
+            <div class="today-card-deadline">сегодня</div>
+          </div>
+          <div class="today-card-task">Временно остановить инвестицию времени в подачу новых заявок. Приоритет — Q2-задачи выше. Тендеры текущего месяца = Q3-инвестиция.</div>
+          <div class="today-card-effect">Высвобождает ресурс для действий 1, 7 с Q2-потенциалом</div>
+        </div>
+
+      </div>
     </div>
-  </div>
 
-  <!-- BLOCK 4: EFFECT SUMMARY -->
-  <div class="section">
-    <div class="section-title">Сводка эффекта: 650К vs дефицит 960К</div>
-    <div class="effect-box">
-      <div class="effect-numbers">
-        <div class="effect-col">
-          <div class="effect-big effect-big-red">960 000</div>
-          <div class="effect-sub">дефицит для квартала ≥ 0, руб.</div>
-        </div>
-        <div class="effect-col">
-          <div class="effect-big effect-big-green">+650 000</div>
-          <div class="effect-sub">консервативный эффект действий 1–8, руб.</div>
-        </div>
-        <div class="effect-col">
-          <div class="effect-big effect-big-red">−310 000</div>
-          <div class="effect-sub">остаток разрыва (консерв.), руб.</div>
-        </div>
-        <div class="effect-col">
-          <div class="effect-big effect-big-orange">+1 270 000</div>
-          <div class="effect-sub">оптимистичный эффект (не гарантирован)</div>
-        </div>
-      </div>
-
-      <div class="gap-label">Покрытие дефицита по сценариям</div>
-      <div class="bar-track">
-        <div class="bar-fill" style="width:68%; background:#e67e22;">Консервативный: 650К / 960К = 68%</div>
-      </div>
-      <div class="bar-label">Консервативный сценарий — дефицит не закрыт</div>
-      <div class="bar-track">
-        <div class="bar-fill" style="width:100%; background:#27ae60;">Оптимистичный: 1 270К / 960К = 132% — закрыт</div>
-      </div>
-      <div class="bar-label">Оптимистичный сценарий — квартал в плюс при выполнении всех действий на верхней оценке</div>
-
-      <table class="scenarios">
-        <tr>
-          <th>Сценарий</th>
-          <th>Эффект</th>
-          <th>Покрытие 960К</th>
-          <th>Остаток</th>
-          <th>Д. 7 включено?</th>
-        </tr>
-        <tr>
-          <td>Консервативный</td>
-          <td>+650 000</td>
-          <td><span class="pct-red">68%</span></td>
-          <td>−310 000</td>
-          <td>Нет (до отчёта)</td>
-        </tr>
-        <tr>
-          <td>Оптимистичный</td>
-          <td>+1 270 000</td>
-          <td><span class="pct-green">132%</span></td>
-          <td>покрыт</td>
-          <td>Нет</td>
-        </tr>
-        <tr>
-          <td>Оптимистичный + д. 7</td>
-          <td>+1 470 000</td>
-          <td><span class="pct-green">153%</span></td>
-          <td>покрыт с запасом</td>
-          <td>Да</td>
-        </tr>
+    <!-- ACTION STATUSES -->
+    <div>
+      <div class="section-title">Статусы действий action plan</div>
+      <table class="action-table">
+        <thead>
+          <tr>
+            <th>#</th>
+            <th>Действие</th>
+            <th>Q2-эффект</th>
+            <th>Статус</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td style="color:#64748b">1</td>
+            <td>
+              <div>Разбор результата Менеджера 1</div>
+              <div class="reason">до конца недели — источник не установлен</div>
+            </td>
+            <td><span class="q2-val" style="color:#94a3b8">0 ₽*</span></td>
+            <td><span class="badge gray">⚪ Под вопросом</span></td>
+          </tr>
+          <tr>
+            <td style="color:#64748b">2</td>
+            <td>
+              <div>Активация базы под регуляторный дедлайн</div>
+              <div class="reason">конкурентная плотность высокая</div>
+            </td>
+            <td><span class="q2-val" style="color:#fbbf24">150–300К</span></td>
+            <td><span class="badge yellow">🟡 Частично</span></td>
+          </tr>
+          <tr>
+            <td style="color:#64748b">3</td>
+            <td>
+              <div>Абонентское сопровождение</div>
+              <div class="reason">Конкурент D / Конкурент A — длинный цикл переключения</div>
+            </td>
+            <td><span class="q2-val" style="color:#fca5a5">45–120К</span></td>
+            <td><span class="badge red">🔴 Завышена</span></td>
+          </tr>
+          <tr>
+            <td style="color:#64748b">4</td>
+            <td>
+              <div>Менеджер 3: разрешительная документация</div>
+              <div class="reason">цикл 1–3 мес.; cash-cutoff 20-е число</div>
+            </td>
+            <td><span class="q2-val" style="color:#fca5a5">0–150К</span></td>
+            <td><span class="badge red">🔴 В основном Q3</span></td>
+          </tr>
+          <tr>
+            <td style="color:#64748b">5</td>
+            <td>
+              <div>Тендеры: KPI 10 заявок</div>
+              <div class="reason">заявки текущего месяца → вскрытие через квартал</div>
+            </td>
+            <td><span class="q2-val" style="color:#ef4444">0 ₽</span></td>
+            <td><span class="badge green">🟢 Q3-инвестиция</span></td>
+          </tr>
+          <tr>
+            <td style="color:#64748b">6</td>
+            <td>
+              <div>Лабораторные (допродажи)</div>
+              <div class="reason">слабоконкурентная зона, пакетная продажа</div>
+            </td>
+            <td><span class="q2-val" style="color:#4ade80">75–300К</span></td>
+            <td><span class="badge green">🟢 Подтверждена</span></td>
+          </tr>
+          <tr>
+            <td style="color:#64748b">7</td>
+            <td>
+              <div>Партнёрский контур</div>
+              <div class="reason">единственный незаконкурированный канал</div>
+            </td>
+            <td><span class="q2-val" style="color:#94a3b8">0–200К</span></td>
+            <td><span class="badge gray">⚪ Под вопросом</span></td>
+          </tr>
+        </tbody>
       </table>
+      <div style="font-size:11px;color:#475569;margin-top:8px;">*Действие 1: при подтверждении паттерна Менеджера 1 — +300–500К Q2</div>
+    </div>
 
-      <div class="conclusion-box">
-        <strong>Текущий набор действий не закрывает дефицит в консервативном сценарии.</strong>
-        Для надёжного квартала ≥ 0 нужен хотя бы один дополнительный источник:
-        крупная сделка ≥300К по существующему клиенту; тендер с высокой вероятностью победы; оптимизация операционных расходов.
-        Если к середине месяца 2 ни один не подтверждён — обсудить с собственником целевую планку квартала = −300К (минимизация убытка).
+  </div>
+
+  <div class="divider"></div>
+
+  <!-- COVERAGE BAR -->
+  <div class="section">
+    <div class="section-title">Покрытие дефицита — визуально</div>
+    <div class="coverage-wrap">
+      <div class="bar-row">
+        <div class="bar-label">
+          <span class="bar-label-name">Дефицит Q2</span>
+          <span class="bar-label-val" style="color:#f87171">~960К ₽ = 100%</span>
+        </div>
+        <div class="bar-track"><div class="bar-fill deficit"></div></div>
+      </div>
+      <div class="bar-row">
+        <div class="bar-label">
+          <span class="bar-label-name">Q2-эффект минимум (консервативный)</span>
+          <span class="bar-label-val" style="color:#f59e0b">~270К ₽ = 28%</span>
+        </div>
+        <div class="bar-track"><div class="bar-fill q2-min"></div></div>
+      </div>
+      <div class="bar-row">
+        <div class="bar-label">
+          <span class="bar-label-name">Q2-эффект целевой (вероятный)</span>
+          <span class="bar-label-val" style="color:#818cf8">450–650К ₽ = 47–67%</span>
+        </div>
+        <div class="bar-track"><div class="bar-fill q2-target"></div></div>
+      </div>
+      <div class="bar-row">
+        <div class="bar-label">
+          <span class="bar-label-name">Q2-эффект максимум (оптимистичный)</span>
+          <span class="bar-label-val" style="color:#34d399">&gt;960К ₽ = 100%+</span>
+        </div>
+        <div class="bar-track"><div class="bar-fill q2-max"></div></div>
+      </div>
+      <div class="coverage-verdict">
+        ⚠ Q2 закроется с минусом 310–510К ₽ при реалистичном исполнении action plan. Ни один сценарий без сверхпланового результата по ключевым сделкам не закрывает дефицит полностью.
       </div>
     </div>
   </div>
 
-  <!-- BLOCK 5: WEEKLY PLAN -->
+  <!-- Q2 vs Q3 -->
   <div class="section">
-    <div class="section-title">Недельный план месяца 2</div>
+    <div class="section-title">Q2 vs Q3 — «можно продать» ≠ «деньги в Q2»</div>
+    <table class="q23-table">
+      <thead>
+        <tr>
+          <th>#</th>
+          <th>Действие</th>
+          <th>Q2-эффект (₽)</th>
+          <th>Q3-перенос (₽)</th>
+          <th>Статус</th>
+          <th>Ключевое ограничение</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>1</td>
+          <td>Разбор результата Менеджера 1</td>
+          <td><span class="q2-zero">0</span> (conservative)</td>
+          <td><span class="q3-pos">0–500К</span></td>
+          <td><span class="badge gray">⚪ под вопросом</span></td>
+          <td style="font-size:12px;color:#64748b">Источник не установлен — СРОЧНО</td>
+        </tr>
+        <tr>
+          <td>2</td>
+          <td>Активация базы под дедлайн</td>
+          <td><span class="q2-pos">150–300К</span></td>
+          <td><span class="q3-pos">0–100К</span></td>
+          <td><span class="badge yellow">🟡 частично</span></td>
+          <td style="font-size:12px;color:#64748b">Конкурентная плотность; верхняя граница оптимистична</td>
+        </tr>
+        <tr>
+          <td>3</td>
+          <td>Абонентское сопровождение</td>
+          <td><span class="q2-pos">45–120К</span></td>
+          <td style="color:#94a3b8">абонент длится в Q3</td>
+          <td><span class="badge red">🔴 завышена</span></td>
+          <td style="font-size:12px;color:#64748b">Конкурент A / Конкурент D; долгое переключение</td>
+        </tr>
+        <tr>
+          <td>4</td>
+          <td>Разрешительная документация</td>
+          <td><span class="q2-pos">0–150К</span></td>
+          <td><span class="q3-pos">100–450К</span></td>
+          <td><span class="badge red">🔴 основном Q3</span></td>
+          <td style="font-size:12px;color:#64748b">Цикл 1–3 мес.; cash-cutoff 20-е число</td>
+        </tr>
+        <tr>
+          <td>5</td>
+          <td>Тендеры (10 заявок)</td>
+          <td><span class="q2-zero">0</span></td>
+          <td><span class="q3-pos">50–200К</span></td>
+          <td><span class="badge green">🟢 Q3-инвест.</span></td>
+          <td style="font-size:12px;color:#64748b">Заявки текущего месяца → вскрытие через квартал</td>
+        </tr>
+        <tr>
+          <td>6</td>
+          <td>Лабораторные (допродажи)</td>
+          <td><span class="q2-pos">75–300К</span></td>
+          <td><span style="color:#64748b">0</span></td>
+          <td><span class="badge green">🟢 подтверждена</span></td>
+          <td style="font-size:12px;color:#64748b">Слабоконкурентная зона; быстрый цикл</td>
+        </tr>
+        <tr>
+          <td>7</td>
+          <td>Партнёрский контур</td>
+          <td><span class="q2-pos">0–200К</span></td>
+          <td><span class="q3-pos">100–300К</span></td>
+          <td><span class="badge gray">⚪ под вопросом</span></td>
+          <td style="font-size:12px;color:#64748b">Нужны активные контакты [ПРОВЕРИТЬ]</td>
+        </tr>
+        <tr class="total-row">
+          <td colspan="2">Итого Q2-эффект (реалистичный диапазон)</td>
+          <td><span style="color:#818cf8">450–650К ₽</span></td>
+          <td><span style="color:#fbbf24">400–800К ₽</span></td>
+          <td colspan="2"></td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <!-- КОНКУРЕНТЫ -->
+  <div class="section">
+    <div class="section-title">Конкурентный контекст <span class="partial-label">(частичные данные, публичные источники)</span></div>
+    <div class="comp-grid">
+
+      <div class="comp-card">
+        <div class="comp-name">Конкурент A</div>
+        <div class="comp-threat"><span class="threat-hi">▲ Высокая угроза (75/100)</span> · низкая уверенность · покрывает 100% портфеля</div>
+        <div class="comp-detail">Регион: <span>федеральный игрок</span></div>
+        <div class="comp-detail">Цикл по типовым продуктам: <span>~2 нед.</span> — быстро</div>
+        <div class="comp-disclaimer">Данные: публичные источники · требует верификации</div>
+      </div>
+
+      <div class="comp-card">
+        <div class="comp-name">Конкурент D</div>
+        <div class="comp-threat"><span class="threat-mid">▲ Средняя угроза (65/100)</span> · низкая уверенность · сопровождение + консалтинг</div>
+        <div class="comp-detail">Основан: <span>более 30 лет назад</span> · сильные долгосрочные клиентские связи</div>
+        <div class="comp-detail">Риск для абонентского блока: <span>высокий</span></div>
+        <div class="comp-disclaimer">Данные: публичные источники · требует верификации</div>
+      </div>
+
+      <div class="comp-card">
+        <div class="comp-name">Конкурент B</div>
+        <div class="comp-threat"><span class="threat-mid">▲ Средняя угроза (60/100)</span> · верифицировано</div>
+        <div class="comp-price">Типовая услуга (паспортизация): от ~6К ₽, срок до 30 дней [ФАКТ]</div>
+        <div class="comp-detail">Ценовое давление снизу по базовому блоку услуг</div>
+        <div class="comp-disclaimer">Цена подтверждена из публичного прайса</div>
+      </div>
+
+      <div class="comp-card">
+        <div class="comp-name">Конкурент C</div>
+        <div class="comp-threat"><span class="threat-lo">▲ Средняя угроза (50/100)</span> · верифицировано</div>
+        <div class="comp-price">Производственный контроль: от ~15К ₽, срок 14–30 дней [ФАКТ]</div>
+        <div class="comp-detail">Якорь рынка по одному из ключевых продуктов</div>
+        <div class="comp-disclaimer">Цена подтверждена из публичного прайса</div>
+      </div>
+
+      <div class="comp-card">
+        <div class="comp-name">Конкурент F</div>
+        <div class="comp-threat"><span class="threat-lo">Средняя угроза (55/100)</span> · только лабораторные услуги</div>
+        <div class="comp-detail">Конкурент только в лабораторном сегменте</div>
+        <div class="comp-disclaimer">Данные: публичные источники</div>
+      </div>
+
+      <div class="comp-card">
+        <div class="comp-name">Конкурент G</div>
+        <div class="comp-threat"><span class="threat-lo">Средняя угроза (50/100)</span></div>
+        <div class="comp-detail">Профильный игрок по разрешительной документации</div>
+        <div class="comp-detail">Конкурирует в сегменте действия 4</div>
+        <div class="comp-disclaimer">Данные: публичные источники</div>
+      </div>
+
+      <div class="comp-card">
+        <div class="comp-name">Конкурент H</div>
+        <div class="comp-threat"><span class="threat-lo">Низкая угроза (45/100)</span></div>
+        <div class="comp-detail">Широкий профиль экологических услуг</div>
+        <div class="comp-disclaimer">Данные: публичные источники</div>
+      </div>
+
+      <div class="comp-card not-comp">
+        <div class="comp-name">Конкурент E — НЕ прямой конкурент</div>
+        <div class="comp-threat"><span class="threat-lo">Минимальная угроза (15/100)</span></div>
+        <div class="comp-detail">~75% деятельности = судебная экспертиза / работа с госорганами</div>
+        <div class="comp-disclaimer">⚠ Числился в первичном профиле компании — ошибочно. Профиль конкурентов требует валидации.</div>
+      </div>
+
+    </div>
+    <div style="margin-top:12px;padding:10px 14px;background:#1a1d2e;border-radius:6px;border-left:3px solid #4b5563;font-size:12px;color:#64748b;">
+      <strong style="color:#94a3b8">Наше позиционирование:</strong> ценовая позиция vs конкуренты — [ПРОВЕРИТЬ]. Если цена типовой услуги на 30%+ выше рынка — теряем ценочувствительных клиентов. Компенсация — партнёрская надёжность. Tier 1 (госреестры, коммерческие базы) не верифицирован.
+    </div>
+  </div>
+
+  <!-- ЧТО ДЕЛАТЬ НА НЕДЕЛЕ -->
+  <div class="section">
+    <div class="section-title">Что делать на неделе</div>
     <table class="week-table">
-      <tr>
-        <th style="width:110px">Неделя</th>
-        <th>Ключевые задачи</th>
-        <th>Контрольная точка</th>
-      </tr>
-      <tr class="week-current">
-        <td><span class="week-num">1</span><br><span class="week-dates">дни 1–7</span></td>
-        <td>Действия 1, 2, 5, 7 — старт; тендерный трекер запущен; первые КП клиентам</td>
-        <td><span class="checkpoint">Аудиты проведены; ≥2 тендерных заявки поданы</span></td>
-      </tr>
-      <tr>
-        <td><span class="week-num">2</span><br><span class="week-dates">дни 8–14</span></td>
-        <td>Действие 4 — список сделок месяца 3 утверждён; дозаказы: первые ответы клиентов</td>
-        <td><span class="checkpoint">Подтверждённые заказы ≥ 300 000 руб.</span></td>
-      </tr>
-      <tr>
-        <td><span class="week-num">3</span><br><span class="week-dates">дни 15–21</span></td>
-        <td>Действия 8, 9 — офферы разосланы; pipeline Менеджера 2 на месяц 3 готов</td>
-        <td><span class="checkpoint">Подтверждённая выручка мес. 2 ≥ 1 000 000 руб.</span></td>
-      </tr>
-      <tr>
-        <td><span class="week-num">4</span><br><span class="week-dates">дни 22–30</span></td>
-        <td>Финальный push: дозакрытие сделок, выставление всех счетов до cutoff-даты</td>
-        <td><span class="checkpoint">Выручка мес. 2 ≥ 2 000 000 руб. (цель)</span></td>
-      </tr>
+      <thead>
+        <tr>
+          <th>#</th>
+          <th>Задача</th>
+          <th>Ответственные</th>
+          <th>Дедлайн</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td><span class="action-ref">Д2</span></td>
+          <td>
+            <div>Обзвон 10–20 ключевых клиентов базы под регуляторный дедлайн</div>
+            <div class="reason">Выяснить, не перехвачены ли клиенты конкурентами. Ориентир по рынку — публичные прайсы конкурентов B и C.</div>
+          </td>
+          <td>Менеджер 2, Менеджер 3, Менеджер 4</td>
+          <td style="color:#fbbf24;font-size:12px;white-space:nowrap">до 16-го числа</td>
+        </tr>
+        <tr>
+          <td><span class="action-ref">Д6</span></td>
+          <td>
+            <div>Запустить пакетные предложения: допродажа лабораторных к базовым услугам</div>
+            <div class="reason">Слабоконкурентная зона. Быстрый цикл. Подтверждено рыночным анализом.</div>
+          </td>
+          <td>Менеджер 2, Менеджер 4</td>
+          <td style="color:#4ade80;font-size:12px;white-space:nowrap">до 12-го числа</td>
+        </tr>
+        <tr>
+          <td><span class="action-ref">Д7</span></td>
+          <td>
+            <div>Первые контакты по партнёрскому контуру: выяснить KPI и ответственного</div>
+            <div class="reason">Единственный незаконкурированный канал. Нет конкурентов — нет давления на цену.</div>
+          </td>
+          <td>РО</td>
+          <td style="color:#fbbf24;font-size:12px;white-space:nowrap">до 12-го числа</td>
+        </tr>
+        <tr>
+          <td><span class="action-ref">Д1</span></td>
+          <td>
+            <div>Разбор паттерна Менеджера 1: если воспроизводим — запустить аналогичную воронку</div>
+            <div class="reason">При подтверждении: +300–500К Q2. Без разбора — 0 в прогнозе.</div>
+          </td>
+          <td>Менеджер 1 + РО</td>
+          <td style="color:#fca5a5;font-size:12px;white-space:nowrap">до конца недели</td>
+        </tr>
+        <tr>
+          <td>—</td>
+          <td>
+            <div>Проверить ценовое позиционирование</div>
+            <div class="reason">Сравнить собственный прайс с публичными ориентирами конкурентов B и C.</div>
+          </td>
+          <td>РО + Менеджер 2</td>
+          <td style="color:#fbbf24;font-size:12px;white-space:nowrap">до 16-го числа</td>
+        </tr>
+        <tr>
+          <td><span class="action-ref">Д3</span></td>
+          <td>
+            <div>Снизить цель абонентского сопровождения с 3–5 до 1–2 новых клиентов</div>
+            <div class="reason">Убрать верхнюю границу из Q2-прогноза. Конкурент A и D имеют долгосрочные отношения с целевой аудиторией.</div>
+          </td>
+          <td>РО</td>
+          <td style="color:#94a3b8;font-size:12px;white-space:nowrap">до 12-го числа</td>
+        </tr>
+      </tbody>
     </table>
-    <div class="rhythm-note">Еженедельный ритм — понедельник 09:00: РО + каждый менеджер, 15 минут — факт прошлой недели, план текущей, что мешает.</div>
   </div>
 
-  <!-- BLOCK 6: EARLY INDICATORS -->
+  <!-- ПРОВЕРИТЬ ВРУЧНУЮ -->
   <div class="section">
-    <div class="section-title">Ранние индикаторы — проверить к середине месяца 2</div>
-    <table class="ind-table">
-      <tr>
-        <th>Индикатор</th>
-        <th>Целевое значение</th>
-        <th>Статус</th>
-      </tr>
-      <tr>
-        <td>Подтверждённая выручка месяца 2 (договоры + акты)</td>
-        <td><span class="ind-target">≥ 500 000 руб.</span></td>
-        <td><span class="status-pending">Проверить на ~15-й день</span></td>
-      </tr>
-      <tr>
-        <td>Менеджер 3: pipeline на месяц 2</td>
-        <td><span class="ind-target">≥ 3 сделки с суммой ≥ 800 000 руб.</span></td>
-        <td><span class="status-pending">Проверить на ~15-й день</span></td>
-      </tr>
-      <tr>
-        <td>Менеджер 2: незакрытые сделки месяца 1</td>
-        <td><span class="ind-target">≥ 1 сделка переведена с датой закрытия</span></td>
-        <td><span class="status-pending">Проверить на ~15-й день</span></td>
-      </tr>
-      <tr>
-        <td>Тендеры: поданные заявки за 2 недели</td>
-        <td><span class="ind-target">≥ 4 заявки</span></td>
-        <td><span class="status-pending">Проверить на ~15-й день</span></td>
-      </tr>
-      <tr>
-        <td>Pipeline на месяц 3: список клиентов</td>
-        <td><span class="ind-target">Утверждён для каждого менеджера</span></td>
-        <td><span class="status-pending">Проверить на ~15-й день</span></td>
-      </tr>
+    <div class="section-title">Что проверить вручную — чеклист</div>
+    <table class="check-table">
+      <thead>
+        <tr>
+          <th style="width:28px"></th>
+          <th>Параметр</th>
+          <th>Почему важно</th>
+          <th>Дедлайн</th>
+          <th>Кто</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td><input type="checkbox"></td>
+          <td>Источник сверхрезультата Менеджера 1</td>
+          <td style="font-size:12px;color:#94a3b8">Разница 0 ↔ +500К Q2; без разбора нельзя прогнозировать</td>
+          <td class="deadline-cell urgent">конец 1-й нед.</td>
+          <td class="who-cell">Менеджер 1 + РО</td>
+        </tr>
+        <tr>
+          <td><input type="checkbox"></td>
+          <td>Реестр поданных тендерных заявок (дата вскрытия внутри Q2)</td>
+          <td style="font-size:12px;color:#94a3b8">Только они дают Q2-выручку; новые заявки текущего месяца = Q3</td>
+          <td class="deadline-cell urgent">12-е число</td>
+          <td class="who-cell">Менеджер 2</td>
+        </tr>
+        <tr>
+          <td><input type="checkbox"></td>
+          <td>Воронка Менеджера 3 по длинным продуктам (тёплые лиды)</td>
+          <td style="font-size:12px;color:#94a3b8">Без тёплой воронки прямо сейчас — Q2-эффект нулевой</td>
+          <td class="deadline-cell urgent">12-е число</td>
+          <td class="who-cell">Менеджер 3 + РО</td>
+        </tr>
+        <tr>
+          <td><input type="checkbox"></td>
+          <td>Активные контакты в партнёрском контуре</td>
+          <td style="font-size:12px;color:#94a3b8">Единственный незаконкурированный канал; без контактов — 0 в Q2</td>
+          <td class="deadline-cell urgent">12-е число</td>
+          <td class="who-cell">РО</td>
+        </tr>
+        <tr>
+          <td><input type="checkbox"></td>
+          <td>Активность конкурентов по ключевым клиентам базы</td>
+          <td style="font-size:12px;color:#94a3b8">Прямой риск действия 2; 5–10 звонков позволят оценить масштаб</td>
+          <td class="deadline-cell" style="color:#fcd34d">16-е число</td>
+          <td class="who-cell">Менеджер 2, Менеджер 3, Менеджер 4</td>
+        </tr>
+      </tbody>
     </table>
-    <div class="red-zone">
-      <strong>Красная зона — немедленная эскалация собственнику:</strong>
-      Если к середине месяца 2 подтверждённая выручка &lt; 300 000 руб. — план квартала ≥ 0 под угрозой.
-    </div>
   </div>
 
-  <!-- BLOCK 7: DONT DO -->
-  <div class="section">
-    <div class="section-title">Что НЕ нужно делать</div>
-    <div class="dont-list">
-      <div class="dont-item">
-        <div class="dont-x">✕</div>
-        <div class="dont-text">
-          <strong>Считать «перенос выручки между месяцами» закрытием дефицита</strong>
-          <span>Не создаёт новую выручку — только меняет распределение. Квартальный итог не улучшается.</span>
+  <!-- FOOTER -->
+  <div class="footer">
+    <div class="footer-grid">
+      <div>
+        <div class="footer-col-title">Структура pipeline</div>
+        <div class="footer-col-body">
+          Агент 02: юнит-метрики (дефицит, факт, план)<br>
+          Агент 03: action plan и приоритеты<br>
+          Агент 04: конкурентный анализ<br>
+          Агент 05: рыночная верификация гипотез<br>
+          00-layer: профиль компании и отдела
         </div>
       </div>
-      <div class="dont-item">
-        <div class="dont-x">✕</div>
-        <div class="dont-text">
-          <strong>Тратить время на долгосрочные проекты автоматизации в кризисный квартал</strong>
-          <span>Срок внедрения 1–3 месяца. В режиме дефицита — только отвлекает. Отложить до следующего квартала.</span>
+      <div>
+        <div class="footer-col-title">Статус данных</div>
+        <div class="footer-col-body">
+          Агент 04 (конкуренты): <span style="color:#fbbf24">частичные</span> — публичные источники; госреестры не верифицированы<br>
+          Агент 05 (рынок): <span style="color:#4ade80">получены</span><br>
+          Ценовые якоря Конкурент B / C: <span style="color:#4ade80">[ФАКТ]</span><br>
+          Win rate тендеров: <span style="color:#fbbf24">[ПРОВЕРИТЬ]</span>
         </div>
       </div>
-      <div class="dont-item">
-        <div class="dont-x">✕</div>
-        <div class="dont-text">
-          <strong>Ждать данных месяца 3, чтобы начать действовать</strong>
-          <span>Сделки месяца 3 нужно открывать уже в первой половине месяца 2. Позже — поздно.</span>
+      <div>
+        <div class="footer-col-title">Методология</div>
+        <div class="footer-col-body">
+          Месяц 1 = закрытый факт<br>
+          Месяцы 2–3 = план / прогноз<br>
+          При конфликте action_plan ↔ конкурентный анализ — более консервативная оценка<br>
+          ФОТ &gt;80% затрат — рычаг только по выручке
         </div>
       </div>
-      <div class="dont-item">
-        <div class="dont-x">✕</div>
-        <div class="dont-text">
-          <strong>Фокусироваться только на Менеджере 3</strong>
-          <span>Менеджер 3 — опора, но если что-то пойдёт не так, план рухнет. Менеджеры 1 и 2 должны расти параллельно.</span>
-        </div>
-      </div>
-      <div class="dont-item">
-        <div class="dont-x">✕</div>
-        <div class="dont-text">
-          <strong>Сокращать производственный ФОТ ради экономии</strong>
-          <span>Производственный ФОТ — это люди, которые создают услуги. Сокращение = потеря производительности = меньше выручки.</span>
-        </div>
-      </div>
-      <div class="dont-item">
-        <div class="dont-x">✕</div>
-        <div class="dont-text">
-          <strong>Считать план выполненным, если план выполнен ровно на 100%</strong>
-          <span>При 100% плана квартал всё равно закрывается в минус. Цель — сверхплановые продажи.</span>
+      <div>
+        <div class="footer-col-title">Описание демо</div>
+        <div class="footer-col-body">
+          Версия: DEMO · обезличена<br>
+          Логика и пропорции: сохранены<br>
+          Реальные данные: заменены<br>
+          Инструмент: AI-Findir pipeline
         </div>
       </div>
     </div>
+    <div class="footer-note">ДЕМО-ВЕРСИЯ · Данные обезличены · Управленческая логика dashboard сохранена · Агент 06 v3.1 · AI-Findir</div>
   </div>
 
 </div>
-
-<!-- FOOTER -->
-<div class="footer">
-  AI-Findir Action Dashboard &nbsp;·&nbsp; Demo-версия &nbsp;·&nbsp;
-  Все цифры условны и не отражают данные реальной компании &nbsp;·&nbsp;
-  Методология: месяц 1 квартала = факт; месяцы 2–3 = план/прогноз &nbsp;·&nbsp;
-  Все оценки эффекта — гипотезы; данные по конверсии и win rate в источниках отсутствуют
-</div>
-
 </body>
 </html>
