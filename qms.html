@@ -3,730 +3,337 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Сертификация СМК [DEMO] — Дэшборд Q2 2026</title>
+<title>Action Dashboard — Сертификация СМК, Q2 2026 [DEMO]</title>
 <style>
-  :root {
-    --bg: #0f1117;
-    --surface: #1a1d27;
-    --surface2: #22263a;
-    --border: #2e3248;
-    --text: #e8eaf6;
-    --muted: #8892b0;
-    --red: #ff4757;
-    --red-dim: #3d1a1e;
-    --orange: #ff7043;
-    --orange-dim: #2d1a10;
-    --yellow: #ffca28;
-    --yellow-dim: #2d2510;
-    --green: #26c67b;
-    --green-dim: #0e2e1f;
-    --blue: #4da6ff;
-    --blue-dim: #0e1f3d;
-    --purple: #b48aff;
-    --purple-dim: #1e1535;
+  *,*::before,*::after{box-sizing:border-box;margin:0;padding:0;}
+  :root{
+    --bg:#f3f1ec;--paper:#fff;--ink:#1a1c22;--muted:#5c6470;--faint:#9aa0ab;--line:#e6e2da;--line2:#d3cdc1;
+    --crim:#b91032;--crim-soft:#f7e6ea;--gold:#b08537;--steel:#33445f;
+    --ok:#1f8f4e;--ok-soft:#e9f5ee;--warn:#bd7a12;--warn-soft:#f9f0df;--dng:#b91032;--dng-soft:#f7e6ea;
+    --serif:Georgia,"Times New Roman",serif;--f:"Helvetica Neue","Segoe UI",system-ui,sans-serif;--m:"Cascadia Mono",Consolas,monospace;
   }
-  * { box-sizing: border-box; margin: 0; padding: 0; }
-  body { background: var(--bg); color: var(--text); font-family: 'Segoe UI', system-ui, sans-serif; font-size: 14px; line-height: 1.5; }
-
-  .wrap { max-width: 1280px; margin: 0 auto; padding: 0 24px 40px; }
-  .section { margin-bottom: 24px; }
-  .section-title { font-size: 11px; font-weight: 700; letter-spacing: 0.08em; text-transform: uppercase; color: var(--muted); margin-bottom: 12px; padding-bottom: 6px; border-bottom: 1px solid var(--border); }
-  .card { background: var(--surface); border: 1px solid var(--border); border-radius: 8px; padding: 16px; }
-  .grid2 { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; }
-  .grid3 { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 12px; }
-  .grid4 { display: grid; grid-template-columns: 1fr 1fr 1fr 1fr; gap: 12px; }
-  .grid5 { display: grid; grid-template-columns: repeat(5, 1fr); gap: 12px; }
-
-  .header { background: var(--surface); border-bottom: 2px solid var(--border); padding: 16px 24px; display: flex; align-items: center; justify-content: space-between; position: sticky; top: 0; z-index: 100; }
-  .header-title { font-size: 15px; font-weight: 700; color: var(--text); }
-  .header-meta { font-size: 12px; color: var(--muted); }
-  .badge { display: inline-flex; align-items: center; gap: 4px; padding: 2px 8px; border-radius: 12px; font-size: 11px; font-weight: 700; text-transform: uppercase; }
-  .badge-red { background: var(--red-dim); color: var(--red); border: 1px solid var(--red); }
-  .badge-orange { background: var(--orange-dim); color: var(--orange); border: 1px solid var(--orange); }
-  .badge-yellow { background: var(--yellow-dim); color: var(--yellow); border: 1px solid var(--yellow); }
-  .badge-green { background: var(--green-dim); color: var(--green); border: 1px solid var(--green); }
-  .badge-blue { background: var(--blue-dim); color: var(--blue); border: 1px solid var(--blue); }
-  .badge-purple { background: var(--purple-dim); color: var(--purple); border: 1px solid var(--purple); }
-
-  .demo-banner { background: var(--purple-dim); border: 1px solid var(--purple); border-radius: 6px; padding: 8px 16px; margin: 12px 0; font-size: 12px; color: var(--purple); text-align: center; }
-
-  .diagnosis-banner { background: linear-gradient(135deg, #1a1d27 0%, #0f1117 100%); border: 1px solid var(--border); border-left: 4px solid var(--orange); border-radius: 8px; padding: 20px 24px; margin-bottom: 16px; }
-  .diagnosis-verdict { font-size: 18px; font-weight: 700; color: var(--orange); margin-bottom: 8px; }
-  .diagnosis-sub { font-size: 13px; color: var(--muted); margin-bottom: 16px; }
-  .metrics-row { display: grid; grid-template-columns: repeat(5, 1fr); gap: 16px; }
-  .metric { text-align: center; }
-  .metric-value { font-size: 22px; font-weight: 800; font-variant-numeric: tabular-nums; }
-  .metric-label { font-size: 11px; color: var(--muted); margin-top: 2px; }
-  .v-red { color: var(--red); }
-  .v-orange { color: var(--orange); }
-  .v-yellow { color: var(--yellow); }
-  .v-green { color: var(--green); }
-  .v-blue { color: var(--blue); }
-  .v-purple { color: var(--purple); }
-  .v-muted { color: var(--muted); }
-
-  .alert { display: flex; gap: 10px; padding: 10px 14px; border-radius: 6px; margin-bottom: 8px; align-items: flex-start; }
-  .alert-icon { font-size: 16px; line-height: 1.4; flex-shrink: 0; }
-  .alert-body { flex: 1; }
-  .alert-title { font-weight: 700; font-size: 13px; margin-bottom: 2px; }
-  .alert-desc { font-size: 12px; color: var(--muted); }
-  .alert-crit { background: var(--red-dim); border-left: 3px solid var(--red); }
-  .alert-warn { background: var(--orange-dim); border-left: 3px solid var(--orange); }
-  .alert-info { background: var(--blue-dim); border-left: 3px solid var(--blue); }
-  .alert-ok { background: var(--green-dim); border-left: 3px solid var(--green); }
-  .alert-purple { background: var(--purple-dim); border-left: 3px solid var(--purple); }
-
-  .task-card { background: var(--surface); border: 1px solid var(--border); border-radius: 8px; padding: 14px; display: flex; flex-direction: column; gap: 6px; }
-  .task-priority { font-size: 10px; font-weight: 700; letter-spacing: 0.05em; text-transform: uppercase; }
-  .task-action { font-size: 13px; font-weight: 600; line-height: 1.35; }
-  .task-who { font-size: 11px; color: var(--muted); }
-  .task-deadline { font-size: 11px; margin-top: 4px; }
-  .prio-crit { color: var(--red); }
-  .prio-high { color: var(--orange); }
-  .prio-med { color: var(--yellow); }
-  .prio-info { color: var(--blue); }
-
-  table { width: 100%; border-collapse: collapse; font-size: 13px; }
-  th { text-align: left; font-size: 11px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.05em; color: var(--muted); padding: 8px 12px; border-bottom: 1px solid var(--border); }
-  td { padding: 9px 12px; border-bottom: 1px solid var(--border); vertical-align: top; }
-  tr:last-child td { border-bottom: none; }
-  tr:hover td { background: var(--surface2); }
-  .tbl-wrap { background: var(--surface); border: 1px solid var(--border); border-radius: 8px; overflow: hidden; }
-
-  .dot { display: inline-block; width: 8px; height: 8px; border-radius: 50%; margin-right: 6px; flex-shrink: 0; }
-  .dot-red { background: var(--red); }
-  .dot-orange { background: var(--orange); }
-  .dot-yellow { background: var(--yellow); }
-  .dot-green { background: var(--green); }
-  .dot-grey { background: var(--muted); }
-  .dot-purple { background: var(--purple); }
-
-  .scenario-row { display: flex; align-items: center; gap: 12px; margin-bottom: 10px; }
-  .scenario-label { width: 230px; font-size: 12px; flex-shrink: 0; }
-  .scenario-bar-wrap { flex: 1; background: var(--surface2); border-radius: 3px; height: 20px; overflow: hidden; position: relative; }
-  .scenario-bar { height: 100%; border-radius: 3px; display: flex; align-items: center; padding-left: 8px; font-size: 11px; font-weight: 700; white-space: nowrap; }
-  .scenario-value { width: 130px; text-align: right; font-size: 12px; font-weight: 700; flex-shrink: 0; font-variant-numeric: tabular-nums; }
-  .bar-red { background: #5c1a1a; color: var(--red); }
-  .bar-orange { background: #3d2010; color: var(--orange); }
-  .bar-yellow { background: #2d2510; color: var(--yellow); }
-  .bar-green { background: var(--green-dim); color: var(--green); }
-
-  .comp-card { background: var(--surface); border: 1px solid var(--border); border-radius: 8px; padding: 14px; }
-  .comp-name { font-size: 14px; font-weight: 700; margin-bottom: 4px; }
-  .comp-type { font-size: 11px; color: var(--muted); margin-bottom: 8px; }
-  .comp-threat { font-size: 11px; margin-bottom: 8px; }
-  .comp-notes { font-size: 12px; color: var(--muted); line-height: 1.5; }
-
-  .week-item { display: flex; gap: 12px; padding: 10px 0; border-bottom: 1px solid var(--border); align-items: flex-start; }
-  .week-item:last-child { border-bottom: none; }
-  .week-date { width: 90px; flex-shrink: 0; font-size: 12px; color: var(--muted); padding-top: 2px; }
-  .week-body { flex: 1; }
-  .week-title { font-size: 13px; font-weight: 600; margin-bottom: 2px; }
-  .week-sub { font-size: 12px; color: var(--muted); }
-
-  .progress-wrap { background: var(--surface2); border-radius: 3px; height: 6px; margin-top: 4px; overflow: hidden; }
-  .progress-bar { height: 100%; border-radius: 3px; }
-
-  .opportunity-card { background: var(--surface); border: 1px solid var(--border); border-radius: 8px; padding: 16px; }
-  .opp-title { font-size: 14px; font-weight: 700; margin-bottom: 4px; }
-  .opp-amount { font-size: 20px; font-weight: 800; font-variant-numeric: tabular-nums; margin-bottom: 8px; }
-  .opp-meta { font-size: 12px; color: var(--muted); line-height: 1.6; }
-  .opp-tag { display: inline-block; padding: 2px 6px; border-radius: 4px; font-size: 10px; font-weight: 700; text-transform: uppercase; margin-top: 8px; }
-
-  .fold-line { display: flex; align-items: center; gap: 10px; margin: 20px 0; }
-  .fold-line::before, .fold-line::after { content: ''; flex: 1; height: 1px; background: var(--border); }
-  .fold-text { font-size: 11px; color: var(--border); text-transform: uppercase; letter-spacing: 0.1em; white-space: nowrap; }
-
-  .employee-row { display: grid; grid-template-columns: 160px 80px 80px 60px 1fr; gap: 8px; align-items: center; padding: 8px 12px; border-bottom: 1px solid var(--border); font-size: 12px; }
-  .employee-row:last-child { border-bottom: none; }
-  .employee-bar-wrap { background: var(--surface2); border-radius: 2px; height: 10px; }
-  .employee-bar { height: 100%; border-radius: 2px; }
-
-  @media (max-width: 900px) {
-    .metrics-row { grid-template-columns: 1fr 1fr; }
-    .grid4, .grid5 { grid-template-columns: 1fr 1fr; }
-    .grid3 { grid-template-columns: 1fr; }
-  }
+  body{font-family:var(--f);background:var(--bg);color:var(--ink);font-size:14px;line-height:1.5;}
+  .demo{background:var(--crim-soft);border-bottom:1px solid var(--crim);padding:7px 24px;text-align:center;font-size:12px;color:var(--crim);font-weight:600;letter-spacing:.03em;}
+  .sheet{max-width:1180px;margin:22px auto;background:var(--paper);border:1px solid var(--line);box-shadow:0 4px 24px rgba(26,28,34,.08);}
+  .inner{padding:0 40px 52px;}
+  .mast{display:flex;justify-content:space-between;align-items:flex-end;gap:24px;padding:34px 40px 20px;border-bottom:2px solid var(--ink);}
+  .kicker{font-size:11px;letter-spacing:.28em;text-transform:uppercase;color:var(--gold);font-weight:700;}
+  .mast h1{font-family:var(--serif);font-size:28px;font-weight:700;margin-top:6px;line-height:1.08;}
+  .mast .sub{font-size:14px;color:var(--muted);margin-top:8px;max-width:540px;}
+  .mast .meta{font-size:10.5px;color:var(--faint);text-align:right;text-transform:uppercase;letter-spacing:.05em;line-height:1.9;white-space:nowrap;font-family:var(--m);}
+  .brand{display:flex;align-items:center;gap:16px;}
+  .secnum{font-family:var(--serif);font-size:13px;color:var(--gold);font-weight:700;}
+  .eyebrow{font-size:11px;font-weight:700;letter-spacing:.16em;text-transform:uppercase;color:var(--crim);}
+  .sec{margin-top:36px;}
+  .sec>h2{font-family:var(--serif);font-size:20px;font-weight:700;margin:4px 0 16px;padding-bottom:10px;border-bottom:1px solid var(--line);}
+  .hero{display:grid;grid-template-columns:1fr 1.15fr;gap:30px;margin-top:24px;}
+  .dlabel{font-size:11px;letter-spacing:.18em;text-transform:uppercase;color:var(--crim);font-weight:700;margin-bottom:10px;}
+  .dtext{font-size:18px;font-weight:500;line-height:1.45;font-family:var(--serif);}
+  .dtext b{color:var(--crim);font-weight:700;}
+  .heronum{display:flex;align-items:baseline;gap:12px;margin-top:18px;padding-top:16px;border-top:1px solid var(--line);}
+  .heronum .big{font-size:46px;font-weight:800;letter-spacing:-.02em;color:var(--ok);line-height:.9;font-family:var(--m);}
+  .heronum .cap{font-size:12px;color:var(--muted);max-width:200px;}
+  .chartcard{background:#fbfaf7;border:1px solid var(--line);border-radius:12px;padding:18px 20px;}
+  .chartcard h4{font-size:11px;text-transform:uppercase;letter-spacing:.1em;color:var(--muted);margin-bottom:12px;}
+  .kpis{display:grid;grid-template-columns:repeat(2,1fr);gap:14px;margin-top:22px;}
+  .kpi{background:#fbfaf7;border:1px solid var(--line);border-radius:12px;padding:15px 18px;}
+  .kpi .kl{font-size:10.5px;text-transform:uppercase;letter-spacing:.07em;color:var(--muted);}
+  .kpi .ktop{display:flex;justify-content:space-between;align-items:baseline;}
+  .kpi .kv{font-size:26px;font-weight:800;letter-spacing:-.02em;font-variant-numeric:tabular-nums;font-family:var(--m);}
+  .kpi.g .kv{color:var(--ok);}.kpi.w .kv{color:var(--warn);}.kpi.s .kv{color:var(--steel);}
+  .kpi .ks{font-size:10.5px;color:var(--faint);text-align:right;}
+  .bullet{height:10px;background:#ece8e0;border-radius:5px;position:relative;margin-top:11px;}
+  .bullet .bf{height:100%;border-radius:5px;}
+  .bullet .bm{position:absolute;top:-3px;width:2px;height:16px;background:var(--ink);}
+  .atl{position:relative;padding-left:30px;}
+  .atl::before{content:"";position:absolute;left:9px;top:6px;bottom:6px;width:2px;background:var(--line2);}
+  .ai{position:relative;margin-bottom:15px;}.ai:last-child{margin-bottom:0;}
+  .ai .node{position:absolute;left:-30px;top:1px;width:20px;height:20px;border-radius:50%;display:grid;place-items:center;color:#fff;font-weight:800;font-size:11px;font-family:var(--m);}
+  .ai.high .node{background:var(--dng);}.ai.med .node{background:var(--warn);}
+  .ai .at{font-weight:700;font-size:13.5px;margin-bottom:2px;}
+  .ai.high .at{color:var(--dng);}.ai.med .at{color:var(--warn);}
+  .ai .ab{font-size:13px;color:var(--muted);}.ai .ab b{color:var(--ink);}
+  .gx{position:relative;height:18px;margin:0 0 6px 168px;border-bottom:1px solid var(--line2);}
+  .gx .t{position:absolute;font-size:9.5px;color:var(--faint);font-family:var(--m);transform:translateX(-50%);}
+  .gr{display:flex;align-items:center;height:30px;}
+  .gl{width:168px;flex:0 0 168px;font-size:12px;padding-right:10px;}
+  .gl b{font-family:var(--m);color:var(--steel);}
+  .gt{position:relative;flex:1;height:30px;}
+  .gb{position:absolute;top:7px;height:16px;border-radius:5px;display:flex;align-items:center;padding:0 8px;font-size:10px;font-weight:700;color:#fff;font-family:var(--m);white-space:nowrap;}
+  .cut{position:absolute;top:-1px;bottom:-1px;width:2px;background:var(--crim);}
+  .cut span{position:absolute;top:-15px;left:50%;transform:translateX(-50%);font-size:9px;color:var(--crim);font-family:var(--m);white-space:nowrap;}
+  .wf{display:flex;height:46px;border-radius:8px;overflow:hidden;border:1px solid var(--line);position:relative;}
+  .wf .seg{display:flex;align-items:center;justify-content:center;color:#fff;font-size:12px;font-weight:800;font-family:var(--m);}
+  .wf .s1{background:var(--ok);}.wf .s2{background:var(--gold);}.wf .s3{background:#3fb574;}
+  .wf .tline{position:absolute;top:-4px;bottom:-4px;width:2px;background:var(--ink);z-index:2;}
+  .wf .tline span{position:absolute;top:-16px;left:50%;transform:translateX(-50%);font-size:9px;font-family:var(--m);white-space:nowrap;}
+  .donutwrap{display:flex;align-items:center;gap:24px;}
+  .leg{font-size:12.5px;}.leg div{display:flex;align-items:center;gap:8px;margin-bottom:8px;}
+  .leg .sw{width:12px;height:12px;border-radius:3px;flex:0 0 12px;}
+  .heat{display:flex;gap:5px;flex-wrap:wrap;margin-top:10px;}
+  .hc{width:34px;height:26px;border-radius:5px;display:grid;place-items:center;font-size:10px;font-weight:800;font-family:var(--m);color:#fff;}
+  .hg{background:var(--ok);}.hy{background:var(--warn);}.hr{background:var(--dng);}
+  .cols{display:flex;align-items:flex-end;gap:10px;height:160px;padding-top:10px;border-bottom:1px solid var(--line2);}
+  .col{flex:1;display:flex;flex-direction:column;align-items:center;justify-content:flex-end;height:100%;}
+  .col .rng{width:64%;border-radius:4px 4px 0 0;min-height:3px;}
+  .col .rng.g{background:linear-gradient(180deg,#3fb574,var(--ok));}.col .rng.y{background:linear-gradient(180deg,#e0a23e,var(--warn));}.col .rng.r{background:linear-gradient(180deg,#d3506a,var(--dng));}
+  .col .vlab{font-size:9.5px;color:var(--muted);font-family:var(--m);margin-bottom:3px;white-space:nowrap;}
+  .col .xlab{font-size:10px;font-weight:700;font-family:var(--m);margin-top:6px;color:var(--steel);}
+  .matrix{position:relative;height:300px;background:linear-gradient(135deg,#fbfaf7,#f5f2eb);border:1px solid var(--line);border-radius:12px;margin:0 8px;}
+  .matrix .axx{position:absolute;left:0;right:0;bottom:18px;height:1px;background:var(--line2);}
+  .matrix .axy{position:absolute;top:18px;bottom:18px;left:54px;width:1px;background:var(--line2);}
+  .matrix .axl{position:absolute;font-size:10px;color:var(--faint);font-family:var(--m);text-transform:uppercase;letter-spacing:.06em;}
+  .matrix .quad{position:absolute;font-size:10px;color:#c9c2b4;font-family:var(--m);}
+  .pt{position:absolute;transform:translate(-50%,50%);text-align:center;}
+  .pt .bub{width:var(--s,46px);height:var(--s,46px);border-radius:50%;display:grid;place-items:center;color:#fff;font-size:11px;font-weight:800;font-family:var(--m);margin:0 auto;box-shadow:0 2px 8px rgba(185,16,50,.3);}
+  .pt .pl{font-size:10px;color:var(--muted);margin-top:4px;font-family:var(--m);white-space:nowrap;}
+  .two{display:grid;grid-template-columns:1fr 1fr;gap:22px;}
+  .box{background:#fbfaf7;border:1px solid var(--line);border-radius:12px;padding:18px;}
+  .box h3{font-size:14px;margin-bottom:12px;font-family:var(--serif);}
+  .box.ok h3{color:var(--ok);}.box.no h3{color:var(--dng);}
+  ul.cl{list-style:none;}ul.cl li{padding:8px 0 8px 24px;border-bottom:1px solid var(--line);font-size:13px;color:var(--muted);position:relative;}
+  ul.cl li:last-child{border-bottom:none;}ul.cl li b{color:var(--ink);}
+  .box.ok ul.cl li::before{content:"✓";position:absolute;left:0;color:var(--ok);font-weight:800;}
+  .box.no ul.cl li::before{content:"✕";position:absolute;left:0;color:var(--dng);font-weight:800;}
+  .tag{font-size:11px;color:var(--faint);font-family:var(--m);}
+  .steps{display:grid;grid-template-columns:repeat(5,1fr);gap:0;}
+  .st{position:relative;text-align:center;padding:0 8px;}
+  .st .circ{width:40px;height:40px;border-radius:50%;border:2px solid var(--line2);background:var(--paper);display:grid;place-items:center;margin:0 auto 8px;font-size:16px;font-weight:800;position:relative;z-index:1;}
+  .st.g .circ{border-color:var(--ok);color:var(--ok);}.st.y .circ{border-color:var(--warn);color:var(--warn);}.st.r .circ{border-color:var(--dng);color:var(--dng);}
+  .st::before{content:"";position:absolute;top:20px;left:-50%;width:100%;height:2px;background:var(--line2);z-index:0;}.st:first-child::before{display:none;}
+  .st .sn{font-size:11px;font-weight:600;min-height:30px;}.st .stgt{font-size:10px;color:var(--ok);margin-top:5px;}.st .srz{font-size:10px;color:var(--dng);}
+  table{width:100%;border-collapse:collapse;font-size:13px;}
+  th,td{text-align:left;padding:10px 12px;border-bottom:1px solid var(--line);}
+  th{color:var(--muted);font-weight:700;font-size:10px;text-transform:uppercase;letter-spacing:.06em;background:#faf8f4;}
+  td b{color:var(--ink);}
+  .sdot{display:inline-block;width:9px;height:9px;border-radius:50%;background:var(--warn);margin-right:6px;}
+  .pill{display:inline-block;padding:2px 10px;border-radius:999px;font-size:11px;font-weight:700;}
+  .pg{background:var(--ok-soft);color:var(--ok);}.py{background:var(--warn-soft);color:var(--warn);}.pr{background:var(--dng-soft);color:var(--dng);}
+  .foot{margin:38px -40px 0;background:var(--steel);color:#cdd6e6;padding:20px 40px;font-size:11px;line-height:1.85;}
+  .foot b{color:#fff;}.foot .grid{display:grid;grid-template-columns:repeat(3,1fr);gap:18px;margin-top:8px;}
+  @media(max-width:900px){.hero,.kpis,.two,.steps,.cols{grid-template-columns:1fr;}.donutwrap{flex-direction:column;}}
 </style>
 </head>
 <body>
+<div class="demo">DEMO · обезличенная версия · реальные имена, компания и абсолютные суммы скрыты · цифры заменены на относительные</div>
+<div class="sheet"><div class="inner">
 
-<!-- HEADER -->
-<div class="header">
-  <div>
-    <div class="header-title">Сертификация СМК [DEMO] — Q2 2026 · Компания [DEMO]</div>
-    <div class="header-meta">AI-Findir · Данные: Q2 2026 · Апрель — факт, май–июнь — законтрактовано</div>
-  </div>
-  <div style="display:flex;gap:8px;align-items:center;">
-    <span class="badge badge-orange">Воронка пуста</span>
-    <span class="badge badge-green">Апрель прибылен</span>
-    <span class="badge badge-purple">ISO 9001:2026 ↑</span>
-  </div>
-</div>
-
-<div class="wrap" style="padding-top:12px;">
-
-<div class="demo-banner">DEMO — данные обезличены. Компания, сотрудники, клиенты и конкуренты заменены на ролевые обозначения. Пропорции сохранены.</div>
-
-<!-- ═══ BLOCK A — ДИАГНОЗ ═══ -->
-<div class="section">
-  <div class="diagnosis-banner">
-    <div class="diagnosis-verdict">Отдел прибылен — Q2 теряют из-за пустой воронки продаж</div>
-    <div class="diagnosis-sub">Апрель: +1 860К (100% плана, маржа 32%) — структурная прибыльность подтверждена. Проблема Q2: Менеджер Б выполнил апрель на 40% (-2 900К), июнь законтрактован на 38%. При 80% плана мая+июня Q2 становится прибыльным.</div>
-    <div class="metrics-row">
-      <div class="metric">
-        <div class="metric-value v-green">+1 860К</div>
-        <div class="metric-label">Апрель P&amp;L (факт)</div>
-      </div>
-      <div class="metric">
-        <div class="metric-value v-red">−2 180К</div>
-        <div class="metric-label">Q2 P&amp;L (база)</div>
-      </div>
-      <div class="metric">
-        <div class="metric-value v-yellow">4 010К</div>
-        <div class="metric-label">Breakeven апрель</div>
-      </div>
-      <div class="metric">
-        <div class="metric-value v-orange">38%</div>
-        <div class="metric-label">Июнь законтрактован</div>
-      </div>
-      <div class="metric">
-        <div class="metric-value v-green">+510К</div>
-        <div class="metric-label">Q2 при 80% плана</div>
+  <div class="mast">
+    <div class="brand">
+      <svg width="56" height="56" viewBox="0 0 56 56" fill="none" aria-hidden="true">
+        <rect x="6" y="6" width="44" height="44" rx="3" stroke="#1a1c22" stroke-width="1.4"/>
+        <rect x="6" y="6" width="44" height="44" rx="3" stroke="#b08537" stroke-width="1.4" stroke-dasharray="3 5"/>
+        <path d="M19 29l6 6 12-13" stroke="#1f8f4e" stroke-width="2.4" fill="none" stroke-linecap="round" stroke-linejoin="round"/>
+        <path d="M16 40h24" stroke="#b91032" stroke-width="1.7"/><circle cx="16" cy="40" r="2" fill="#b91032"/><circle cx="40" cy="40" r="2" fill="#b91032"/>
+      </svg>
+      <div>
+        <div class="kicker">Управленческий отчёт · Q2 2026</div>
+        <h1>Action Dashboard · Сертификация систем менеджмента / СМК</h1>
+        <div class="sub">Что делать прямо сейчас, чтобы удержать Q2 в плюсе — с учётом рынка и конкурентов</div>
       </div>
     </div>
+    <div class="meta">Компания (демо)<br>контрольная дата 29.05.2026<br>апрель = факт · май/июнь = план<br>данные: 03 ✓ · 04 частично · 05 ✓</div>
   </div>
-</div>
 
-<!-- ═══ BLOCK B — АЛЕРТЫ ═══ -->
-<div class="section">
-  <div class="section-title">Критические сигналы</div>
-  <div class="alert alert-crit">
-    <div class="alert-icon">🔴</div>
-    <div class="alert-body">
-      <div class="alert-title">КРИТИЧНО: Менеджер Б — апрель 40% плана (дефицит ~2 900К)</div>
-      <div class="alert-desc">В предыдущем квартале генерировал 9 100К — апрельский провал аномален. Воронка мая/июня не известна. Срок разбора: неделя 1 мая (СРОЧНО). Если воронки нет — перераспределить на Менеджера А + тендеры.</div>
+  <!-- HERO -->
+  <div class="hero">
+    <div>
+      <div class="dlabel">Диагноз</div>
+      <div class="dtext">Апрель прибылен (<b>маржа 32%</b>); прогноз Q2 <b style="color:#1f8f4e;">положительный (маржа ≈18%)</b> при выполнении плана — структурного дефицита нет. Задача — <b>защитить план мая+июня</b> (выручка на +44% выше порога безубыточности) и закрыть крупнейшее актирование <b>до 30.06</b>.</div>
+      <div class="heronum"><div class="big">≈ +18%</div><div class="cap">прогнозная маржа финреза Q2 при выполнении плана (verdict: plus)</div></div>
+    </div>
+    <div class="chartcard">
+      <h4>Маржа финреза Q2 по сценариям</h4>
+      <svg width="100%" viewBox="0 0 440 220" preserveAspectRatio="xMidYMid meet" aria-label="Маржа Q2: план 18%, при переносе крупного актирования 7%, порог 0">
+        <line x1="40" y1="180" x2="430" y2="180" stroke="#1a1c22" stroke-width="1.5"/>
+        <text x="40" y="196" font-size="10" fill="#5c6470" font-family="monospace">0% (безубыточность)</text>
+        <rect x="70" y="30" width="86" height="150" rx="4" fill="#1f8f4e"/>
+        <text x="113" y="23" text-anchor="middle" font-size="14" font-weight="800" fill="#1f8f4e" font-family="monospace">≈18%</text>
+        <text x="113" y="174" text-anchor="middle" font-size="10" fill="#fff" font-family="monospace">план</text>
+        <rect x="190" y="119" width="86" height="61" rx="4" fill="#bd7a12"/>
+        <text x="233" y="112" text-anchor="middle" font-size="14" font-weight="800" fill="#bd7a12" font-family="monospace">≈7%</text>
+        <text x="233" y="174" text-anchor="middle" font-size="8.5" fill="#fff" font-family="monospace">крупн.акт→Q3</text>
+        <rect x="310" y="176" width="86" height="4" rx="2" fill="#b91032"/>
+        <text x="353" y="168" text-anchor="middle" font-size="14" font-weight="800" fill="#b91032" font-family="monospace">0</text>
+        <text x="353" y="196" text-anchor="middle" font-size="9" fill="#5c6470" font-family="monospace">порог</text>
+      </svg>
+      <div class="tag" style="margin-top:6px;">Q2 остаётся в плюсе даже при переносе крупнейшего актирования в июль, но запас маржи тает с ≈18% до ≈7%.</div>
     </div>
   </div>
-  <div class="alert alert-crit">
-    <div class="alert-icon">🔴</div>
-    <div class="alert-body">
-      <div class="alert-title">КРИТИЧНО: Июнь законтрактован 38% (дефицит ~3 100К к плану)</div>
-      <div class="alert-desc">1 920К из 5 040К. При текущей динамике июнь — убыток −2 430К. Нужны минимум 2 крупные сделки (150К–500К+) до конца мая.</div>
-    </div>
-  </div>
-  <div class="alert alert-warn">
-    <div class="alert-icon">🟠</div>
-    <div class="alert-body">
-      <div class="alert-title">Май: разовые расходы +850К сверх нормы</div>
-      <div class="alert-desc">Единовременный платёж А (500К) + ежегодная аккредитация (240К) + консалтинг (350К). Расходы мая 4 870К вместо нормы 3 540К. Платёж А и консалтинг требуют обоснования.</div>
-    </div>
-  </div>
-  <div class="alert alert-warn">
-    <div class="alert-icon">🟠</div>
-    <div class="alert-body">
-      <div class="alert-title">5 сотрудников без выручки — ФОТ ~1 000К/мес</div>
-      <div class="alert-desc">Сотрудник А (370К), Б (200К), В (180К), Г (130К), Д (120К) — в апреле не атрибутировали выручку. Проверить загруженность и план работы.</div>
-    </div>
-  </div>
-  <div class="alert alert-purple">
-    <div class="alert-icon">⭐</div>
-    <div class="alert-body">
-      <div class="alert-title">Возможность: ISO 9001:2026 — окно действия в мае-июне</div>
-      <div class="alert-desc">Новая версия стандарта ожидается в H2 2026. Конкурент А уже готовится — Компания [DEMO] должна запустить продуктовое предложение до Q3. Потенциал Q3: +1,5–3,5М доп. выручки.</div>
-    </div>
-  </div>
-</div>
 
-<!-- ═══ BLOCK C — ЗАДАЧИ ═══ -->
-<div class="section">
-  <div class="section-title">Задачи на ближайшие недели</div>
-  <div class="grid4">
-    <div class="task-card" style="border-left:3px solid var(--red)">
-      <div class="task-priority prio-crit">● P1 — СРОЧНО</div>
-      <div class="task-action">Разбор воронки Менеджера Б на май и июнь</div>
-      <div class="task-who">Руководитель + Менеджер Б</div>
-      <div class="task-deadline" style="color:var(--red)">Неделя 1 мая — выяснить причины апрельского провала и статус пайплайна</div>
-    </div>
-    <div class="task-card" style="border-left:3px solid var(--orange)">
-      <div class="task-priority prio-high">● P1 — неделя 1</div>
-      <div class="task-action">Подтвердить обязательность Платежа А (~500К)</div>
-      <div class="task-who">Руководитель + финансовый контролёр</div>
-      <div class="task-deadline" style="color:var(--orange)">Можно ли перенести на следующий месяц или разбить?</div>
-    </div>
-    <div class="task-card" style="border-left:3px solid var(--orange)">
-      <div class="task-priority prio-high">● P4 — неделя 1</div>
-      <div class="task-action">Детализация консалтинга: 350К + 150К следующий месяц</div>
-      <div class="task-who">Руководитель</div>
-      <div class="task-deadline" style="color:var(--orange)">500К за квартал — нужна конкретика: на что и какой ROI</div>
-    </div>
-    <div class="task-card" style="border-left:3px solid var(--orange)">
-      <div class="task-priority prio-high">● P1 — неделя 2</div>
-      <div class="task-action">Руководитель в 2–3 ключевых встречах Менеджера Б</div>
-      <div class="task-who">Руководитель (прямое участие)</div>
-      <div class="task-deadline" style="color:var(--orange)">Чек 450К–850К+ требует руководителя в переговорах</div>
-    </div>
-    <div class="task-card" style="border-left:3px solid var(--yellow)">
-      <div class="task-priority prio-med">● P3 — неделя 2</div>
-      <div class="task-action">3 тендерные заявки на торговых площадках</div>
-      <div class="task-who">Специалист по тендерам</div>
-      <div class="task-deadline" style="color:var(--yellow)">Определить 3 конкретные процедуры и подать заявки</div>
-    </div>
-    <div class="task-card" style="border-left:3px solid var(--yellow)">
-      <div class="task-priority prio-med">● P2 — неделя 2</div>
-      <div class="task-action">Обзвон базы: клиенты с истекающими сертификатами</div>
-      <div class="task-who">Менеджер А + Менеджер Б</div>
-      <div class="task-deadline" style="color:var(--yellow)">Надзорный аудит — понятный триггер для повторного обращения</div>
-    </div>
-    <div class="task-card" style="border-left:3px solid var(--yellow)">
-      <div class="task-priority prio-med">● P3 — неделя 2–3</div>
-      <div class="task-action">Зарегистрироваться на отраслевую конференцию по качеству</div>
-      <div class="task-who">Руководитель</div>
-      <div class="task-deadline" style="color:var(--yellow)">Профессиональные площадки по системам менеджмента</div>
-    </div>
-    <div class="task-card" style="border-left:3px solid var(--blue)">
-      <div class="task-priority prio-info">● P5 — конец месяца</div>
-      <div class="task-action">Запустить информационную рассылку по базе клиентов</div>
-      <div class="task-who">Руководитель + Специалист по развитию</div>
-      <div class="task-deadline" style="color:var(--blue)">Email/PDF: актуальные требования к СМК 2026, ISO 9001:2026</div>
+  <!-- KPI -->
+  <div class="kpis">
+    <div class="kpi g"><div class="ktop"><div><div class="kl">Прогноз маржи Q2</div><div class="kv">≈18%</div></div><div class="ks">verdict plus</div></div><div class="bullet"><div class="bf" style="width:100%;background:var(--ok);"></div></div></div>
+    <div class="kpi g"><div class="ktop"><div><div class="kl">Апрель (факт)</div><div class="kv">32%</div></div><div class="ks">маржа<br>101% плана</div></div><div class="bullet"><div class="bf" style="width:100%;background:var(--ok);"></div></div></div>
+    <div class="kpi s"><div class="ktop"><div><div class="kl">План выручки май+июнь</div><div class="kv">+44%</div></div><div class="ks">над порогом<br>безубыточности</div></div><div class="bullet"><div class="bf" style="width:100%;background:var(--steel);"></div><div class="bm" style="left:70%;"></div></div></div>
+    <div class="kpi w"><div class="ktop"><div><div class="kl">ФОТ в расходах</div><div class="kv">85%</div></div><div class="ks">нерегулируем<br>рычаг — выручка</div></div><div class="bullet"><div class="bf" style="width:85%;background:var(--warn);"></div></div></div>
+  </div>
+
+  <!-- ALERTS -->
+  <div class="sec">
+    <div class="secnum">01</div><div class="eyebrow">Сигналы</div><h2>Критичные алерты</h2>
+    <div class="atl">
+      <div class="ai high"><div class="node">!</div><div class="at">Крупнейшее актирование на границе квартала (29.06–05.07)</div><div class="ab">Крупнейшее актирование запланировано на стыке Q2/Q3. Если акт не закрыт <b>до 30.06</b> — уходит в Q3, маржа Q2 падает с ≈18% до ≈7%. Главный управляемый риск.</div></div>
+      <div class="ai high"><div class="node">!</div><div class="at">Перенос в Q3 — больше 20% эффекта</div><div class="ab">Крупнейшее актирование + консалтинг + крупные тендеры с длинным циклом рискуют уйти за горизонт квартала.</div></div>
+      <div class="ai med"><div class="node">▲</div><div class="at">Менеджер А — 40% плана в апреле + ФОТ 85% фиксирован</div><div class="ab">Недобор выручки бьёт прямо по финрезу — расходы (85% ФОТ) не сжимаются. Нужен индивидуальный план-факт по Менеджеру А.</div></div>
+      <div class="ai med"><div class="node">▲</div><div class="at">Win rate тендеров не верифицирован; крупный тендер вероятно Q3</div><div class="ab">Решение по крупному корп. контракту — длинный цикл. Win rate тендеров СМК нужно проверить по открытым закупкам.</div></div>
+      <div class="ai med"><div class="node">▲</div><div class="at">Базовая сертификация под ценовым давлением (~120 органов)</div><div class="ab">На типовой сертификации демпинг. Дифференцироваться: национальное признание, отраслевые системы менеджмента.</div></div>
     </div>
   </div>
-</div>
 
-<!-- ═══ FOLD LINE ═══ -->
-<div class="fold-line"><span class="fold-text">↓ детализация ниже</span></div>
+  <!-- PIPELINE -->
+  <div class="sec">
+    <div class="secnum">02</div><div class="eyebrow">Действия · план</div><h2>Конвейер действий — 29.05 → 30.06</h2>
+    <div class="chartcard">
+      <div class="gx"><span class="t" style="left:0%;">29.05</span><span class="t" style="left:31%;">07.06</span><span class="t" style="left:55%;">14.06</span><span class="t" style="left:78%;">25.06</span><span class="t" style="left:100%;">30.06</span></div>
+      <div class="gr"><div class="gl"><b>A1</b> Акт нац. сертификации · Исполнитель 1</div><div class="gt"><div class="cut" style="left:100%;"><span>cash-cutoff</span></div><div class="gb" style="left:0;width:12%;background:#1f8f4e;">02.06</div></div></div>
+      <div class="gr"><div class="gl"><b>A2</b> Тендеры · Менеджер А</div><div class="gt"><div class="gb" style="left:0;width:12%;background:#bd7a12;">02.06</div></div></div>
+      <div class="gr"><div class="gl"><b>A4</b> Актирование аудитов · Исполнитель 1</div><div class="gt"><div class="gb" style="left:0;width:31%;background:#1f8f4e;">07.06</div></div></div>
+      <div class="gr"><div class="gl"><b>A3</b> Актирование (нац. сертиф.) · Исполнитель 1</div><div class="gt"><div class="gb" style="left:0;width:55%;background:#bd7a12;">14.06</div></div></div>
+      <div class="gr"><div class="gl"><b>A5</b> Крупные тендеры (СЭМ) · Менеджер А/Б</div><div class="gt"><div class="gb" style="left:0;width:78%;background:#b91032;">20.06 · договоры → Q3</div></div></div>
+      <div class="gr"><div class="gl"><b>A8</b> Крупное актирование · Исполнитель 1</div><div class="gt"><div class="gb" style="left:96%;width:14%;background:#b91032;">→30.06!</div></div></div>
+      <div class="tag" style="margin-top:8px;">Сегодня (31.05): A1 + запуск еженедельного план-факта (РО). Зелёный — надёжный Q2-рычаг · жёлтый — под вопросом · кримсон — граница/перенос Q3.</div>
+    </div>
+  </div>
 
-<!-- ═══ BLOCK D — ВОРОНКА ═══ -->
-<div class="section">
-  <div class="section-title">Статус воронки Q2</div>
-  <div class="grid3">
-    <div class="card">
-      <div style="font-size:12px;color:var(--muted);margin-bottom:8px;">Апрель (факт)</div>
-      <div style="font-size:24px;font-weight:800;color:var(--green)">5 870К</div>
-      <div style="font-size:12px;color:var(--muted);margin-top:4px;">план 5 870К · выполнение 100%</div>
-      <div class="progress-wrap" style="margin-top:8px;"><div class="progress-bar" style="width:100%;background:var(--green)"></div></div>
-      <div style="margin-top:12px;font-size:12px;">
-        <div style="display:flex;justify-content:space-between;margin-bottom:4px;"><span>Менеджер А</span><span style="color:var(--green)">95% · 3 090К</span></div>
-        <div style="display:flex;justify-content:space-between;"><span>Менеджер Б</span><span style="color:var(--red)">40% · 1 960К</span></div>
+  <!-- REVENUE BUILD-UP -->
+  <div class="sec">
+    <div class="secnum">03</div><div class="eyebrow">Выручка</div><h2>Как набирается выручка Q2 (план)</h2>
+    <div class="chartcard">
+      <div class="wf">
+        <div class="seg s1" style="flex:41;">апрель факт ≈41%</div>
+        <div class="seg s2" style="flex:28;">+ май ≈28%</div>
+        <div class="seg s3" style="flex:30;">+ июнь ≈30%</div>
+        <div class="tline" style="left:41%;"><span>порог безубыт. май+июнь</span></div>
+      </div>
+      <div class="tag" style="margin-top:10px;">Доли квартальной выручки по месяцам (план = 100,5% квартального плана). План выручки май+июнь на <b style="color:var(--ink);">+44%</b> выше порога безубыточности. <b style="color:var(--ink);">Вывод: план держит Q2 в плюсе</b>; приоритет — защитить темп при ФОТ 85%.</div>
+    </div>
+  </div>
+
+  <!-- Q2/Q3 -->
+  <div class="sec">
+    <div class="secnum">04</div><div class="eyebrow">Горизонт</div><h2>Эффект Q2 vs перенос в Q3</h2>
+    <div class="two">
+      <div class="chartcard">
+        <h4>Распределение актирований</h4>
+        <div class="donutwrap">
+          <svg width="150" height="150" viewBox="0 0 42 42" aria-label="Q2 надёжно около 37 процентов, граница Q3 около 63 процентов">
+            <circle cx="21" cy="21" r="15.915" fill="none" stroke="#ece8e0" stroke-width="6"/>
+            <circle cx="21" cy="21" r="15.915" fill="none" stroke="#1f8f4e" stroke-width="6" stroke-dasharray="37 63" stroke-dashoffset="25"/>
+            <circle cx="21" cy="21" r="15.915" fill="none" stroke="#b91032" stroke-width="6" stroke-dasharray="63 37" stroke-dashoffset="-12"/>
+            <text x="21" y="23" text-anchor="middle" font-size="6" font-weight="800" fill="#1a1c22" font-family="monospace">Q2/Q3</text>
+          </svg>
+          <div class="leg">
+            <div><span class="sw" style="background:#1f8f4e;"></span>Надёжно в Q2 ≈ <b>37%</b> эффекта (A1+A4+плановое)</div>
+            <div><span class="sw" style="background:#b91032;"></span>Граница/перенос Q3 ≈ <b>63%</b> (крупное актирование + тендеры)</div>
+          </div>
+        </div>
+        <div class="heat">
+          <div class="hc hg">A1</div><div class="hc hg">A4</div><div class="hc hg">A6</div><div class="hc hg">A7</div>
+          <div class="hc hy">A2</div><div class="hc hy">A3</div><div class="hc hr">A8</div><div class="hc hr">A5</div>
+        </div>
+        <div class="tag">🟢 вероятен · 🟡 под вопросом · 🔴 граница/Q3</div>
+      </div>
+      <div class="chartcard">
+        <h4>Относительный масштаб эффекта действий</h4>
+        <div class="cols">
+          <div class="col"><div class="vlab">крупн.</div><div class="rng r" style="height:100%;"></div><div class="xlab">A8</div></div>
+          <div class="col"><div class="vlab">крупн.</div><div class="rng y" style="height:95%;"></div><div class="xlab">A2</div></div>
+          <div class="col"><div class="vlab">сред.</div><div class="rng y" style="height:27%;"></div><div class="xlab">A3</div></div>
+          <div class="col"><div class="vlab">сред.</div><div class="rng g" style="height:27%;"></div><div class="xlab">A1</div></div>
+          <div class="col"><div class="vlab">сред.</div><div class="rng g" style="height:25%;"></div><div class="xlab">A4</div></div>
+        </div>
+        <div class="tag" style="margin-top:8px;">цвет = статус Q2 · A8 (крупное актирование) — крупнейший, но на границе квартала</div>
       </div>
     </div>
-    <div class="card">
-      <div style="font-size:12px;color:var(--muted);margin-bottom:8px;">Май (законтрактовано)</div>
-      <div style="font-size:24px;font-weight:800;color:var(--yellow)">3 270К</div>
-      <div style="font-size:12px;color:var(--muted);margin-top:4px;">план 4 800К · 68% · нужно +1 540К</div>
-      <div class="progress-wrap" style="margin-top:8px;"><div class="progress-bar" style="width:68%;background:var(--yellow)"></div></div>
-      <div style="margin-top:12px;font-size:12px;color:var(--muted);">Расходы мая: 4 870К (аномально высокие — разовые платежи)</div>
-    </div>
-    <div class="card">
-      <div style="font-size:12px;color:var(--muted);margin-bottom:8px;">Июнь (законтрактовано)</div>
-      <div style="font-size:24px;font-weight:800;color:var(--red)">1 920К</div>
-      <div style="font-size:12px;color:var(--muted);margin-top:4px;">план 5 040К · 38% · нужно +3 120К</div>
-      <div class="progress-wrap" style="margin-top:8px;"><div class="progress-bar" style="width:38%;background:var(--red)"></div></div>
-      <div style="margin-top:12px;font-size:12px;color:var(--red);">КРИТИЧНО: пайплайн почти пустой</div>
+  </div>
+
+  <!-- MARKET -->
+  <div class="sec">
+    <div class="secnum">05</div><div class="eyebrow">Рынок</div><h2>Что рынок подтвердил / не подтвердил</h2>
+    <div class="two">
+      <div class="box ok"><h3>✓ Рынок подтвердил</h3><ul class="cl">
+        <li><b>3-летний цикл сертификата</b> + надзорные аудиты → ресертификация базы = тёплый повторяющийся канал.</li>
+        <li><b>Дифференциация работает</b>: национальное признание, отраслевые системы менеджмента (СЭМ, медизделия).</li>
+        <li><b>Длинный цикл крупных тендеров</b> → перенос крупного контракта в Q3 рыночно обоснован.</li>
+      </ul></div>
+      <div class="box no"><h3>✗ Рынок не подтвердил / под вопросом</h3><ul class="cl">
+        <li><b>Win rate тендеров СМК</b> — не верифицирован (нет Tier 1). [проверить]</li>
+        <li><b>Срок крупного тендера (СЭМ)</b> в Q2 — маловероятен (крупный корп. цикл).</li>
+        <li><b>Высокий чек на типовой сертификации</b> — под давлением (~120 органов).</li>
+      </ul></div>
     </div>
   </div>
-</div>
 
-<!-- ═══ BLOCK E — СЦЕНАРИИ ═══ -->
-<div class="section">
-  <div class="section-title">Сценарный анализ Q2 P&amp;L</div>
-  <div class="card">
-    <div style="margin-bottom:16px;font-size:12px;color:var(--muted);">Breakeven апрель: ~4 010К/мес · Цель: оба месяца по 80% плана → Q2 +510К</div>
-
-    <div class="scenario-row">
-      <div class="scenario-label"><span class="dot dot-red"></span>База (только законтрактовано)</div>
-      <div class="scenario-bar-wrap"><div class="scenario-bar bar-red" style="width:35%">−2 180К</div></div>
-      <div class="scenario-value v-red">−2 180К руб.</div>
-    </div>
-    <div class="scenario-row">
-      <div class="scenario-label"><span class="dot dot-orange"></span>Май выполняет план (+1 540К)</div>
-      <div class="scenario-bar-wrap"><div class="scenario-bar bar-orange" style="width:52%">−640К</div></div>
-      <div class="scenario-value v-orange">−640К руб.</div>
-    </div>
-    <div class="scenario-row">
-      <div class="scenario-label"><span class="dot dot-yellow"></span>Июнь выполняет план (+3 120К)</div>
-      <div class="scenario-bar-wrap"><div class="scenario-bar bar-yellow" style="width:58%">+945К</div></div>
-      <div class="scenario-value v-yellow">+945К руб.</div>
-    </div>
-    <div class="scenario-row" style="background:rgba(38,198,123,0.05);padding:4px;border-radius:4px;">
-      <div class="scenario-label"><strong><span class="dot dot-green"></span>⭐ Оба по 80% плана (ЦЕЛЬ)</strong></div>
-      <div class="scenario-bar-wrap"><div class="scenario-bar bar-green" style="width:56%">+510К</div></div>
-      <div class="scenario-value v-green"><strong>+510К руб.</strong></div>
-    </div>
-    <div class="scenario-row">
-      <div class="scenario-label"><span class="dot dot-green"></span>Оба по 90% плана</div>
-      <div class="scenario-bar-wrap"><div class="scenario-bar bar-green" style="width:65%">+1 500К</div></div>
-      <div class="scenario-value v-green">+1 500К руб.</div>
-    </div>
-    <div class="scenario-row">
-      <div class="scenario-label"><span class="dot dot-green"></span>Оба по 100% плана</div>
-      <div class="scenario-bar-wrap"><div class="scenario-bar bar-green" style="width:75%">+2 480К</div></div>
-      <div class="scenario-value v-green">+2 480К руб.</div>
-    </div>
-
-    <div style="margin-top:16px;padding-top:12px;border-top:1px solid var(--border);">
-      <div style="font-size:12px;color:var(--muted);">Реалистичный рыночный эффект Q2: +1 500К–3 000К → покрытие дефицита 69–100% → остаток 0–680К руб.</div>
+  <!-- COMPETITORS -->
+  <div class="sec">
+    <div class="secnum">06</div><div class="eyebrow">Конкуренты</div><h2>Конкуренты · матрица угрозы <span class="tag">(агент 04, Tier 3, частично)</span></h2>
+    <div class="two">
+      <div>
+        <div class="matrix">
+          <div class="axx"></div><div class="axy"></div>
+          <div class="axl" style="left:60px;top:4px;">↑ угроза (threat)</div>
+          <div class="axl" style="right:8px;bottom:4px;">широта/охват →</div>
+          <div class="quad" style="right:14px;top:26px;">лидеры рынка</div>
+          <div class="quad" style="left:60px;bottom:26px;">нишевые</div>
+          <div class="pt" style="left:82%;top:24%;"><div class="bub" style="--s:54px;background:#b91032;">70</div><div class="pl">competitor_01</div></div>
+          <div class="pt" style="left:70%;top:34%;"><div class="bub" style="--s:50px;background:#c33;">65</div><div class="pl">competitor_02</div></div>
+          <div class="pt" style="left:40%;top:48%;"><div class="bub" style="--s:44px;background:#bd7a12;">55</div><div class="pl">competitor_03</div></div>
+          <div class="pt" style="left:55%;top:74%;"><div class="bub" style="--s:34px;background:#8a93a6;">~120</div><div class="pl">fragmented</div></div>
+        </div>
+        <div class="tag" style="margin-top:8px;text-align:center;">размер/цвет ∝ threat · low 0–34 · medium 35–64 · high 65–100</div>
+      </div>
+      <div>
+        <div class="box no" style="margin-bottom:16px;"><h3>Где конкуренты сильнее (↓)</h3><ul class="cl">
+          <li><b>Бренд/охват</b> на типовой сертификации: competitor_01 (70), competitor_02 (65).</li>
+          <li><b>Международное признание</b>: competitor_03 (55) — экспортная ниша.</li>
+          <li><b>Цена на commodity</b>: ~120 органов демпингуют.</li>
+        </ul></div>
+        <div class="box ok"><h3>Что усилить</h3><ul class="cl">
+          <li><b>Дифференциация</b> — национальное признание, отраслевые системы менеджмента (уход от ценовой войны).</li>
+          <li><b>Ресертификация базы</b> — тёплый канал 3-летнего цикла, защита от перехвата.</li>
+          <li><b>Пакетирование</b> (сертификация + надзор + обучение) против разовой дешёвой.</li>
+        </ul></div>
+      </div>
     </div>
   </div>
-</div>
 
-<!-- ═══ BLOCK F — ПОКРЫТИЕ ДЕФИЦИТА ═══ -->
-<div class="section">
-  <div class="section-title">Покрытие дефицита Q2 — источники выручки</div>
-  <div class="grid4">
-    <div class="opportunity-card" style="border-top:3px solid var(--red)">
-      <div class="opp-title">P1 — Воронка Менеджера Б</div>
-      <div class="opp-amount v-orange">+1,0–2,0М</div>
-      <div class="opp-meta">Разбор причин апрельского провала. В прошлом квартале — 9 100К — потенциал есть. Участие руководителя в 2–3 переговорах.</div>
-      <div class="opp-tag" style="background:var(--red-dim);color:var(--red);">Срок: нед.1 / нед.2</div>
-    </div>
-    <div class="opportunity-card" style="border-top:3px solid var(--orange)">
-      <div class="opp-title">P2 — Обзвон базы (июнь)</div>
-      <div class="opp-amount v-orange">+0,5–1,5М</div>
-      <div class="opp-meta">Клиенты с истекающими сертификатами — надзорный аудит как триггер. 2 крупные сделки (150К–500К+) доводят июнь до 70%+.</div>
-      <div class="opp-tag" style="background:var(--orange-dim);color:var(--orange);">Срок: нед.2</div>
-    </div>
-    <div class="opportunity-card" style="border-top:3px solid var(--yellow)">
-      <div class="opp-title">P3 — Тендерный канал</div>
-      <div class="opp-amount v-yellow">+0,3–0,8М</div>
-      <div class="opp-meta">3 заявки на торговых площадках. B2G — источник стабильных крупных контрактов на сертификацию СМК. Задел на Q3.</div>
-      <div class="opp-tag" style="background:var(--yellow-dim);color:var(--yellow);">Срок: нед.2</div>
-    </div>
-    <div class="opportunity-card" style="border-top:3px solid var(--purple)">
-      <div class="opp-title">ISO 9001:2026 (Q3+)</div>
-      <div class="opp-amount v-purple">+1,5–3,5М</div>
-      <div class="opp-meta">Каждая компания с ISO 9001:2015 должна пройти переход. Подготовить продукт в мае–июне. Конкурент А уже готовится — окно действия сейчас.</div>
-      <div class="opp-tag" style="background:var(--purple-dim);color:var(--purple);">Q3 — запустить с июня</div>
+  <!-- EARLY INDICATORS -->
+  <div class="sec">
+    <div class="secnum">07</div><div class="eyebrow">Индикаторы</div><h2>Ранние индикаторы · к 06.06.2026</h2>
+    <div class="steps">
+      <div class="st y"><div class="circ">◑</div><div class="sn">Акт нац. сертификации</div><div class="stgt">подтверждён</div><div class="srz">нет акта</div></div>
+      <div class="st r"><div class="circ">○</div><div class="sn">Тендеры (Менеджер А)</div><div class="stgt">≥ 1 договор</div><div class="srz">0 движения</div></div>
+      <div class="st r"><div class="circ">○</div><div class="sn">Крупн. актирование — график до 30.06</div><div class="stgt">подтверждён</div><div class="srz">уходит в июль</div></div>
+      <div class="st y"><div class="circ">◑</div><div class="sn">Темп Менеджера А</div><div class="stgt">≥ план июня</div><div class="srz">&lt; 50% плана</div></div>
+      <div class="st g"><div class="circ">●</div><div class="sn">Еженедельный план-факт</div><div class="stgt">запущен</div><div class="srz">не запущен</div></div>
     </div>
   </div>
-</div>
 
-<!-- ═══ BLOCK G — ПРОДАВЦЫ ═══ -->
-<div class="section">
-  <div class="section-title">Эффективность менеджеров по продажам — апрель</div>
-  <div class="tbl-wrap">
+  <!-- MANUAL CHECKS -->
+  <div class="sec">
+    <div class="secnum">08</div><div class="eyebrow">Контроль</div><h2>Что нужно проверить вручную</h2>
     <table>
-      <thead>
-        <tr>
-          <th>Менеджер</th>
-          <th>Plan</th>
-          <th>Факт</th>
-          <th>Выполнение</th>
-          <th>Предыдущий квартал</th>
-          <th>Оценка</th>
-          <th>Статус</th>
-        </tr>
-      </thead>
-      <tbody>
-        <tr>
-          <td><strong>Менеджер А</strong></td>
-          <td>3 250К</td>
-          <td>3 090К</td>
-          <td style="color:var(--green)">95%</td>
-          <td style="color:var(--muted)">4 990К</td>
-          <td><span class="badge badge-green">Excellent</span></td>
-          <td>Держит 95% — не трогать</td>
-        </tr>
-        <tr>
-          <td><strong>Менеджер Б</strong></td>
-          <td>4 880К</td>
-          <td>1 960К</td>
-          <td style="color:var(--red)">40%</td>
-          <td style="color:var(--muted)">9 100К</td>
-          <td><span class="badge badge-red">Критично</span></td>
-          <td>Разбор — СРОЧНО</td>
-        </tr>
-        <tr>
-          <td style="color:var(--muted)">Не атрибутировано</td>
-          <td>—</td>
-          <td>830К</td>
-          <td style="color:var(--muted)">—</td>
-          <td style="color:var(--muted)">—</td>
-          <td><span class="badge" style="background:var(--surface2);color:var(--muted);border:1px solid var(--border)">Входящие</span></td>
-          <td>Вероятно, базовые контракты</td>
-        </tr>
-      </tbody>
+      <tr><th>Статус</th><th>Параметр</th><th>Где искать</th><th>Кто</th><th>Срок</th></tr>
+      <tr><td><span class="sdot"></span></td><td>График подписания крупного акта — успевает ли в Q2</td><td>план исполнения</td><td>РО</td><td>06.06.2026</td></tr>
+      <tr><td><span class="sdot"></span></td><td>Дата решения крупного тендера (СЭМ) — Q2 или Q3</td><td>статус сделки в CRM</td><td>Менеджер А</td><td>06.06.2026</td></tr>
+      <tr><td><span class="sdot"></span></td><td>Win rate тендеров СМК</td><td>открытые закупки (профильный ОКВЭД)</td><td>РО</td><td>10.06.2026</td></tr>
+      <tr><td><span class="sdot"></span></td><td>Причина отставания Менеджера А (апрель 40%)</td><td>разбор pipeline, закрытые сделки</td><td>РО</td><td>06.06.2026</td></tr>
+      <tr><td><span class="sdot"></span></td><td>Средний чек ресертификации vs новой</td><td>свои сделки за 12 мес + КП</td><td>Менеджер</td><td>13.06.2026</td></tr>
     </table>
   </div>
+
 </div>
 
-<!-- ═══ BLOCK H — ROI СОТРУДНИКОВ ═══ -->
-<div class="section">
-  <div class="section-title">ROI сотрудников (апрель — выручка / ФОТ себестоимость)</div>
-  <div class="card">
-    <div style="font-size:12px;color:var(--muted);margin-bottom:12px;">Топ-5 и флаги. Норма ROI = 2,0+. Ниже 1,0 — зона риска.</div>
-
-    <div class="employee-row" style="font-size:11px;color:var(--muted);font-weight:700;">
-      <span>Сотрудник</span><span>Выручка</span><span>ФОТ</span><span>ROI</span><span>Визуализация</span>
-    </div>
-    <div class="employee-row">
-      <span>Эксперт-аудитор 1</span><span style="color:var(--green)">750К</span><span>40К</span><span style="color:var(--green)">18×</span>
-      <div class="employee-bar-wrap"><div class="employee-bar" style="width:100%;background:var(--green)"></div></div>
-    </div>
-    <div class="employee-row">
-      <span>Эксперт-аудитор 2</span><span style="color:var(--green)">130К</span><span>18К</span><span style="color:var(--green)">7×</span>
-      <div class="employee-bar-wrap"><div class="employee-bar" style="width:40%;background:var(--green)"></div></div>
-    </div>
-    <div class="employee-row">
-      <span>Ведущий эксперт 1</span><span style="color:var(--green)">990К</span><span>170К</span><span style="color:var(--green)">5,9×</span>
-      <div class="employee-bar-wrap"><div class="employee-bar" style="width:32%;background:var(--green)"></div></div>
-    </div>
-    <div class="employee-row">
-      <span>Ведущий эксперт 2</span><span style="color:var(--green)">470К</span><span>110К</span><span style="color:var(--green)">4,4×</span>
-      <div class="employee-bar-wrap"><div class="employee-bar" style="width:24%;background:var(--green)"></div></div>
-    </div>
-    <div class="employee-row">
-      <span>Эксперт-аудитор 3</span><span style="color:var(--green)">340К</span><span>80К</span><span style="color:var(--green)">4,3×</span>
-      <div class="employee-bar-wrap"><div class="employee-bar" style="width:24%;background:var(--green)"></div></div>
-    </div>
-    <div class="employee-row" style="background:rgba(255,71,87,0.05);">
-      <span style="color:var(--muted)">Специалист по качеству X</span><span style="color:var(--red)">140К</span><span>160К</span><span style="color:var(--red)">0,91×</span>
-      <div class="employee-bar-wrap"><div class="employee-bar" style="width:5%;background:var(--red)"></div></div>
-    </div>
-    <div style="margin-top:12px;padding:10px 12px;background:var(--red-dim);border-radius:6px;font-size:12px;">
-      <strong style="color:var(--red)">Флаг — 5 сотрудников с нулевой выручкой:</strong>
-      <span style="color:var(--muted);margin-left:8px;">Сотрудник А (~370К ФОТ), Б (~200К), В (~180К), Г (~130К), Д (~120К) — итого ~1 000К/мес. Проверить загруженность.</span>
-    </div>
+<div class="foot">
+  <b>Методология:</b> апрель — закрытый факт; май и июнь — план/прогноз (факта нет). Все суммы без НДС.
+  <div class="grid">
+    <div><b>Источники</b><br>03 action_plan · 04 competitor_handoff (web_access: available, data_quality: partial, Tier 3) · 05 dashboard_handoff + market_check</div>
+    <div><b>Статус данных</b><br>агент 03 — получены ✓ · агент 04 — получены частично (Tier 3, needs_verification) · агент 05 — получены ✓</div>
+    <div><b>DEMO</b><br>реальные имена, компания, ИНН, абсолютные суммы скрыты; величины показаны относительно (% / доли). Стиль Rostec Visual Trial 3.</div>
   </div>
 </div>
 
-<!-- ═══ BLOCK I — РЫНОК ═══ -->
-<div class="section">
-  <div class="section-title">Рыночная позиция и стратегические выводы</div>
-  <div class="grid2">
-    <div>
-      <div class="alert alert-ok" style="margin-bottom:8px;">
-        <div class="alert-icon">✅</div>
-        <div class="alert-body">
-          <div class="alert-title">Рынок благоприятен — проблема в продажах, не в спросе</div>
-          <div class="alert-desc">Госзакупки требуют ISO 9001. 87% B2B-клиентов проверяют сертификат при крупных сделках. IT-сектор: +340% компаний с ISO 9001 за 5 лет. Спрос есть — воронка пуста.</div>
-        </div>
-      </div>
-      <div class="alert alert-ok" style="margin-bottom:8px;">
-        <div class="alert-icon">🛡</div>
-        <div class="alert-body">
-          <div class="alert-title">Корпоративный сегмент [DEMO] — монополия: конкуренты не войдут</div>
-          <div class="alert-desc">Организации, входящие в корпоративный периметр Компании [DEMO], выбирают сертификатора из того же контура. СДС [DEMO] — продукт только Компании [DEMO].</div>
-        </div>
-      </div>
-      <div class="alert alert-ok" style="margin-bottom:8px;">
-        <div class="alert-icon">📋</div>
-        <div class="alert-body">
-          <div class="alert-title">Регуляторное ужесточение (H2 2026) — союзник</div>
-          <div class="alert-desc">Малые органы сертификации теряют аккредитацию. Компания [DEMO] получает их клиентов. Нужна готовность принять дополнительный поток.</div>
-        </div>
-      </div>
-      <div class="alert alert-warn">
-        <div class="alert-icon">⚠️</div>
-        <div class="alert-body">
-          <div class="alert-title">Не идти в ценовую войну нижнего сегмента</div>
-          <div class="alert-desc">Конкуренты В и Д демпингуют. Фокус: консалтинг+сертификация (450К–850К+), корпоративный сегмент, ISO 9001:2026. Там нет демпинга.</div>
-        </div>
-      </div>
-    </div>
-    <div>
-      <div class="tbl-wrap">
-        <table>
-          <thead>
-            <tr><th>Сегмент</th><th>Угроза</th><th>Позиция</th></tr>
-          </thead>
-          <tbody>
-            <tr>
-              <td><strong>Корпоративный сегмент [DEMO]</strong></td>
-              <td><span class="dot dot-green"></span>Нет</td>
-              <td style="color:var(--green)">Монополия</td>
-            </tr>
-            <tr>
-              <td>Консалтинг + сертификация</td>
-              <td><span class="dot dot-orange"></span>Конкурент А, Б</td>
-              <td style="color:var(--green)">Конкурентна</td>
-            </tr>
-            <tr>
-              <td>ISO 9001:2026 переход</td>
-              <td><span class="dot dot-yellow"></span>Конкурент А готов</td>
-              <td style="color:var(--yellow)">Окно: сейчас</td>
-            </tr>
-            <tr>
-              <td>Международная аккредитация</td>
-              <td><span class="dot dot-red"></span>Конкуренты А, Б, Г</td>
-              <td style="color:var(--red)">Уточнить статус</td>
-            </tr>
-            <tr>
-              <td>Нац. стандарт 69–120К</td>
-              <td><span class="dot dot-red"></span>Конкуренты В, Д</td>
-              <td style="color:var(--muted)">Избегать</td>
-            </tr>
-            <tr>
-              <td>Добровольная сертификация СДС</td>
-              <td><span class="dot dot-green"></span>Нет</td>
-              <td style="color:var(--green)">Уникально</td>
-            </tr>
-          </tbody>
-        </table>
-      </div>
-      <div style="margin-top:8px;padding:10px 14px;background:var(--purple-dim);border:1px solid var(--purple);border-radius:6px;font-size:12px;">
-        <strong style="color:var(--purple)">ISO 9001:2026:</strong>
-        <span style="color:var(--muted);margin-left:6px;">Выход H2 2026 — каждая компания с ISO 9001:2015 нуждается в переходе. Реалистичный Q3-эффект: +1,5–3,5М руб. Подготовить продукт уже сейчас.</span>
-      </div>
-    </div>
-  </div>
 </div>
-
-<!-- ═══ BLOCK J — КОНКУРЕНТЫ ═══ -->
-<div class="section">
-  <div class="section-title">Карта конкурентов [DEMO]</div>
-  <div class="grid5">
-    <div class="comp-card" style="border-top:3px solid var(--red)">
-      <div class="comp-name">Конкурент А</div>
-      <div class="comp-type">Международный · Европа</div>
-      <div class="comp-threat"><span class="badge badge-red">Критическая угроза</span></div>
-      <div class="comp-notes">Лучший аудит в сегменте, сильный бренд, уже готовит ISO 9001:2026. Перехватывает экспортно-ориентированных клиентов.</div>
-    </div>
-    <div class="comp-card" style="border-top:3px solid var(--orange)">
-      <div class="comp-name">Конкурент Б</div>
-      <div class="comp-type">Международный · глобальная сеть</div>
-      <div class="comp-threat"><span class="badge badge-orange">Высокая угроза</span></div>
-      <div class="comp-notes">Широкий портфель ISO. Международная аккредитация. Сеть аудиторов в РФ и СНГ. Готовится через международную сеть.</div>
-    </div>
-    <div class="comp-card" style="border-top:3px solid var(--yellow)">
-      <div class="comp-name">Конкурент В</div>
-      <div class="comp-type">Национальный частный</div>
-      <div class="comp-threat"><span class="badge badge-yellow">Средняя угроза</span></div>
-      <div class="comp-notes">Активный digital-маркетинг, SEO. ISO 9001 от 69–120К. Конкурент по стандартным национальным сертификациям.</div>
-    </div>
-    <div class="comp-card" style="border-top:3px solid var(--yellow)">
-      <div class="comp-name">Конкурент Г</div>
-      <div class="comp-type">Международный частный</div>
-      <div class="comp-threat"><span class="badge badge-yellow">Средняя угроза</span></div>
-      <div class="comp-notes">Двойной сертификат: нац. + международный в одном. Гибкость для клиентов с зарубежными партнёрами.</div>
-    </div>
-    <div class="comp-card" style="border-top:3px solid var(--yellow)">
-      <div class="comp-name">Конкурент Д</div>
-      <div class="comp-type">Национальный крупный</div>
-      <div class="comp-threat"><span class="badge badge-yellow">Средняя угроза</span></div>
-      <div class="comp-notes">Масштаб, сильный SEO-охват. Широкий портфель услуг. ISO 9001 от 50К. Масс-маркет.</div>
-    </div>
-  </div>
-</div>
-
-<!-- ═══ BLOCK K — ПЛАН-ПУЛЬС ═══ -->
-<div class="section">
-  <div class="section-title">Контрольные точки до конца месяца</div>
-  <div class="card">
-    <div class="week-item">
-      <div class="week-date" style="color:var(--red)">Нед. 1 ↑СРОЧНО</div>
-      <div class="week-body">
-        <div class="week-title" style="color:var(--red)">Статус воронки Менеджера Б на май и июнь</div>
-        <div class="week-sub">Причины апрельского провала + конкретные сделки в пайплайне. Руководитель + Менеджер Б.</div>
-      </div>
-    </div>
-    <div class="week-item">
-      <div class="week-date" style="color:var(--orange)">Нед. 1</div>
-      <div class="week-body">
-        <div class="week-title">Платёж А (~500К) — обязателен ли? + Консалтинг 350К — ROI?</div>
-        <div class="week-sub">Руководитель + финансовый контролёр. Если платёж переносимый — перенести на следующий месяц.</div>
-      </div>
-    </div>
-    <div class="week-item">
-      <div class="week-date" style="color:var(--orange)">Нед. 2</div>
-      <div class="week-body">
-        <div class="week-title">Руководитель в 2–3 встречах Менеджера Б + 3 тендерные заявки + обзвон базы</div>
-        <div class="week-sub">Специалист по тендерам: заявки поданы. Менеджеры А+Б: обзвон клиентов с истекающими сертификатами.</div>
-      </div>
-    </div>
-    <div class="week-item">
-      <div class="week-date" style="color:var(--yellow)">Нед. 2–3</div>
-      <div class="week-body">
-        <div class="week-title">Регистрация на отраслевую конференцию по системам менеджмента</div>
-        <div class="week-sub">Профессиональные площадки по качеству и стандартизации.</div>
-      </div>
-    </div>
-    <div class="week-item">
-      <div class="week-date" style="color:var(--muted)">Конец мес.</div>
-      <div class="week-body">
-        <div class="week-title">Воронка июня + информационная рассылка + региональные партнёры</div>
-        <div class="week-sub">Июнь должен быть на 80%+ плана. Специалист по развитию: 2–3 регпартнёра в переговорах. Рассылка — отправлена.</div>
-      </div>
-    </div>
-  </div>
-</div>
-
-<!-- ═══ BLOCK L — РАСХОДЫ ═══ -->
-<div class="section">
-  <div class="section-title">Структура расходов — апрель (база) и аномалии текущего месяца</div>
-  <div class="grid2">
-    <div class="tbl-wrap">
-      <table>
-        <thead><tr><th>Категория</th><th>Сумма (апрель)</th><th>Доля</th></tr></thead>
-        <tbody>
-          <tr><td>ФОТ исполнителей (~25 чел.)</td><td>~2 530К</td><td style="color:var(--orange)">63%</td></tr>
-          <tr><td>ФОТ коммерческий (Менеджеры А+Б)</td><td>~410К</td><td>10%</td></tr>
-          <tr><td>ФОТ накладной (руководство, поддержка)</td><td>~195К</td><td>5%</td></tr>
-          <tr><td>Партнёрское ПО / лицензии</td><td>~350К</td><td>9%</td></tr>
-          <tr><td>Разовый внешний эксперт (апрель)</td><td>~470К</td><td style="color:var(--muted)">разовый</td></tr>
-          <tr><td>Платформы + внешний аудит компетентности</td><td>~55К</td><td>1%</td></tr>
-          <tr style="font-weight:700;"><td>Итого расходов</td><td>~4 010К</td><td>100%</td></tr>
-        </tbody>
-      </table>
-    </div>
-    <div class="card">
-      <div style="font-size:12px;color:var(--muted);margin-bottom:10px;">Аномалии текущего месяца (+850К над нормой):</div>
-      <div class="alert alert-warn" style="margin-bottom:8px;">
-        <div class="alert-body">
-          <div class="alert-title">Единовременный платёж А — ~500 000 руб. <span style="color:var(--muted);font-weight:400;">↓ проверить</span></div>
-          <div class="alert-desc">Что такое? Обязателен ли в этом месяце? Можно ли перенести?</div>
-        </div>
-      </div>
-      <div class="alert alert-warn" style="margin-bottom:8px;">
-        <div class="alert-body">
-          <div class="alert-title">Консалтинг — ~350 000 руб. <span style="color:var(--muted);font-weight:400;">↓ проверить</span></div>
-          <div class="alert-desc">На что? ROI? Следующий месяц +150К — рассмотреть сокращение если ROI не ясен.</div>
-        </div>
-      </div>
-      <div class="alert alert-info">
-        <div class="alert-body">
-          <div class="alert-title">Ежегодная аккредитация — ~240 000 руб.</div>
-          <div class="alert-desc">Переаккредитация — вероятно обязательная. Следующий месяц: +200К.</div>
-        </div>
-      </div>
-      <div style="margin-top:10px;font-size:12px;color:var(--muted);">Нормализованный breakeven (без разовых): ~3 540К/мес · При нормальных расходах и 80% плана — отдел прибылен.</div>
-    </div>
-  </div>
-</div>
-
-<!-- ═══ FOOTER ═══ -->
-<div style="margin-top:32px;padding:16px 24px;background:var(--surface);border:1px solid var(--border);border-radius:8px;font-size:12px;color:var(--muted);">
-  <div style="display:grid;grid-template-columns:repeat(4,1fr);gap:16px;">
-    <div>
-      <div style="font-weight:700;color:var(--text);margin-bottom:4px;">Отдел [DEMO]</div>
-      <div>Сертификация СМК — Q2 2026</div>
-      <div>Компания [DEMO] · Корпоративный холдинг</div>
-      <div>Данные: Q2 2026 (обезличены)</div>
-    </div>
-    <div>
-      <div style="font-weight:700;color:var(--text);margin-bottom:4px;">Ключевые продукты</div>
-      <div>Консалтинг СМК: 450К–850К+</div>
-      <div>Межд. сертификация: 150К–500К+</div>
-      <div>Нац. сертификация: 70–300К</div>
-      <div>Доброволь. сертификация: 15–80К (уникально)</div>
-    </div>
-    <div>
-      <div style="font-weight:700;color:var(--text);margin-bottom:4px;">Что не менять</div>
-      <div>Менеджер А — 95%, не трогать</div>
-      <div>Лицензии/партнёрство — обязательные</div>
-      <div>Внешний аудит компетентности — обязательный</div>
-      <div>ФОТ исполнителей — ждём пайплайн Q3</div>
-    </div>
-    <div>
-      <div style="font-weight:700;color:var(--text);margin-bottom:4px;">AI-Findir [DEMO]</div>
-      <div>Агент: 06 Action Dashboard</div>
-      <div>Включает: финанализ, рынок, конкуренты</div>
-      <div>Данные обезличены для публичного показа</div>
-      <div style="margin-top:4px;color:var(--border);">Сформировано: Q2 2026</div>
-    </div>
-  </div>
-</div>
-
-</div><!-- /.wrap -->
 </body>
 </html>
