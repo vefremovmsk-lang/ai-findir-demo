@@ -3,270 +3,373 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Action Dashboard — Экологические услуги, Q2 2026 [DEMO]</title>
+<title>Action Dashboard — Экологические услуги, Q2 2026 [DEMO · Rostec Visual Trial 3 · Visual Report]</title>
 <style>
   *,*::before,*::after{box-sizing:border-box;margin:0;padding:0;}
-  body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Arial,sans-serif;background:#0f1117;color:#e2e8f0;font-size:14px;line-height:1.5;}
-  .demo-banner{background:#1c1205;border-bottom:2px solid #d97706;padding:8px 24px;text-align:center;font-size:13px;color:#fbbf24;font-weight:600;letter-spacing:.04em;}
-  .header{background:#1a1d2e;border-bottom:2px solid #3b4280;padding:14px 24px;display:flex;justify-content:space-between;align-items:flex-start;gap:16px;}
-  .header-title{font-size:18px;font-weight:700;color:#a5b4fc;}
-  .header-q{font-size:13px;color:#94a3b8;margin-top:4px;max-width:680px;}
-  .header-meta{font-size:12px;color:#64748b;text-align:right;white-space:nowrap;}
-  .header-meta span{display:block;}
-  .page{max-width:1280px;margin:0 auto;padding:20px 24px 48px;}
-  .section{margin-bottom:26px;}
-  .section-title{font-size:12px;font-weight:700;text-transform:uppercase;letter-spacing:.08em;color:#818cf8;margin-bottom:12px;padding-bottom:6px;border-bottom:1px solid #262b40;}
-  .diagnosis{background:linear-gradient(90deg,#2a1535,#1a1d2e);border:1px solid #7c3aed;border-radius:10px;padding:18px 22px;margin-bottom:22px;}
-  .diagnosis .lbl{font-size:11px;text-transform:uppercase;letter-spacing:.1em;color:#c4b5fd;margin-bottom:6px;}
-  .diagnosis .txt{font-size:16px;font-weight:600;color:#f1f5f9;}
-  .diagnosis b{color:#fca5a5;}
-  .alert{border-radius:8px;padding:12px 16px;margin-bottom:10px;border-left:4px solid;}
-  .alert.crit{background:#2a1212;border-color:#ef4444;}
-  .alert.warn{background:#291f0a;border-color:#f59e0b;}
-  .alert-title{font-weight:700;font-size:13px;margin-bottom:3px;}
-  .alert.crit .alert-title{color:#fca5a5;}
-  .alert.warn .alert-title{color:#fcd34d;}
-  .alert-body{font-size:13px;color:#cbd5e1;}
-  .cards{display:grid;grid-template-columns:repeat(3,1fr);gap:14px;}
-  .card{background:#181c2c;border:1px solid #2a3050;border-radius:10px;padding:16px;}
-  .card .what{font-weight:700;font-size:14px;color:#f1f5f9;margin-bottom:10px;}
-  .card .row{display:flex;justify-content:space-between;font-size:12px;color:#94a3b8;margin-top:4px;}
-  .card .row b{color:#cbd5e1;font-weight:600;}
-  .card .eff{margin-top:10px;font-size:15px;font-weight:700;color:#86efac;}
+  :root{
+    --bg:#f3f1ec;--paper:#ffffff;--ink:#1a1c22;--muted:#5c6470;--faint:#9aa0ab;
+    --line:#e6e2da;--line2:#d3cdc1;
+    --crim:#b91032;--crim-soft:#f7e6ea;--gold:#b08537;--steel:#33445f;
+    --ok:#1f8f4e;--ok-soft:#e9f5ee;--warn:#bd7a12;--warn-soft:#f9f0df;--dng:#b91032;--dng-soft:#f7e6ea;
+    --serif:Georgia,"Times New Roman",serif;
+    --f:"Helvetica Neue","Arial Nova","Segoe UI",system-ui,sans-serif;--m:"Cascadia Mono","SF Mono",Consolas,monospace;
+  }
+  body{font-family:var(--f);background:var(--bg);color:var(--ink);font-size:14px;line-height:1.5;}
+  .demo{background:var(--crim-soft);border-bottom:1px solid var(--crim);padding:7px 24px;text-align:center;font-size:12px;color:var(--crim);font-weight:600;letter-spacing:.03em;}
+  .sheet{max-width:1180px;margin:22px auto;background:var(--paper);border:1px solid var(--line);box-shadow:0 4px 24px rgba(26,28,34,.08);}
+  .inner{padding:0 40px 52px;}
+  .mast{display:flex;justify-content:space-between;align-items:flex-end;gap:24px;padding:34px 40px 20px;border-bottom:2px solid var(--ink);margin:0 -40px 0;}
+  .kicker{font-size:11px;letter-spacing:.28em;text-transform:uppercase;color:var(--gold);font-weight:700;}
+  .mast h1{font-family:var(--serif);font-size:30px;font-weight:700;letter-spacing:-.01em;margin-top:6px;line-height:1.08;}
+  .mast .sub{font-size:14px;color:var(--muted);margin-top:8px;max-width:540px;}
+  .mast .meta{font-size:10.5px;color:var(--faint);text-align:right;text-transform:uppercase;letter-spacing:.05em;line-height:1.9;white-space:nowrap;font-family:var(--m);}
+  .brand{display:flex;align-items:center;gap:16px;}
+  .secnum{font-family:var(--serif);font-size:13px;color:var(--gold);font-weight:700;}
+  .eyebrow{font-size:11px;font-weight:700;letter-spacing:.16em;text-transform:uppercase;color:var(--crim);}
+  .sec{margin-top:38px;}
+  .sec>h2{font-family:var(--serif);font-size:21px;font-weight:700;margin:4px 0 16px;padding-bottom:10px;border-bottom:1px solid var(--line);}
+  .hero{display:grid;grid-template-columns:1fr 1.15fr;gap:30px;margin-top:24px;}
+  .dlabel{font-size:11px;letter-spacing:.18em;text-transform:uppercase;color:var(--crim);font-weight:700;margin-bottom:10px;}
+  .dtext{font-size:18px;font-weight:500;line-height:1.45;font-family:var(--serif);}
+  .dtext b{color:var(--crim);font-weight:700;}
+  .heronum{display:flex;align-items:baseline;gap:12px;margin-top:18px;padding-top:16px;border-top:1px solid var(--line);}
+  .heronum .big{font-size:50px;font-weight:800;letter-spacing:-.03em;color:var(--crim);line-height:.85;font-family:var(--m);}
+  .heronum .cap{font-size:12px;color:var(--muted);max-width:200px;}
+  .chartcard{background:#fbfaf7;border:1px solid var(--line);border-radius:12px;padding:18px 20px;}
+  .chartcard h4{font-size:11px;text-transform:uppercase;letter-spacing:.1em;color:var(--muted);margin-bottom:14px;}
+  .kpis{display:grid;grid-template-columns:repeat(2,1fr);gap:14px;margin-top:22px;}
+  .kpi{background:#fbfaf7;border:1px solid var(--line);border-radius:12px;padding:15px 18px;}
+  .kpi .kl{font-size:10.5px;text-transform:uppercase;letter-spacing:.07em;color:var(--muted);}
+  .kpi .ktop{display:flex;justify-content:space-between;align-items:baseline;}
+  .kpi .kv{font-size:27px;font-weight:800;letter-spacing:-.02em;font-variant-numeric:tabular-nums;font-family:var(--m);}
+  .kpi.d .kv{color:var(--dng);}.kpi.w .kv{color:var(--warn);}.kpi.s .kv{color:var(--steel);}
+  .kpi .ks{font-size:10.5px;color:var(--faint);text-align:right;}
+  .bullet{height:10px;background:#ece8e0;border-radius:5px;position:relative;margin-top:11px;overflow:visible;}
+  .bullet .bf{height:100%;border-radius:5px;}
+  .bullet .bm{position:absolute;top:-3px;width:2px;height:16px;background:var(--ink);}
+  .atl{position:relative;padding-left:30px;}
+  .atl::before{content:"";position:absolute;left:9px;top:6px;bottom:6px;width:2px;background:var(--line2);}
+  .ai{position:relative;margin-bottom:16px;}
+  .ai:last-child{margin-bottom:0;}
+  .ai .node{position:absolute;left:-30px;top:1px;width:20px;height:20px;border-radius:50%;display:grid;place-items:center;color:#fff;font-weight:800;font-size:11px;font-family:var(--m);}
+  .ai.high .node{background:var(--dng);}.ai.med .node{background:var(--warn);}
+  .ai .at{font-weight:700;font-size:13.5px;margin-bottom:2px;}
+  .ai.high .at{color:var(--dng);}.ai.med .at{color:var(--warn);}
+  .ai .ab{font-size:13px;color:var(--muted);}
+  .ai .ab b{color:var(--ink);}
+  .gx{position:relative;height:18px;margin:0 0 6px 175px;border-bottom:1px solid var(--line2);}
+  .gx .t{position:absolute;font-size:9.5px;color:var(--faint);font-family:var(--m);transform:translateX(-50%);}
+  .gr{display:flex;align-items:center;height:30px;}
+  .gl{width:175px;flex:0 0 175px;font-size:12px;padding-right:10px;}
+  .gl b{font-family:var(--m);color:var(--steel);}
+  .gt{position:relative;flex:1;height:30px;}
+  .gb{position:absolute;top:7px;height:16px;border-radius:5px;display:flex;align-items:center;padding:0 8px;font-size:10px;font-weight:700;color:#fff;font-family:var(--m);white-space:nowrap;}
+  .cut{position:absolute;top:-1px;bottom:-1px;width:2px;background:var(--crim);}
+  .cut span{position:absolute;top:-15px;left:50%;transform:translateX(-50%);font-size:9px;color:var(--crim);font-family:var(--m);white-space:nowrap;}
+  .wf{display:flex;height:46px;border-radius:8px;overflow:hidden;border:1px solid var(--line);position:relative;}
+  .wf .seg{display:flex;align-items:center;justify-content:center;color:#fff;font-size:12px;font-weight:800;font-family:var(--m);}
+  .wf .s1{background:var(--ok);}.wf .s2{background:var(--warn);}.wf .s3{background:#3fb574;}
+  .wf .tline{position:absolute;top:-4px;bottom:-4px;width:2px;background:var(--ink);z-index:2;}
+  .wf .tline span{position:absolute;top:-16px;left:50%;transform:translateX(-50%);font-size:9px;font-family:var(--m);white-space:nowrap;}
+  .donutwrap{display:flex;align-items:center;gap:24px;}
+  .leg{font-size:12.5px;}
+  .leg div{display:flex;align-items:center;gap:8px;margin-bottom:8px;}
+  .leg .sw{width:12px;height:12px;border-radius:3px;flex:0 0 12px;}
+  .heat{display:flex;gap:5px;flex-wrap:wrap;margin-top:10px;}
+  .hc{width:34px;height:26px;border-radius:5px;display:grid;place-items:center;font-size:10px;font-weight:800;font-family:var(--m);color:#fff;}
+  .hg{background:var(--ok);}.hy{background:var(--warn);}.hr{background:var(--dng);}
+  .cols{display:flex;align-items:flex-end;gap:10px;height:170px;padding-top:10px;border-bottom:1px solid var(--line2);}
+  .col{flex:1;display:flex;flex-direction:column;align-items:center;justify-content:flex-end;height:100%;}
+  .col .rng{width:62%;border-radius:4px 4px 0 0;position:relative;min-height:3px;}
+  .col .rng.g{background:linear-gradient(180deg,#3fb574,var(--ok));}
+  .col .rng.y{background:linear-gradient(180deg,#e0a23e,var(--warn));}
+  .col .rng.r{background:linear-gradient(180deg,#d3506a,var(--dng));}
+  .col .vlab{font-size:9.5px;color:var(--muted);font-family:var(--m);margin-bottom:3px;white-space:nowrap;}
+  .col .xlab{font-size:10px;font-weight:700;font-family:var(--m);margin-top:6px;color:var(--steel);}
+  .matrix{position:relative;height:300px;background:linear-gradient(135deg,#fbfaf7,#f5f2eb);border:1px solid var(--line);border-radius:12px;margin:0 8px;}
+  .matrix .axx{position:absolute;left:0;right:0;bottom:18px;height:1px;background:var(--line2);}
+  .matrix .axy{position:absolute;top:18px;bottom:18px;left:54px;width:1px;background:var(--line2);}
+  .matrix .axl{position:absolute;font-size:10px;color:var(--faint);font-family:var(--m);text-transform:uppercase;letter-spacing:.06em;}
+  .matrix .quad{position:absolute;font-size:10px;color:#c9c2b4;font-family:var(--m);}
+  .pt{position:absolute;transform:translate(-50%,50%);text-align:center;}
+  .pt .bub{width:var(--s,46px);height:var(--s,46px);border-radius:50%;display:grid;place-items:center;color:#fff;font-size:11px;font-weight:800;font-family:var(--m);margin:0 auto;box-shadow:0 2px 8px rgba(185,16,50,.3);}
+  .pt .pl{font-size:10px;color:var(--muted);margin-top:4px;font-family:var(--m);white-space:nowrap;}
+  .two{display:grid;grid-template-columns:1fr 1fr;gap:22px;}
+  .box{background:#fbfaf7;border:1px solid var(--line);border-radius:12px;padding:18px;}
+  .box h3{font-size:14px;margin-bottom:12px;font-family:var(--serif);}
+  .box.ok h3{color:var(--ok);}.box.no h3{color:var(--dng);}
+  ul.cl{list-style:none;}
+  ul.cl li{padding:8px 0 8px 24px;border-bottom:1px solid var(--line);font-size:13px;color:var(--muted);position:relative;}
+  ul.cl li:last-child{border-bottom:none;}
+  ul.cl li b{color:var(--ink);}
+  .box.ok ul.cl li::before{content:"✓";position:absolute;left:0;color:var(--ok);font-weight:800;}
+  .box.no ul.cl li::before{content:"✕";position:absolute;left:0;color:var(--dng);font-weight:800;}
+  .tag{font-size:11px;color:var(--faint);font-family:var(--m);}
+  .steps{display:grid;grid-template-columns:repeat(5,1fr);gap:0;}
+  .st{position:relative;text-align:center;padding:0 8px;}
+  .st .circ{width:40px;height:40px;border-radius:50%;border:2px solid var(--line2);background:var(--paper);display:grid;place-items:center;margin:0 auto 8px;font-size:16px;font-weight:800;position:relative;z-index:1;}
+  .st.g .circ{border-color:var(--ok);color:var(--ok);}.st.y .circ{border-color:var(--warn);color:var(--warn);}.st.r .circ{border-color:var(--dng);color:var(--dng);}
+  .st::before{content:"";position:absolute;top:20px;left:-50%;width:100%;height:2px;background:var(--line2);z-index:0;}
+  .st:first-child::before{display:none;}
+  .st .sn{font-size:11px;font-weight:600;min-height:30px;}
+  .st .stgt{font-size:10px;color:var(--ok);margin-top:5px;}
+  .st .srz{font-size:10px;color:var(--dng);}
   table{width:100%;border-collapse:collapse;font-size:13px;}
-  th,td{text-align:left;padding:8px 10px;border-bottom:1px solid #242a40;}
-  th{color:#94a3b8;font-weight:600;font-size:11px;text-transform:uppercase;letter-spacing:.05em;}
-  td b{color:#e2e8f0;}
-  .pill{display:inline-block;padding:1px 8px;border-radius:10px;font-size:11px;font-weight:700;}
-  .g{background:#14331f;color:#86efac;}
-  .y{background:#33280a;color:#fcd34d;}
-  .r{background:#331414;color:#fca5a5;}
-  .gray{background:#23283a;color:#94a3b8;}
-  .bar-wrap{margin:10px 0;}
-  .bar-lbl{display:flex;justify-content:space-between;font-size:12px;color:#cbd5e1;margin-bottom:4px;}
-  .bar{height:22px;background:#1c2236;border-radius:5px;overflow:hidden;position:relative;}
-  .bar .fill{height:100%;border-radius:5px;}
-  .fill.cons{background:#dc2626;}
-  .fill.tgt{background:#f59e0b;}
-  .fill.opt{background:#16a34a;}
-  .gapline{position:absolute;top:-3px;bottom:-3px;width:2px;background:#e2e8f0;}
-  .two{display:grid;grid-template-columns:1fr 1fr;gap:18px;}
-  .box{background:#161a28;border:1px solid #242a40;border-radius:10px;padding:16px;}
-  .box h3{font-size:13px;color:#a5b4fc;margin-bottom:10px;}
-  ul.clean{list-style:none;}
-  ul.clean li{padding:6px 0;border-bottom:1px solid #20263a;font-size:13px;color:#cbd5e1;}
-  ul.clean li:last-child{border-bottom:none;}
-  .tag{font-size:11px;color:#64748b;}
-  .cutoff{background:#10233a;border:1px solid #1d4ed8;border-radius:8px;padding:12px 16px;display:flex;gap:28px;align-items:center;margin-bottom:12px;}
-  .cutoff .big{font-size:20px;font-weight:800;color:#93c5fd;}
-  .footer{margin-top:30px;padding:16px 24px;background:#13151f;border-top:1px solid #242a40;font-size:11px;color:#64748b;line-height:1.7;}
-  .footer b{color:#94a3b8;}
-  .src{color:#7c8db5;}
+  th,td{text-align:left;padding:10px 12px;border-bottom:1px solid var(--line);}
+  th{color:var(--muted);font-weight:700;font-size:10px;text-transform:uppercase;letter-spacing:.06em;background:#faf8f4;}
+  td b{color:var(--ink);}
+  .sdot{display:inline-block;width:9px;height:9px;border-radius:50%;background:var(--warn);margin-right:6px;}
+  .pill{display:inline-block;padding:2px 10px;border-radius:999px;font-size:11px;font-weight:700;}
+  .pg{background:var(--ok-soft);color:var(--ok);}.py{background:var(--warn-soft);color:var(--warn);}.pr{background:var(--dng-soft);color:var(--dng);}
+  .foot{margin:38px -40px 0;background:var(--steel);color:#cdd6e6;padding:20px 40px;font-size:11px;line-height:1.85;}
+  .foot b{color:#fff;}
+  .foot .grid{display:grid;grid-template-columns:repeat(3,1fr);gap:18px;margin-top:8px;}
+  @media(max-width:900px){.hero,.kpis,.two,.steps,.cols{grid-template-columns:1fr;}.donutwrap{flex-direction:column;}}
 </style>
 </head>
 <body>
+<div class="demo">DEMO · обезличенная версия · реальные имена, компания и абсолютные суммы скрыты · конкуренты обезличены · цифры заменены на относительные</div>
+<div class="sheet">
+  <div class="inner">
 
-<div class="demo-banner">DEMO · обезличенная версия · реальные имена, компания и абсолютные суммы скрыты · цифры заменены на относительные</div>
+    <!-- MASTHEAD -->
+    <div class="mast">
+      <div class="brand">
+        <svg width="56" height="56" viewBox="0 0 56 56" fill="none" aria-hidden="true">
+          <rect x="6" y="6" width="44" height="44" rx="3" stroke="#1a1c22" stroke-width="1.4"/>
+          <rect x="6" y="6" width="44" height="44" rx="3" stroke="#b08537" stroke-width="1.4" stroke-dasharray="3 5"/>
+          <path d="M28 15c-9 4-11 18-2 24 9-2 13-13 7-22-1 5-5 9-9 10" stroke="#1f8f4e" stroke-width="1.7" fill="none" stroke-linecap="round"/>
+          <path d="M16 36h24" stroke="#b91032" stroke-width="1.7"/><circle cx="16" cy="36" r="2" fill="#b91032"/><circle cx="40" cy="36" r="2" fill="#b91032"/>
+        </svg>
+        <div>
+          <div class="kicker">Управленческий отчёт · Q2 2026</div>
+          <h1>Action Dashboard · Экологические услуги</h1>
+          <div class="sub">Что делать прямо сейчас, чтобы закрыть Q2 в плюс — с учётом рынка и конкурентов</div>
+        </div>
+      </div>
+      <div class="meta">Компания (демо)<br>контрольная дата 05.06.2026<br>апрель = факт · май/июнь = план<br>данные: 03 ✓ · 04 ✓ · 05 ✓</div>
+    </div>
 
-<div class="header">
-  <div>
-    <div class="header-title">Action Dashboard · Экологические услуги</div>
-    <div class="header-q">Что делать прямо сейчас, чтобы закрыть Q2 в плюс — с учётом рынка и конкурентов</div>
+    <!-- HERO -->
+    <div class="hero">
+      <div>
+        <div class="dlabel">Диагноз</div>
+        <div class="dtext">Апрель закрыт убытком (маржа <b>−170%</b>, выручка 35% плана); даже при 100% плана мая+июня Q2 уходит в минус <b>≈ −42% к плану</b>. Закрыть квартал можно, только подняв выручку мая+июня на <b>+41,7%</b> — главный рычаг: быстрые продукты (лаборатория, спец. тест-продукт, допсоглашения, ПЭК) + актирование до cash-cutoff 19.06. Тендеры — в Q3.</div>
+        <div class="heronum"><div class="big">+41,7%</div><div class="cap">требуемый рост выручки мая+июня к плану, чтобы Q2 ≥ 0</div></div>
+      </div>
+      <div class="chartcard">
+        <h4>Покрытие дефицита Q2 по сценариям</h4>
+        <svg width="100%" viewBox="0 0 440 220" preserveAspectRatio="xMidYMid meet" aria-label="Сценарии покрытия: консервативный 50, целевой 78, оптимистичный 141 процент; цель 100">
+          <line x1="40" y1="180" x2="430" y2="180" stroke="#d3cdc1" stroke-width="1"/>
+          <line x1="40" y1="74" x2="430" y2="74" stroke="#1a1c22" stroke-width="1.5" stroke-dasharray="5 3"/>
+          <text x="430" y="70" text-anchor="end" font-size="11" fill="#1a1c22" font-family="monospace">дефицит 100%</text>
+          <rect x="80" y="127" width="80" height="53" rx="4" fill="#b91032"/>
+          <text x="120" y="120" text-anchor="middle" font-size="16" font-weight="800" fill="#b91032" font-family="monospace">50%</text>
+          <text x="120" y="197" text-anchor="middle" font-size="11" fill="#5c6470">консерв.</text>
+          <rect x="200" y="97" width="80" height="83" rx="4" fill="#bd7a12"/>
+          <text x="240" y="90" text-anchor="middle" font-size="16" font-weight="800" fill="#bd7a12" font-family="monospace">78%</text>
+          <text x="240" y="197" text-anchor="middle" font-size="11" fill="#5c6470">целевой</text>
+          <rect x="320" y="30" width="80" height="150" rx="4" fill="#1f8f4e"/>
+          <text x="360" y="23" text-anchor="middle" font-size="16" font-weight="800" fill="#1f8f4e" font-family="monospace">141%</text>
+          <text x="360" y="197" text-anchor="middle" font-size="11" fill="#5c6470">оптим.</text>
+        </svg>
+        <div class="tag" style="margin-top:6px;">высота столбца ∝ % покрытия дефицита · пунктир = уровень дефицита (100%)</div>
+      </div>
+    </div>
+
+    <!-- KPI -->
+    <div class="kpis">
+      <div class="kpi d"><div class="ktop"><div><div class="kl">Дефицит Q2 (≥0)</div><div class="kv">+41,7%</div></div><div class="ks">к плану<br>мая+июня</div></div><div class="bullet"><div class="bf" style="width:100%;background:var(--dng);"></div></div></div>
+      <div class="kpi d"><div class="ktop"><div><div class="kl">Апрель (факт)</div><div class="kv">−170%</div></div><div class="ks">маржа<br>35% плана</div></div><div class="bullet"><div class="bf" style="width:35%;background:var(--dng);"></div></div></div>
+      <div class="kpi s"><div class="ktop"><div><div class="kl">Cash-cutoff</div><div class="kv">19.06</div></div><div class="ks">быстрый 14 дн<br>конец Q2 30.06</div></div><div class="bullet"><div class="bf" style="width:56%;background:var(--steel);"></div><div class="bm" style="left:100%;"></div></div></div>
+      <div class="kpi w"><div class="ktop"><div><div class="kl">Перенос в Q3</div><div class="kv">33–51%</div></div><div class="ks">эффекта · тендеры<br>&gt;20%</div></div><div class="bullet"><div class="bf" style="width:42%;background:var(--warn);"></div><div class="bm" style="left:20%;"></div></div></div>
+    </div>
+
+    <!-- ALERTS -->
+    <div class="sec">
+      <div class="secnum">01</div><div class="eyebrow">Сигналы</div><h2>Критичные алерты</h2>
+      <div class="atl">
+        <div class="ai high"><div class="node">!</div><div class="at">План не закрывает Q2 в ноль по реалистичному сценарию</div><div class="ab">Реалистичное покрытие дефицита — <b>50% (консерв.) / 78% (целевой)</b>. Полное закрытие только в оптимистичном (141%). Остаток под вопросом — около четверти дефицита.</div></div>
+        <div class="ai high"><div class="node">!</div><div class="at">Тендеры уходят в Q3 — больше 20% эффекта</div><div class="ab">Крупнейший заявленный рычаг при цикле 20–45 дней даёт решение в июле → перенос <b>33–51% эффекта</b> за горизонт Q2.</div></div>
+        <div class="ai med"><div class="node">▲</div><div class="at">Концентрация на одном продавце · cash-cutoff 19.06</div><div class="ab">Апрель: ведущий менеджер <b>227%</b> (несёт отдел), двое других 25–30%. Маржа лаборатории под давлением аккредит. госсети; отчётность — демпинг. После 19.06 новые сделки в Q2-акты не попадают.</div></div>
+      </div>
+    </div>
+
+    <!-- ACTION PIPELINE -->
+    <div class="sec">
+      <div class="secnum">02</div><div class="eyebrow">Действия · план</div><h2>Конвейер до 30.06</h2>
+      <div class="chartcard">
+        <div class="gx"><span class="t" style="left:0%;">05.06</span><span class="t" style="left:20%;">10.06</span><span class="t" style="left:52%;">18.06</span><span class="t" style="left:56%;">19.06</span><span class="t" style="left:100%;">30.06</span></div>
+        <div class="gr"><div class="gl"><b>A1</b> Актирование мая · РО</div><div class="gt"><div class="cut" style="left:56%;"><span>cash-cutoff 19.06</span></div><div class="gb" style="left:0;width:20%;background:#1f8f4e;">10.06</div></div></div>
+        <div class="gr"><div class="gl"><b>A2</b> Лаборатория · Менеджер А</div><div class="gt"><div class="gb" style="left:0;width:28%;background:#1f8f4e;">регламент 12.06</div></div></div>
+        <div class="gr"><div class="gl"><b>A3</b> Допсоглашения · Менеджер Б</div><div class="gt"><div class="gb" style="left:0;width:52%;background:#1f8f4e;">18.06</div></div></div>
+        <div class="gr"><div class="gl"><b>A4</b> Спец. тест-продукт · Менеджер Б</div><div class="gt"><div class="gb" style="left:0;width:52%;background:#bd7a12;">18.06</div></div></div>
+        <div class="gr"><div class="gl"><b>A5</b> ПЭК/Отходы · Менеджер А</div><div class="gt"><div class="gb" style="left:0;width:80%;background:#1f8f4e;">25.06</div></div></div>
+        <div class="gr"><div class="gl"><b>A10</b> Тендеры · Менеджер В</div><div class="gt"><div class="gb" style="left:0;width:100%;background:#b91032;">подались · акт → июль (Q3)</div></div></div>
+        <div class="tag" style="margin-top:8px;">Сегодня (05.06): A1 + запуск еженедельного план-факта (РО). Зелёный — быстрый Q2-рычаг · жёлтый — под вопросом · кримсон — риск переноса в Q3.</div>
+      </div>
+    </div>
+
+    <!-- COVERAGE waterfall -->
+    <div class="sec">
+      <div class="secnum">03</div><div class="eyebrow">Покрытие</div><h2>Как набирается покрытие дефицита Q2</h2>
+      <div class="chartcard">
+        <div class="wf">
+          <div class="seg s1" style="flex:50;">🟢 50%</div>
+          <div class="seg s2" style="flex:28;">+🟡 → 78%</div>
+          <div class="seg s3" style="flex:63;">+ верх/A1 → 141%</div>
+          <div class="tline" style="left:71%;"><span>дефицит 100%</span></div>
+        </div>
+        <div class="tag" style="margin-top:10px;">Накопительно: консервативный (только 🟢) <b style="color:var(--ink);">50%</b> → целевой (+ часть 🟡) <b style="color:var(--ink);">78%</b> → оптимистичный (всё по верхней границе) <b style="color:var(--ink);">141%</b>. <b style="color:var(--ink);">Вывод: частично закрывает.</b> Фронт-лоадить быстрые рычаги (A1–A5), не рассчитывать на тендеры в Q2; остаток переносить в Q3-задел.</div>
+      </div>
+    </div>
+
+    <!-- Q2/Q3 -->
+    <div class="sec">
+      <div class="secnum">04</div><div class="eyebrow">Горизонт</div><h2>Эффект Q2 vs перенос в Q3</h2>
+      <div class="two">
+        <div class="chartcard">
+          <h4>Распределение эффекта</h4>
+          <div class="donutwrap">
+            <svg width="150" height="150" viewBox="0 0 42 42" aria-label="Q2 эффект около 50 процентов, перенос в Q3 около 42 процентов, под вопросом около 8 процентов">
+              <circle cx="21" cy="21" r="15.915" fill="none" stroke="#ece8e0" stroke-width="6"/>
+              <circle cx="21" cy="21" r="15.915" fill="none" stroke="#1f8f4e" stroke-width="6" stroke-dasharray="50 50" stroke-dashoffset="25"/>
+              <circle cx="21" cy="21" r="15.915" fill="none" stroke="#bd7a12" stroke-width="6" stroke-dasharray="42 58" stroke-dashoffset="-25"/>
+              <circle cx="21" cy="21" r="15.915" fill="none" stroke="#b9b1a2" stroke-width="6" stroke-dasharray="8 92" stroke-dashoffset="-67"/>
+              <text x="21" y="22" text-anchor="middle" font-size="6" font-weight="800" fill="#1a1c22" font-family="monospace">Q2/Q3</text>
+            </svg>
+            <div class="leg">
+              <div><span class="sw" style="background:#1f8f4e;"></span>Q2 «вероятен» ≈ <b>50%</b> дефицита (A1+A2+A3+A5)</div>
+              <div><span class="sw" style="background:#bd7a12;"></span>Перенос в Q3 ≈ <b>33–51%</b> (тендеры A10) · &gt;20%</div>
+              <div><span class="sw" style="background:#b9b1a2;"></span>Под вопросом ≈ четверть дефицита</div>
+            </div>
+          </div>
+          <div class="heat">
+            <div class="hc hg">A1</div><div class="hc hg">A2</div><div class="hc hg">A3</div><div class="hc hg">A5</div>
+            <div class="hc hy">A4</div><div class="hc hy">A6</div><div class="hc hy">A7</div><div class="hc hy">A8</div><div class="hc hr">A10</div>
+          </div>
+          <div class="tag">🟢 вероятен · 🟡 под вопросом · 🔴 маловероятен</div>
+        </div>
+        <div class="chartcard">
+          <h4>Q2-эффект по действиям, % дефицита (верх диапазона)</h4>
+          <div class="cols">
+            <div class="col"><div class="vlab">25</div><div class="rng g" style="height:100%;"></div><div class="xlab">A2</div></div>
+            <div class="col"><div class="vlab">21</div><div class="rng g" style="height:84%;"></div><div class="xlab">A3</div></div>
+            <div class="col"><div class="vlab">18</div><div class="rng g" style="height:72%;"></div><div class="xlab">A1</div></div>
+            <div class="col"><div class="vlab">18</div><div class="rng g" style="height:72%;"></div><div class="xlab">A5</div></div>
+            <div class="col"><div class="vlab">18</div><div class="rng y" style="height:72%;"></div><div class="xlab">A6</div></div>
+            <div class="col"><div class="vlab">14</div><div class="rng y" style="height:56%;"></div><div class="xlab">A4</div></div>
+            <div class="col"><div class="vlab">11</div><div class="rng y" style="height:44%;"></div><div class="xlab">A9</div></div>
+            <div class="col"><div class="vlab">11</div><div class="rng r" style="height:44%;"></div><div class="xlab">A10</div></div>
+          </div>
+          <div class="tag" style="margin-top:8px;">верхняя граница диапазона, шкала 0 → 25% дефицита · цвет = статус</div>
+        </div>
+      </div>
+      <table style="margin-top:18px;">
+        <tr><th>ID</th><th>Действие</th><th>Ответственный</th><th>Q2-эффект (% дефицита)</th><th>Статус</th><th>Q3-риск</th></tr>
+        <tr><td>A1</td><td>Актирование майских работ</td><td>Рук. отдела</td><td>11–18%</td><td><span class="pill pg">вероятен</span></td><td>нет</td></tr>
+        <tr><td>A2</td><td>Лаборатория через партнёра</td><td>Менеджер А</td><td>14–25%</td><td><span class="pill pg">вероятен</span></td><td>низкий</td></tr>
+        <tr><td>A3</td><td>Допсоглашения к сделкам</td><td>Менеджер Б</td><td>14–21%</td><td><span class="pill pg">вероятен</span></td><td>низкий</td></tr>
+        <tr><td>A4</td><td>Спец. тест-продукт</td><td>Менеджер Б</td><td>7–14%</td><td><span class="pill py">под вопросом</span></td><td>средний</td></tr>
+        <tr><td>A5</td><td>ПЭК / Отходы</td><td>Менеджер А</td><td>11–18%</td><td><span class="pill pg">вероятен</span></td><td>низкий</td></tr>
+        <tr><td>A6</td><td>Экологическая отчётность</td><td>Менеджер Б</td><td>11–18%</td><td><span class="pill py">под вопросом</span></td><td>низкий</td></tr>
+        <tr><td>A7</td><td>Подтянуть отстающих менеджеров</td><td>РО</td><td>14–21%</td><td><span class="pill py">под вопросом</span></td><td>средний</td></tr>
+        <tr><td>A10</td><td>Тендеры</td><td>Менеджер В</td><td>0–11%</td><td><span class="pill pr">маловероятен</span></td><td><b style="color:var(--dng);">высокий</b></td></tr>
+      </table>
+      <div class="tag" style="margin-top:8px;">🟢 Q2-эффект «вероятен» (A1+A2+A3+A5): ≈ 50% дефицита. 🔴 Перенос в Q3 (тендеры A10): ≈ 33–51% дефицита — это &gt;20% совокупного эффекта.</div>
+    </div>
+
+    <!-- MARKET -->
+    <div class="sec">
+      <div class="secnum">05</div><div class="eyebrow">Рынок</div><h2>Что рынок подтвердил / не подтвердил</h2>
+      <div class="two">
+        <div class="box ok"><h3>✓ Рынок подтвердил</h3><ul class="cl">
+          <li><b>Быстрые продукты</b> (лаборатория, ПЭК): значимый эффект в Q2. <span class="tag">A2/A5</span></li>
+          <li><b>Допсоглашения и актирование</b> (A3/A1) — сделки уже в работе, эффект в Q2.</li>
+          <li><b>Сезонность</b>: регуляторный дедлайн отчётности создаёт срочный спрос Q2.</li>
+          <li><b>Рычаг = контур материнской ГК</b> (B2G-доступ), а не цена.</li>
+        </ul></div>
+        <div class="box no"><h3>✗ Рынок не подтвердил / под вопросом</h3><ul class="cl">
+          <li><b>Тендеры</b> (A10): бо́льшая часть эффекта → Q3 (цикл 20–45 дн).</li>
+          <li><b>Отчётность</b> (A6): чек под давлением рынка (демпинг) → пакет, не разовый отчёт.</li>
+          <li><b>Маржа лаборатории</b> (A2): давит аккредит. госсеть — зафиксировать в партнёрстве.</li>
+          <li><b>Win rate тендеров</b>: не верифицирован [проверить].</li>
+        </ul></div>
+      </div>
+    </div>
+
+    <!-- COMPETITORS -->
+    <div class="sec">
+      <div class="secnum">06</div><div class="eyebrow">Конкуренты</div><h2>Конкуренты · матрица угрозы <span class="tag">(агент 04, web-verified 05.06, обезличено)</span></h2>
+      <div class="two">
+        <div>
+          <div class="matrix">
+            <div class="axx"></div><div class="axy"></div>
+            <div class="axl" style="left:60px;top:4px;">↑ угроза (threat 0–10)</div>
+            <div class="axl" style="right:8px;bottom:4px;">широта портфеля →</div>
+            <div class="quad" style="right:14px;top:26px;">лидеры рынка</div>
+            <div class="quad" style="left:60px;bottom:26px;">нишевые</div>
+            <div class="pt" style="left:84%;top:18%;"><div class="bub" style="--s:58px;background:#b91032;">8</div><div class="pl">Конкурент-А</div></div>
+            <div class="pt" style="left:34%;top:26%;"><div class="bub" style="--s:50px;background:#cf2a48;">7</div><div class="pl">Конкурент-Б</div></div>
+            <div class="pt" style="left:58%;top:48%;"><div class="bub" style="--s:44px;background:#bd7a12;">6</div><div class="pl">Конкурент-В</div></div>
+            <div class="pt" style="left:76%;top:54%;"><div class="bub" style="--s:44px;background:#bd7a12;">6</div><div class="pl">Конкурент-Г</div></div>
+            <div class="pt" style="left:46%;top:68%;"><div class="bub" style="--s:38px;background:#d3a13e;">5</div><div class="pl">Конкурент-Д</div></div>
+            <div class="pt" style="left:64%;top:74%;"><div class="bub" style="--s:38px;background:#d3a13e;">5</div><div class="pl">Конкурент-Е</div></div>
+          </div>
+          <div class="tag" style="margin-top:8px;text-align:center;">размер/цвет пузыря ∝ threat_score · low 0–4 · medium 5–6 · high 7–10</div>
+        </div>
+        <div>
+          <div class="box no" style="margin-bottom:16px;"><h3>Где конкуренты сильнее</h3><ul class="cl">
+            <li><b>Охват/бренд/тендеры</b>: Конкурент-А (threat 8) — федеральный лидер. → Не конкурировать охватом.</li>
+            <li><b>Лаборатория</b>: Конкурент-Б (аккредит. госсеть) — давит маржу <b>A2</b>.</li>
+            <li><b>Отчётность</b>: Конкурент-Е + Конкурент-А демпингуют, давят чек <b>A6</b>.</li>
+          </ul></div>
+          <div class="box ok"><h3>Что усилить из-за конкурентов</h3><ul class="cl">
+            <li><b>A2 лаборатория</b> → зафиксировать маржу в партнёрстве (ориентир — Конкурент-Б).</li>
+            <li><b>A6 отчётность</b> → продавать пакетом/сопровождением, не разовый отчёт.</li>
+            <li><b>B2G-доступ (материнская ГК)</b> → отстройка от Конкурента-В/Г/Д там, где важен статус.</li>
+          </ul></div>
+        </div>
+      </div>
+    </div>
+
+    <!-- EARLY INDICATORS -->
+    <div class="sec">
+      <div class="secnum">07</div><div class="eyebrow">Индикаторы</div><h2>Ранние индикаторы · к 12.06.2026</h2>
+      <div class="steps">
+        <div class="st y"><div class="circ">◑</div><div class="sn">Майская контрактация → акты</div><div class="stgt">цель ≥ ~70% заявл.</div><div class="srz">красная &lt; ~40%</div></div>
+        <div class="st r"><div class="circ">○</div><div class="sn">Лаборатория-партнёр запущена</div><div class="stgt">регламент + ≥ 3 заказа</div><div class="srz">нет регламента</div></div>
+        <div class="st g"><div class="circ">●</div><div class="sn">Недельный план-факт выручки</div><div class="stgt">запущен</div><div class="srz">не запущен</div></div>
+        <div class="st y"><div class="circ">◑</div><div class="sn">Воронка июня (быстрые продукты)</div><div class="stgt">≥ целевого объёма</div><div class="srz">&lt; половины цели</div></div>
+        <div class="st r"><div class="circ">○</div><div class="sn">Отстающие менеджеры — рост темпа</div><div class="stgt">&gt; апрельских 25–30%</div><div class="srz">без движения</div></div>
+      </div>
+    </div>
+
+    <!-- MANUAL CHECKS -->
+    <div class="sec">
+      <div class="secnum">08</div><div class="eyebrow">Контроль</div><h2>Что нужно проверить вручную</h2>
+      <table>
+        <tr><th>Статус</th><th>Параметр</th><th>Где искать</th><th>Кто</th><th>Срок</th></tr>
+        <tr><td><span class="sdot"></span></td><td>Расценки/условия лаборатории-партнёра vs аккредит. госсеть</td><td>прайс по запросу, условия партнёрства</td><td>Менеджер А</td><td>10.06.2026</td></tr>
+        <tr><td><span class="sdot"></span></td><td>Win rate / тендерная активность лидера рынка</td><td>портал госзакупок (профильный ОКВЭД)</td><td>РО</td><td>12.06.2026</td></tr>
+        <tr><td><span class="sdot"></span></td><td>Реальная длина цикла сделки</td><td>закрытые сделки за 6 мес (CRM)</td><td>РО</td><td>12.06.2026</td></tr>
+        <tr><td><span class="sdot"></span></td><td>Реальный средний чек по отчётности/ПЭК (не «от»)</td><td>тендерные контракты, КП</td><td>менеджер</td><td>15.06.2026</td></tr>
+        <tr><td><span class="sdot"></span></td><td>Доля повторных заказов от базы</td><td>статистика Q1 / прошлого года</td><td>РО</td><td>15.06.2026</td></tr>
+      </table>
+    </div>
+
   </div>
-  <div class="header-meta">
-    <span>Компания (демо)</span>
-    <span>Q2 2026 · контрольная дата 29.05.2026</span>
-    <span>апрель = факт · май/июнь = план</span>
-    <span>данные: 03 ✓ · 04 частично · 05 ✓</span>
+
+  <!-- FOOTER -->
+  <div class="foot">
+    <b>Методология:</b> апрель — закрытый факт; май и июнь — план/прогноз (факта нет). Величины показаны относительно (% дефицита, диапазоны).
+    <div class="grid">
+      <div><b>Источники</b><br>03 action_plan · 04 competitor_insights (web_access: available, 6 реальных конкурентов, verified 05.06) · 05 dashboard_handoff + market_check · дефицит верифицирован по unit_metrics</div>
+      <div><b>Статус данных</b><br>агент 03 — получены ✓ · агент 04 — получены ✓ (6 реальных, обезличены) · агент 05 — получены ✓</div>
+      <div><b>DEMO</b><br>реальные имена, название компании, ИНН и абсолютные суммы скрыты; конкуренты обезличены (Конкурент-А/Б/В…); величины относительные.<br><b>Rostec design · Visual Trial 3 «Visual Report»</b></div>
+    </div>
   </div>
+
 </div>
-
-<div class="page">
-
-  <!-- DIAGNOSIS -->
-  <div class="diagnosis">
-    <div class="lbl">Диагноз</div>
-    <div class="txt">Апрель закрыт убытком (маржа <b>−170%</b>); даже при 100% плана мая+июня Q2 уходит в минус <b>≈ −42% к плану</b>. Закрыть квартал можно, только подняв выручку мая+июня на <b>+41,7%</b> — главный рычаг: перевести всю заявленную контрактацию в акты до 30.06 + догрузить июнь быстрыми продуктами.</div>
-  </div>
-
-  <!-- ALERTS -->
-  <div class="section">
-    <div class="section-title">Критичные алерты</div>
-    <div class="alert crit">
-      <div class="alert-title">План не закрывает Q2 в ноль по реалистичному сценарию</div>
-      <div class="alert-body">Реалистичное покрытие дефицита — <b>50% (консерв.) / 78% (целевой)</b>. Полное закрытие только в оптимистичном сценарии. Остаток под вопросом — около четверти дефицита.</div>
-    </div>
-    <div class="alert crit">
-      <div class="alert-title">Перенос в Q3 — больше 20% эффекта</div>
-      <div class="alert-body">Крупнейший рычаг — тендеры (A1) — при цикле 20–45 дней даёт решение в июле и уходит за горизонт Q2.</div>
-    </div>
-    <div class="alert warn">
-      <div class="alert-title">Cash-cutoff 30.06 · отчётность под ценовым давлением</div>
-      <div class="alert-body">Стандартный цикл 45 дней от 29.05 истекает 13.07 — за пределами квартала. Базовая отчётность коммодитизирована (рынок демпингует) — не закладывать высокий чек на A3.</div>
-    </div>
-  </div>
-
-  <!-- BLOCK 1: TODAY -->
-  <div class="section">
-    <div class="section-title">Что делать сегодня</div>
-    <div class="cards">
-      <div class="card">
-        <div class="what">Актировать выполненные майские работы (A5)</div>
-        <div class="row"><span>Кто</span><b>Руководитель отдела</b></div>
-        <div class="row"><span>Срок</span><b>31.05.2026</b></div>
-        <div class="eff">≈ 11–18% дефицита</div>
-      </div>
-      <div class="card">
-        <div class="what">Закрыть регламент партнёрства с лабораторным партнёром (A2)</div>
-        <div class="row"><span>Кто</span><b>Менеджер А</b></div>
-        <div class="row"><span>Срок</span><b>10.06.2026</b></div>
-        <div class="eff">≈ 14–25% дефицита</div>
-      </div>
-      <div class="card">
-        <div class="what">Запустить еженедельный план-факт выручки по менеджерам</div>
-        <div class="row"><span>Кто</span><b>Руководитель отдела</b></div>
-        <div class="row"><span>Срок</span><b>31.05.2026</b></div>
-        <div class="eff">управляемость</div>
-      </div>
-    </div>
-  </div>
-
-  <!-- BLOCK 2: WEEK -->
-  <div class="section">
-    <div class="section-title">Что делать на неделе</div>
-    <table>
-      <tr><th>Направление</th><th>Дедлайн</th><th>Ответственный</th></tr>
-      <tr><td><b>Первые лабораторные заказы через партнёра</b> (A2)</td><td>08.06.2026</td><td>Менеджер А</td></tr>
-      <tr><td><b>Допродажа экологической отчётности базе</b> (A3)</td><td>13.06.2026</td><td>Менеджер Б</td></tr>
-      <tr><td><b>Допсоглашения к текущим сделкам</b> (A4)</td><td>20.06.2026</td><td>Менеджер Б</td></tr>
-      <tr><td><b>ПЭК / Отходы малому бизнесу, 5–7 сделок</b> (A6)</td><td>25.06.2026</td><td>Менеджер А</td></tr>
-      <tr><td><b>Статус тендеров + график актирования в июне</b> (A1)</td><td>20.06.2026</td><td>Менеджер В</td></tr>
-    </table>
-  </div>
-
-  <!-- BLOCK 3: COVERAGE -->
-  <div class="section">
-    <div class="section-title">Дефицит и покрытие Q2</div>
-    <div class="cutoff">
-      <div><div class="tag">ДЕФИЦИТ Q2 (≥0)</div><div class="big">+41,7% к плану</div></div>
-      <div><div class="tag">CASH-CUTOFF</div><div class="big">30.06.2026</div></div>
-      <div><div class="tag">пороги дебиторки</div><div>быстрый 14 дн · стандартный 45 дн</div></div>
-    </div>
-    <div class="bar-wrap">
-      <div class="bar-lbl"><span>Консервативный (только 🟢)</span><span>50% дефицита</span></div>
-      <div class="bar"><div class="fill cons" style="width:50%;"></div><div class="gapline" style="left:100%;"></div></div>
-    </div>
-    <div class="bar-wrap">
-      <div class="bar-lbl"><span>Целевой (🟢 + часть 🟡)</span><span>78% дефицита</span></div>
-      <div class="bar"><div class="fill tgt" style="width:78%;"></div><div class="gapline" style="left:100%;"></div></div>
-    </div>
-    <div class="bar-wrap">
-      <div class="bar-lbl"><span>Оптимистичный (всё по верхней границе + A1 частично)</span><span>141% дефицита</span></div>
-      <div class="bar"><div class="fill opt" style="width:100%;"></div><div class="gapline" style="left:71%;"></div></div>
-    </div>
-    <p style="font-size:13px;color:#cbd5e1;margin-top:8px;">Белая линия — уровень дефицита (100%). <b>Вывод: частично закрывает.</b> При нехватке — фронт-лоадить быстрые рычаги (A2/A4/A5/A6) и не рассчитывать на тендеры в Q2; остаток (около четверти дефицита) переносить в управляемый Q3-задел.</p>
-  </div>
-
-  <!-- BLOCK 4 & 5 -->
-  <div class="section">
-    <div class="section-title">Что рынок подтвердил / не подтвердил</div>
-    <div class="two">
-      <div class="box">
-        <h3>✓ Рынок подтвердил</h3>
-        <ul class="clean">
-          <li><b>H2 — быстрые продукты</b> (лаборатория, ПЭК): значимый эффект в Q2. <span class="tag">A2/A6</span></li>
-          <li><b>ПЭК</b> — быстрый продукт рынка (7–14 дней), цена на уровне рынка.</li>
-          <li><b>Допсоглашения и актирование</b> (A4/A5) — сделки уже в работе, эффект в Q2.</li>
-          <li><b>Сезонность</b>: регуляторный дедлайн 30.06 создаёт срочный спрос на отчётность/ПЭК.</li>
-        </ul>
-      </div>
-      <div class="box">
-        <h3>✗ Рынок не подтвердил / под вопросом</h3>
-        <ul class="clean">
-          <li><b>H3 — тендеры</b> (A1): пересмотреть. Бо́льшая часть эффекта → Q3. <span class="tag">цикл 20–45 дн</span></li>
-          <li><b>A3 — отчётность</b>: чек под давлением рынка → ставка на пакет, не разовый отчёт.</li>
-          <li><b>A9 — абон. сопровождение</b>: в Q2 только 1 месяц, основное в Q3+.</li>
-          <li><b>Win rate тендеров</b>: не верифицирован (нет Tier 1) — бенчмарк 5–15% [проверить].</li>
-        </ul>
-      </div>
-    </div>
-  </div>
-
-  <!-- BLOCK 6 & 7 -->
-  <div class="section">
-    <div class="section-title">Эффект Q2 vs перенос в Q3</div>
-    <table>
-      <tr><th>ID</th><th>Действие</th><th>Ответственный</th><th>Q2-эффект (% дефицита)</th><th>Статус</th><th>Q3-риск</th></tr>
-      <tr><td>A5</td><td>Актирование майских работ</td><td>Рук. отдела</td><td>11–18%</td><td><span class="pill g">вероятен</span></td><td>нет</td></tr>
-      <tr><td>A2</td><td>Лаборатория через партнёра</td><td>Менеджер А</td><td>14–25%</td><td><span class="pill g">вероятен</span></td><td>низкий</td></tr>
-      <tr><td>A4</td><td>Допсоглашения к сделкам</td><td>Менеджер Б</td><td>14–21%</td><td><span class="pill g">вероятен</span></td><td>низкий</td></tr>
-      <tr><td>A6</td><td>ПЭК / Отходы</td><td>Менеджер А</td><td>11–18%</td><td><span class="pill g">вероятен</span></td><td>низкий</td></tr>
-      <tr><td>A3</td><td>Экологическая отчётность</td><td>Менеджер Б</td><td>11–18%</td><td><span class="pill y">под вопросом</span></td><td>низкий</td></tr>
-      <tr><td>A7</td><td>Доведение точечной сделки до акта</td><td>Менеджер Б</td><td>7–14%</td><td><span class="pill y">под вопросом</span></td><td>средний</td></tr>
-      <tr><td>A8</td><td>Реактивация базы</td><td>Менеджер В / РО</td><td>7–11%</td><td><span class="pill y">под вопросом</span></td><td>средний</td></tr>
-      <tr><td>A9</td><td>Абон. сопровождение</td><td>Менеджер А</td><td>2–6%</td><td><span class="pill y">под вопросом</span></td><td>средний</td></tr>
-      <tr><td>A1</td><td>Тендеры</td><td>Менеджер В</td><td>0–11%</td><td><span class="pill r">маловероятен</span></td><td><b style="color:#fca5a5;">высокий</b></td></tr>
-    </table>
-    <p style="font-size:13px;color:#cbd5e1;margin-top:8px;">🟢 Q2-эффект «вероятен» (A2+A4+A5+A6): <b>≈ 50% дефицита</b>. 🔴 Перенос в Q3 (A1 + хвост A9): <b>≈ 33–51% дефицита</b> — это &gt;20% совокупного эффекта.</p>
-  </div>
-
-  <!-- BLOCK 8 & 9 -->
-  <div class="section">
-    <div class="section-title">Конкуренты · что сильнее и что усилить <span class="tag">(данные агента 04, Tier 3, частично)</span></div>
-    <div class="two">
-      <div class="box">
-        <h3>Где конкуренты сильнее (↓ ниже рынка)</h3>
-        <ul class="clean">
-          <li><b>Широта портфеля ↓</b>: competitor_01 (threat 70) шире нас. → Не конкурировать охватом, брать скоростью/нишей.</li>
-          <li><b>Лабораторный сегмент</b>: competitor_03 — аккредитованная лаборатория, давит маржу <b>A2</b>.</li>
-          <li><b>Базовая отчётность</b>: рынок демпингует, давит чек <b>A3</b>.</li>
-        </ul>
-      </div>
-      <div class="box">
-        <h3>Что усилить из-за конкурентов</h3>
-        <ul class="clean">
-          <li><b>A3 отчётность</b> → продавать пакетом / сопровождением, не разовый отчёт.</li>
-          <li><b>A2 лаборатория</b> → зафиксировать маржу в партнёрстве (цены давит competitor_03).</li>
-          <li><b>A9 сопровождение</b> → recurring-модель против competitor_01/02, продвигающих аутсорсинг.</li>
-        </ul>
-      </div>
-    </div>
-  </div>
-
-  <!-- BLOCK 10 -->
-  <div class="section">
-    <div class="section-title">Что нужно проверить вручную</div>
-    <table>
-      <tr><th>Параметр</th><th>Где искать</th><th>Кто</th><th>Срок</th></tr>
-      <tr><td>Win rate / тендерная активность конкурентов</td><td>zakupki.gov.ru (профильный ОКВЭД)</td><td>РО</td><td>06.06.2026</td></tr>
-      <tr><td>Реальная длина цикла сделки</td><td>закрытые сделки за 6 мес (CRM)</td><td>РО</td><td>06.06.2026</td></tr>
-      <tr><td>Реальный средний чек конкурентов (не «от»)</td><td>тендерные контракты, КП</td><td>менеджер</td><td>10.06.2026</td></tr>
-      <tr><td>Лабораторные расценки партнёра / competitor_03</td><td>прайс по запросу, условия партнёрства</td><td>Менеджер А</td><td>10.06.2026</td></tr>
-      <tr><td>Доля повторных заказов от базы</td><td>статистика Q1 / прошлого года</td><td>РО</td><td>13.06.2026</td></tr>
-    </table>
-  </div>
-
-  <!-- BLOCK 11 -->
-  <div class="section">
-    <div class="section-title">Ранние индикаторы · к 06.06.2026</div>
-    <table>
-      <tr><th>Сигнал</th><th>Цель</th><th>Красная зона</th></tr>
-      <tr><td>Майская контрактация → акты</td><td>≥ ~70% заявленного</td><td><span class="pill r">&lt; ~40%</span></td></tr>
-      <tr><td>Лабораторный партнёр запущен</td><td>регламент + ≥ 3 заказа</td><td><span class="pill r">нет регламента</span></td></tr>
-      <tr><td>Тендеры</td><td>≥ 1 выигран с графиком июня</td><td><span class="pill r">0 движения</span></td></tr>
-      <tr><td>Воронка июня по быстрым продуктам</td><td>≥ целевого объёма</td><td><span class="pill r">&lt; половины цели</span></td></tr>
-      <tr><td>Еженедельный план-факт выручки</td><td>запущен</td><td><span class="pill r">не запущен</span></td></tr>
-    </table>
-  </div>
-
-</div>
-
-<div class="footer">
-  <b>Методология:</b> апрель — закрытый факт; май и июнь — план/прогноз (факта нет). Все суммы без НДС.<br>
-  <b>Источники:</b> <span class="src">03 action_plan · 04 competitor_handoff (web_access: available, data_quality: partial, Tier 3) · 05 dashboard_handoff + market_check · дефицит верифицирован по unit_metrics</span><br>
-  <b>Статус данных:</b> агент 03 — получены ✓ · агент 04 — получены частично (цены Tier 3 «от», win rate не верифицирован) · агент 05 — получены ✓<br>
-  <b>DEMO:</b> реальные имена, название компании, ИНН, ОКВЭД и абсолютные суммы скрыты; финансовые величины показаны относительно (% дефицита, диапазоны).
-</div>
-
 </body>
 </html>
