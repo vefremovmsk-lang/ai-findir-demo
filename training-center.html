@@ -141,55 +141,59 @@
           <div class="sub">Что делать прямо сейчас, чтобы закрыть Q2 — с учётом качества данных, рынка и конкурентов</div>
         </div>
       </div>
-      <div class="meta">Компания (демо)<br>контрольная дата 05.06.2026<br>апрель = факт · май/июнь = план<br>данные: 03 ✓ · 04 ✓ · 05 ✓ · ⚠️ свод</div>
+      <div class="meta">Компания (демо)<br>контрольная дата 11.06.2026<br>апрель = факт · май = факт · июнь = план<br>данные: 03 ✓ · 04 ✓ · 05 ✓ · ✅ свод исправлен</div>
     </div>
 
     <!-- HERO -->
     <div class="hero">
       <div>
-        <div class="dlabel">Диагноз · ⚠️ данные</div>
-        <div class="dtext">⚠️ <b>Свод Q2 недостоверен</b>: расходы апреля = 0, план выручки июня = 0 — формальный «плюс» доверять нельзя. Достоверно горящее: апрель <b>75,2% плана</b>, май на 05.06 — <b>39,1% плана</b>, июнь — план выручки пуст при значимых расходах. Первое: починить свод, добрать май, наполнить июнь; вся продажа держится на одном менеджере.</div>
-        <div class="heronum"><div class="big">39,1%</div><div class="cap">выполнение плана мая на 05.06 — горящий недобор</div></div>
+        <div class="dlabel">Диагноз · ✅ свод исправлен</div>
+        <div class="dtext">✅ <b>Свод исправлен</b> (расходы апреля 1,37 млн и план июня 2,61 млн заполнены) → прогноз Q2 теперь достоверный <b style="color:var(--ok);">+2,69 млн ₽ (маржа 38%)</b>. Но плюс <b>хрупкий</b>: держится на рекордном июне (<b>2,61 млн</b>), тогда как май дал лишь <b>1,23 млн (41% плана)</b>. Главное — выполнить июнь и снять зависимость от одного продавца (Менеджер А 38,6%, Менеджеры Г/Д — факт 0).</div>
+        <div class="heronum"><div class="big" style="color:var(--ok);">+2,69 млн ₽</div><div class="cap">достоверный прогноз финреза Q2 (маржа 38%); риск — рекордный июнь при майском недоборе</div></div>
       </div>
       <div class="chartcard">
         <h4>План / факт выручки по месяцам (млн ₽)</h4>
-        <svg width="100%" viewBox="0 0 440 210" preserveAspectRatio="xMidYMid meet" aria-label="Апрель план 2,0 факт 1,5; май план 3,0 факт 1,17; июнь план пуст">
+        <svg width="100%" viewBox="0 0 440 210" preserveAspectRatio="xMidYMid meet" aria-label="Апрель план 2,0 факт 1,5; май план 3,0 факт 1,17; июнь план пуст, расходы 1,77">
           <line x1="40" y1="180" x2="430" y2="180" stroke="#d3cdc1" stroke-width="1"/>
+          <!-- scale 1 млн = 46px, baseline 180 -->
+          <!-- April -->
           <rect x="70" y="88" width="40" height="92" rx="3" fill="#d8d2c6"/>
           <rect x="114" y="111" width="40" height="69" rx="3" fill="#1f8f4e"/>
           <text x="112" y="196" text-anchor="middle" font-size="10" fill="#5c6470">Апрель</text>
           <text x="134" y="105" text-anchor="middle" font-size="9.5" fill="#1f8f4e" font-family="monospace">1,50</text>
           <text x="90" y="82" text-anchor="middle" font-size="9.5" fill="#9aa0ab" font-family="monospace">2,0</text>
+          <!-- May (факт) -->
           <rect x="190" y="42" width="40" height="138" rx="3" fill="#d8d2c6"/>
-          <rect x="234" y="126" width="40" height="54" rx="3" fill="#bd7a12"/>
+          <rect x="234" y="123" width="40" height="57" rx="3" fill="#bd7a12"/>
           <text x="232" y="196" text-anchor="middle" font-size="10" fill="#5c6470">Май</text>
-          <text x="254" y="120" text-anchor="middle" font-size="9.5" fill="#bd7a12" font-family="monospace">1,17</text>
+          <text x="254" y="117" text-anchor="middle" font-size="9.5" fill="#bd7a12" font-family="monospace">1,23 (41%)</text>
           <text x="210" y="36" text-anchor="middle" font-size="9.5" fill="#9aa0ab" font-family="monospace">3,0</text>
-          <rect x="310" y="174" width="40" height="6" rx="3" fill="#d8d2c6" stroke="#b91032" stroke-dasharray="3 2"/>
-          <rect x="354" y="99" width="40" height="81" rx="3" fill="#b91032" fill-opacity="0.35" stroke="#b91032" stroke-dasharray="3 2"/>
+          <!-- June (план заполнен) -->
+          <rect x="310" y="60" width="40" height="120" rx="3" fill="#d8d2c6"/>
+          <rect x="354" y="177" width="40" height="3" rx="3" fill="#1f8f4e"/>
           <text x="332" y="196" text-anchor="middle" font-size="10" fill="#5c6470">Июнь</text>
-          <text x="330" y="168" text-anchor="middle" font-size="9" fill="#b91032" font-family="monospace">план 0 ⚠️</text>
-          <text x="374" y="93" text-anchor="middle" font-size="8.5" fill="#b91032" font-family="monospace">расх ~1,8</text>
+          <text x="330" y="54" text-anchor="middle" font-size="9" fill="#5c6470" font-family="monospace">план 2,61</text>
+          <text x="374" y="171" text-anchor="middle" font-size="8.5" fill="#1f8f4e" font-family="monospace">факт 0,07</text>
         </svg>
-        <div class="tag" style="margin-top:6px;">серый = план · зелёный/жёлтый = факт · июнь: план выручки пуст (⚠️) при значимых расходах — наполнить</div>
+        <div class="tag" style="margin-top:6px;">серый = план · зелёный/жёлтый = факт · июнь: план 2,61 млн заполнен (✅), факт пока 0,07 — выполнить план</div>
       </div>
     </div>
 
     <!-- KPI -->
     <div class="kpis">
-      <div class="kpi w"><div class="ktop"><div><div class="kl">Май (на 05.06)</div><div class="kv">39,1%</div></div><div class="ks">1,17 / 3,0 млн<br>разрыв ~1,8 млн</div></div><div class="bullet"><div class="bf" style="width:39%;background:var(--warn);"></div><div class="bm" style="left:100%;"></div></div></div>
-      <div class="kpi s"><div class="ktop"><div><div class="kl">Апрель (факт)</div><div class="kv">75,2%</div></div><div class="ks">1,50 / 2,0 млн<br>недобор −0,5 млн</div></div><div class="bullet"><div class="bf" style="width:75%;background:var(--steel);"></div><div class="bm" style="left:100%;"></div></div></div>
-      <div class="kpi d"><div class="ktop"><div><div class="kl">Свод Q2</div><div class="kv">⚠️ н/д</div></div><div class="ks">расх апр=0<br>план июня=0</div></div><div class="bullet"><div class="bf" style="width:100%;background:var(--dng);"></div></div></div>
-      <div class="kpi s"><div class="ktop"><div><div class="kl">Cash-cutoff</div><div class="kv">19.06</div></div><div class="ks">быстрый 14 дн<br>конец Q2 30.06</div></div><div class="bullet"><div class="bf" style="width:56%;background:var(--steel);"></div><div class="bm" style="left:100%;"></div></div></div>
+      <div class="kpi o"><div class="ktop"><div><div class="kl">Прогноз финреза Q2</div><div class="kv">+2,69 млн</div></div><div class="ks">маржа 38%<br>✅ достоверно</div></div><div class="bullet"><div class="bf" style="width:100%;background:var(--ok);"></div></div></div>
+      <div class="kpi w"><div class="ktop"><div><div class="kl">Май (факт)</div><div class="kv">41%</div></div><div class="ks">1,23 / 3,0 млн<br>недобор месяца</div></div><div class="bullet"><div class="bf" style="width:41%;background:var(--warn);"></div><div class="bm" style="left:100%;"></div></div></div>
+      <div class="kpi w"><div class="ktop"><div><div class="kl">Июнь (план)</div><div class="kv">2,61 млн</div></div><div class="ks">рекорд · факт 0,07<br>главный риск плюса</div></div><div class="bullet"><div class="bf" style="width:3%;background:var(--warn);"></div><div class="bm" style="left:100%;"></div></div></div>
+      <div class="kpi s"><div class="ktop"><div><div class="kl">Cash-cutoff</div><div class="kv">25.06</div></div><div class="ks">быстрый 14 дн<br>конец Q2 30.06</div></div><div class="bullet"><div class="bf" style="width:74%;background:var(--steel);"></div><div class="bm" style="left:100%;"></div></div></div>
     </div>
 
-    <!-- ALERTS -->
+    <!-- ALERTS / data quality -->
     <div class="sec">
       <div class="secnum">01</div><div class="eyebrow">Сигналы</div><h2>Критичные алерты</h2>
       <div class="atl">
-        <div class="ai high"><div class="node">!</div><div class="at">Свод Q2 недостоверен — прогноз доверять нельзя</div><div class="ab">Расходы апреля = 0 и план выручки июня = 0 → формальный «плюс» — артефакт пустых полей. Первое действие — починить свод (A0).</div></div>
-        <div class="ai high"><div class="node">!</div><div class="at">Май 39,1% плана — горящий недобор</div><div class="ab">Факт 1,17 млн из 3,0 млн → разрыв ≈ <b>1,8 млн ₽</b>. Закрыть нишевой корп-пакет в акты до cash-cutoff 19.06.</div></div>
-        <div class="ai high"><div class="node">!</div><div class="at">Концентрация на одном продавце</div><div class="ab">Менеджер А — апрель 38,6% личного плана; Менеджеры Б/В — факт 0. Единственная точка отказа → распределить нагрузку (A6).</div></div>
+        <div class="ai med"><div class="node">▲</div><div class="at">✅ Свод исправлен — прогноз +2,69 млн достоверен</div><div class="ab">Расходы апреля (1,37 млн) и план выручки июня (2,61 млн) <b>заполнены</b> → формальный финрез Q2 <b>+~2,69 млн ₽</b> теперь достоверен (маржа 38%). Данные приведены в порядок.</div></div>
+        <div class="ai high"><div class="node">!</div><div class="at">Плюс держится на рекордном июне (2,61 млн)</div><div class="ab">Июнь должен дать <b>2,61 млн</b>, тогда как май дал лишь <b>1,23 млн (41%)</b>. Если июнь повторит май, Q2 сожмётся к +1,0…+1,5 млн. Главный риск — выполнение июня.</div></div>
+        <div class="ai high"><div class="node">!</div><div class="at">Концентрация на одном продавце</div><div class="ab">Менеджер А — апрель 38,6% личного плана; Менеджеры Г/Д — факт 0. Единственная точка отказа → срочно распределить нагрузку (A6).</div></div>
         <div class="ai med"><div class="node">▲</div><div class="at">Ценовое давление + летняя сезонность</div><div class="ab">Базовый онлайн-ОТ демпингуют федеральные платформы. Июнь — последнее окно полугодия перед спадом Q3. Маржу искать в нишах (промбез/ЭПБ/ISO 9001:2026).</div></div>
       </div>
     </div>
@@ -198,16 +202,14 @@
     <div class="sec">
       <div class="secnum">02</div><div class="eyebrow">Действия · план</div><h2>Конвейер до 30.06</h2>
       <div class="chartcard">
-        <div class="gx"><span class="t" style="left:0%;">05.06</span><span class="t" style="left:12%;">08.06</span><span class="t" style="left:40%;">16.06</span><span class="t" style="left:56%;">19.06</span><span class="t" style="left:100%;">30.06</span></div>
-        <div class="gr"><div class="gl"><b>A0</b> Починить свод · РО</div><div class="gt"><div class="cut" style="left:56%;"><span>cash-cutoff 19.06</span></div><div class="gb" style="left:0;width:8%;background:#b91032;">06.06</div></div></div>
-        <div class="gr"><div class="gl"><b>A7</b> Наполнить план июня · РО</div><div class="gt"><div class="gb" style="left:0;width:12%;background:#b91032;">08.06</div></div></div>
-        <div class="gr"><div class="gl"><b>A1</b> Добрать май (корп-пакет) · Менеджер А</div><div class="gt"><div class="gb" style="left:0;width:28%;background:#1f8f4e;">10.06</div></div></div>
-        <div class="gr"><div class="gl"><b>A2</b> Актировать программы · Менеджер Б</div><div class="gt"><div class="gb" style="left:0;width:28%;background:#1f8f4e;">10.06</div></div></div>
-        <div class="gr"><div class="gl"><b>A6</b> Распределить нагрузку · РО</div><div class="gt"><div class="gb" style="left:0;width:44%;background:#bd7a12;">12.06</div></div></div>
-        <div class="gr"><div class="gl"><b>A3</b> Курс ISO 9001:2026 · Менеджер В</div><div class="gt"><div class="gb" style="left:0;width:40%;background:#1f8f4e;">16.06</div></div></div>
-        <div class="gr"><div class="gl"><b>A4</b> Корп-КП · Менеджер А</div><div class="gt"><div class="gb" style="left:0;width:72%;background:#bd7a12;">20.06</div></div></div>
-        <div class="gr"><div class="gl"><b>A5</b> Воронки июня (ЭПБ/КЦ/база) · Менеджер А</div><div class="gt"><div class="gb" style="left:0;width:90%;background:#bd7a12;">25.06</div></div></div>
-        <div class="tag" style="margin-top:8px;">Сегодня (05–06.06): A0 починить свод — это разблокирует достоверность всего остального. Кримсон — критичный блокер достоверности · зелёный — быстрый Q2-рычаг · жёлтый — под вопросом.</div>
+        <div class="gx"><span class="t" style="left:0%;">11.06</span><span class="t" style="left:16%;">14.06</span><span class="t" style="left:47%;">20.06</span><span class="t" style="left:74%;">25.06</span><span class="t" style="left:100%;">30.06</span></div>
+        <div class="gr"><div class="gl"><b>A6</b> Подключить Менеджеров Г/Д · РО</div><div class="gt"><div class="cut" style="left:74%;"><span>cash-cutoff 25.06</span></div><div class="gb" style="left:0;width:26%;background:#b91032;">16.06 · критично</div></div></div>
+        <div class="gr"><div class="gl"><b>A2</b> Актировать Чубукову · Менеджер Б</div><div class="gt"><div class="gb" style="left:0;width:37%;background:#1f8f4e;">18.06</div></div></div>
+        <div class="gr"><div class="gl"><b>A3</b> Курс ISO 9001:2026 · Менеджер В</div><div class="gt"><div class="gb" style="left:0;width:47%;background:#1f8f4e;">20.06</div></div></div>
+        <div class="gr"><div class="gl"><b>A1</b> нишевой корп-пакет в акты · Менеджер А</div><div class="gt"><div class="gb" style="left:0;width:74%;background:#bd7a12;">25.06 · главный объём</div></div></div>
+        <div class="gr"><div class="gl"><b>A4</b> Корп-КП · Менеджер А</div><div class="gt"><div class="gb" style="left:0;width:74%;background:#bd7a12;">25.06</div></div></div>
+        <div class="gr"><div class="gl"><b>A5</b> Воронки июня (ЭПБ/КЦ/база) · Менеджер А</div><div class="gt"><div class="gb" style="left:0;width:90%;background:#bd7a12;">28.06</div></div></div>
+        <div class="tag" style="margin-top:8px;">Сегодня (11.06): подключить Менеджеров Г/Д (A6) и разобрать недобор мая; контроль плана июня. Зелёный — надёжный Q2-рычаг · жёлтый — под вопросом · кримсон — критичный риск концентрации.</div>
       </div>
     </div>
 
@@ -216,9 +218,9 @@
       <div class="secnum">03</div><div class="eyebrow">План-факт</div><h2>Апрель: выполнение по менеджерам</h2>
       <div class="chartcard">
         <div class="pf">
-          <div class="pfrow"><div class="lbl"><span>Менеджер А (единственный активный продавец)</span><b>38,6%</b></div><div class="track"><div class="fill" style="width:38.6%;background:var(--warn);">~0,85 / 2,2 млн</div></div></div>
-          <div class="pfrow"><div class="lbl"><span>Менеджер Б</span><b>0%</b></div><div class="track"><div class="fill" style="width:2%;background:var(--dng);"></div></div></div>
-          <div class="pfrow"><div class="lbl"><span>Менеджер В</span><b>0%</b></div><div class="track"><div class="fill" style="width:2%;background:var(--dng);"></div></div></div>
+          <div class="pfrow"><div class="lbl"><span>Менеджер А (единственный активный продавец)</span><b>38,6%</b></div><div class="track"><div class="fill" style="width:38.6%;background:var(--warn);">850 тыс / 2,2 млн</div></div></div>
+          <div class="pfrow"><div class="lbl"><span>Менеджер Г</span><b>0%</b></div><div class="track"><div class="fill" style="width:2%;background:var(--dng);"></div></div></div>
+          <div class="pfrow"><div class="lbl"><span>Менеджер Д</span><b>0%</b></div><div class="track"><div class="fill" style="width:2%;background:var(--dng);"></div></div></div>
           <div class="pfrow"><div class="lbl"><span>Отдел: апрель факт vs план</span><b>75,2%</b></div><div class="track"><div class="fill" style="width:75.2%;background:var(--steel);">1,50 / 2,0 млн</div></div></div>
         </div>
         <div class="tag" style="margin-top:6px;">Вся выручка отдела держится на одном продавце — критическая концентрация риска (A6).</div>
@@ -240,29 +242,28 @@
               <text x="21" y="22" text-anchor="middle" font-size="6" font-weight="800" fill="#1a1c22" font-family="monospace">Q2/Q3</text>
             </svg>
             <div class="leg">
-              <div><span class="sw" style="background:#1f8f4e;"></span>Q2 надёжно ≈ <b>0,6–0,9 млн</b> (актирование + ISO + ближний корп-пакет)</div>
+              <div><span class="sw" style="background:#1f8f4e;"></span>Q2 надёжно ≈ <b>0,6–0,9 млн</b> (актирование + ISO + ближний нишевой корп-пакет)</div>
               <div><span class="sw" style="background:#bd7a12;"></span>Перенос/риск Q3 ≈ <b>1,2–1,5 млн</b> (корп-КП + воронки + летний спад) · &gt;20%</div>
-              <div><span class="sw" style="background:#b9b1a2;"></span>Под вопросом (зависит от починки свода)</div>
+              <div><span class="sw" style="background:#b9b1a2;"></span>Под вопросом (зависит от выполнения июня 2,61 млн)</div>
             </div>
           </div>
           <div class="heat">
-            <div class="hc hr">A0</div><div class="hc hr">A7</div><div class="hc hg">A1</div><div class="hc hg">A2</div><div class="hc hg">A3</div>
-            <div class="hc hy">A4</div><div class="hc hy">A5</div><div class="hc hr">A6</div>
+            <div class="hc hg">A2</div><div class="hc hg">A3</div>
+            <div class="hc hy">A1</div><div class="hc hy">A4</div><div class="hc hy">A5</div><div class="hc hr">A6</div>
           </div>
-          <div class="tag">🟢 вероятен Q2 · 🟡 под вопросом/Q3 · 🔴 критичный блокер</div>
+          <div class="tag">🟢 вероятен Q2 · 🟡 под вопросом/Q3 · 🔴 критичный риск (концентрация)</div>
         </div>
         <div class="chartcard">
           <h4>Действия: эффект и статус</h4>
           <table>
-            <tr><th>ID</th><th>Действие</th><th>Кто</th><th>Эффект (% / диапазон)</th><th>Статус</th></tr>
-            <tr><td>A0</td><td>Починить свод</td><td>РО</td><td>достоверность</td><td><span class="pill pr">критично</span></td></tr>
-            <tr><td>A1</td><td>Добрать май (корп-пакет)</td><td>Менеджер А</td><td>~0,3–0,6 млн</td><td><span class="pill pg">вероятен</span></td></tr>
-            <tr><td>A2</td><td>Актировать программы</td><td>Менеджер Б</td><td>~0,4 млн</td><td><span class="pill pg">вероятен</span></td></tr>
-            <tr><td>A3</td><td>Курс ISO 9001:2026</td><td>Менеджер В</td><td>~0,15–0,25 млн</td><td><span class="pill pg">вероятен</span></td></tr>
-            <tr><td>A4</td><td>Корп-КП</td><td>Менеджер А</td><td>~0,4–0,7 млн</td><td><span class="pill py">под вопросом</span></td></tr>
-            <tr><td>A5</td><td>Воронки (ЭПБ/КЦ/база)</td><td>Менеджер А</td><td>~0,3–0,5 млн</td><td><span class="pill py">под вопросом</span></td></tr>
-            <tr><td>A6</td><td>Распределить нагрузку</td><td>РО</td><td>управляемость</td><td><span class="pill pr">критично</span></td></tr>
-            <tr><td>A7</td><td>Наполнить план июня</td><td>РО</td><td>планируемость</td><td><span class="pill pr">критично</span></td></tr>
+            <tr><th>ID</th><th>Действие</th><th>Кто</th><th>Эффект (₽)</th><th>Статус</th></tr>
+            <tr><td>A1</td><td>нишевой корп-пакет в акты (главный объём)</td><td>Менеджер А</td><td>0,9–1,9 млн</td><td><span class="pill py">под вопросом</span></td></tr>
+            <tr><td>A2</td><td>Актировать Чубукову</td><td>Менеджер Б</td><td>~0,41 млн</td><td><span class="pill pg">вероятен</span></td></tr>
+            <tr><td>A3</td><td>Курс ISO 9001:2026</td><td>Менеджер В</td><td>150–250 тыс</td><td><span class="pill pg">вероятен</span></td></tr>
+            <tr><td>A4</td><td>Корп-КП (корп-клиент)</td><td>Менеджер А</td><td>400–720 тыс</td><td><span class="pill py">под вопросом</span></td></tr>
+            <tr><td>A5</td><td>Воронки (ЭПБ/КЦ/база)</td><td>Менеджер А</td><td>300–500 тыс</td><td><span class="pill py">под вопросом</span></td></tr>
+            <tr><td>A6</td><td>Подключить Менеджеров Г/Д</td><td>РО</td><td>управляемость</td><td><span class="pill pr">критично</span></td></tr>
+            <tr><td>A7</td><td>Контроль плана июня (2,61 млн)</td><td>РО</td><td>контроль</td><td><span class="pill pr">критично</span></td></tr>
           </table>
         </div>
       </div>
@@ -276,10 +277,10 @@
           <li><b>Обязательное обучение ОТ (ПП 2464) и ПБ (ПП 806)</b> — устойчивый спрос.</li>
           <li><b>Курс ISO 9001:2026</b> — новый релевантный продукт (A3).</li>
           <li><b>Очный формат и ниши</b> (промбез/ЭПБ/БПЛА/профпереподготовка) — защитимы от онлайн-демпинга.</li>
-          <li><b>Нишевой корп-пакет</b> — корп-сделки, не типовой ОТ.</li>
+          <li><b>нишевой корп-пакет-пакет</b> — нишевые корп-сделки, не типовой ОТ.</li>
         </ul></div>
         <div class="box no"><h3>✗ Рынок не подтвердил / под вопросом</h3><ul class="cl">
-          <li><b>Высокий чек на типовом онлайн-ОТ</b>: федеральные платформы демпингуют.</li>
+          <li><b>Высокий чек на типовом онлайн-ОТ</b>: Конкурент-А (от ~3 500 ₽/чел), Конкурент-Б демпингуют.</li>
           <li><b>Конверсия больших воронок (ЭПБ/КЦ)</b> в Q2 — [проверить].</li>
           <li><b>Полный добор мая</b> за остаток месяца — высокий риск.</li>
           <li><b>Реальные цены конкурентов</b> — needs_verification.</li>
@@ -289,7 +290,7 @@
 
     <!-- COMPETITORS -->
     <div class="sec">
-      <div class="secnum">06</div><div class="eyebrow">Конкуренты</div><h2>Конкуренты · матрица угрозы <span class="tag">(агент 04, web-verified 05.06, обезличено)</span></h2>
+      <div class="secnum">06</div><div class="eyebrow">Конкуренты</div><h2>Конкуренты · матрица угрозы <span class="tag">(агент 04, web-verified 11.06, Tier 1)</span></h2>
       <div class="two">
         <div>
           <div class="matrix">
@@ -309,9 +310,9 @@
         </div>
         <div>
           <div class="box no" style="margin-bottom:16px;"><h3>Где конкуренты сильнее</h3><ul class="cl">
-            <li><b>Цена/масштаб типового ОТ</b>: Конкурент-А (threat 8), Конкурент-Б демпингуют.</li>
-            <li><b>Корп-пакет</b>: Конкурент-В — ОТ+промбез+экология «всё в одном».</li>
-            <li><b>Массовая профпереподготовка</b>: Конкурент-Г.</li>
+            <li><b>Цена/масштаб типового ОТ</b>: Конкурент-А (офиц. сайт, threat 8), Конкурент-Б (офиц. сайт) демпингуют.</li>
+            <li><b>Корп-пакет</b>: Конкурент-В (офиц. сайт) — ОТ+промбез+экология «всё в одном».</li>
+            <li><b>Массовая профпереподготовка</b>: Конкурент-Г (офиц. сайт).</li>
           </ul></div>
           <div class="box ok"><h3>Что усилить из-за конкурентов</h3><ul class="cl">
             <li><b>Очный формат + корп-связи группы</b> — отстройка от онлайн-платформ.</li>
@@ -320,17 +321,26 @@
           </ul></div>
         </div>
       </div>
+      <table style="margin-top:16px;">
+        <tr><th>Конкурент</th><th>Источник (Tier 1)</th><th>Профиль</th><th>Threat</th><th>Давление</th></tr>
+        <tr><td><b>Конкурент-А</b></td><td>офиц. сайт</td><td>ОТ/профпереподготовка</td><td>8</td><td><span class="pill pr">high</span></td></tr>
+        <tr><td><b>Конкурент-Б</b></td><td>офиц. сайт</td><td>платформа ОТ</td><td>7</td><td><span class="pill pr">high</span></td></tr>
+        <tr><td><b>Конкурент-В</b></td><td>офиц. сайт</td><td>ОТ+промбез+экология</td><td>7</td><td><span class="pill pr">high</span></td></tr>
+        <tr><td><b>Конкурент-Г</b></td><td>офиц. сайт</td><td>профпереподготовка</td><td>6</td><td><span class="pill py">medium</span></td></tr>
+        <tr><td><b>Конкурент-Д</b></td><td>офиц. сайт</td><td>промбез/материнской ГКнадзор</td><td>5</td><td><span class="pill py">medium</span></td></tr>
+        <tr><td><b>Конкурент-Е</b></td><td>офиц. сайт</td><td>БПЛА</td><td>4</td><td><span class="pill py">medium</span></td></tr>
+      </table>
     </div>
 
     <!-- EARLY INDICATORS -->
     <div class="sec">
-      <div class="secnum">07</div><div class="eyebrow">Индикаторы</div><h2>Ранние индикаторы · к 12.06.2026</h2>
+      <div class="secnum">07</div><div class="eyebrow">Индикаторы</div><h2>Ранние индикаторы · к 18.06.2026</h2>
       <div class="steps">
-        <div class="st r"><div class="circ">○</div><div class="sn">Свод починен</div><div class="stgt">расходы апр + план июня</div><div class="srz">пусто</div></div>
-        <div class="st y"><div class="circ">◑</div><div class="sn">Майское актирование до 10.06</div><div class="stgt">≥ 2,4 млн</div><div class="srz">красная &lt; 1,5 млн</div></div>
-        <div class="st r"><div class="circ">○</div><div class="sn">Курс ISO 9001:2026 запущен</div><div class="stgt">старт</div><div class="srz">нет</div></div>
-        <div class="st y"><div class="circ">◑</div><div class="sn">Июньский pipeline (КП)</div><div class="stgt">≥ 1,5 млн</div><div class="srz">&lt; 0,8 млн</div></div>
-        <div class="st r"><div class="circ">○</div><div class="sn">Менеджеры Б/В — факт появился</div><div class="stgt">нагрузка снята с одного</div><div class="srz">по-прежнему 0</div></div>
+        <div class="st g"><div class="circ">●</div><div class="sn">Свод исправлен</div><div class="stgt">расходы апр + план июня заполнены</div><div class="srz">—</div></div>
+        <div class="st r"><div class="circ">○</div><div class="sn">Причина недобора мая (41%) понята</div><div class="stgt">разовый, не тренд</div><div class="srz">системный</div></div>
+        <div class="st r"><div class="circ">○</div><div class="sn">Менеджеры Г/Д — факт появился</div><div class="stgt">нагрузка снята с одного</div><div class="srz">по-прежнему 0</div></div>
+        <div class="st y"><div class="circ">◑</div><div class="sn">Июньский pipeline в актах</div><div class="stgt">≥ 1,0 млн</div><div class="srz">&lt; 1,0 млн</div></div>
+        <div class="st y"><div class="circ">◑</div><div class="sn">Курс ISO 9001:2026 запущен</div><div class="stgt">старт</div><div class="srz">нет</div></div>
       </div>
     </div>
 
@@ -338,12 +348,12 @@
     <div class="sec">
       <div class="secnum">08</div><div class="eyebrow">Контроль · данные</div><h2>Качество данных и что проверить вручную</h2>
       <table>
-        <tr><th>Статус</th><th>Параметр / аномалия</th><th>Где искать</th><th>Кто</th><th>Срок</th></tr>
-        <tr><td><span class="sdot" style="background:var(--dng);"></span></td><td><b>Расходы апреля = 0</b> (аномалия свода)</td><td>таблица расходов УЦ, апрель</td><td>РО</td><td>06.06.2026</td></tr>
-        <tr><td><span class="sdot" style="background:var(--dng);"></span></td><td><b>План выручки июня = 0</b> (аномалия свода)</td><td>свод Q2, строка июня</td><td>РО</td><td>08.06.2026</td></tr>
-        <tr><td><span class="sdot"></span></td><td>Причина недобора мая (39,1%)</td><td>CRM-воронка, май</td><td>Менеджер А / РО</td><td>10.06.2026</td></tr>
-        <tr><td><span class="sdot"></span></td><td>Реальные цены конкурентов (онлайн-ОТ)</td><td>сайты, КП по запросу</td><td>РО</td><td>12.06.2026</td></tr>
-        <tr><td><span class="sdot"></span></td><td>Конверсия воронок ЭПБ/КЦ; глубина летнего спада Q3</td><td>статистика прошлых лет</td><td>РО</td><td>15.06.2026</td></tr>
+        <tr><th>Статус</th><th>Параметр</th><th>Где искать</th><th>Кто</th><th>Срок</th></tr>
+        <tr><td><span class="sdot" style="background:var(--ok);"></span></td><td><b>✅ Расходы апреля заполнены</b> (1,37 млн) — аномалия устранена</td><td>свод Q2, апрель</td><td>РО</td><td>готово</td></tr>
+        <tr><td><span class="sdot" style="background:var(--ok);"></span></td><td><b>✅ План выручки июня заполнен</b> (2,61 млн) — аномалия устранена</td><td>свод Q2, июнь</td><td>РО</td><td>готово</td></tr>
+        <tr><td><span class="sdot" style="background:var(--dng);"></span></td><td>Причина недобора мая (41%) — разовый или тренд</td><td>воронка CRM, май</td><td>Менеджер А/РО</td><td>15.06.2026</td></tr>
+        <tr><td><span class="sdot"></span></td><td>Конверсия нишевой корп-пакет-пакета (8 сделок)</td><td>CRM, статус сделок</td><td>Менеджер А/РО</td><td>18.06.2026</td></tr>
+        <tr><td><span class="sdot"></span></td><td>Реальные цены Конкурент-А/Конкурент-Б/Конкурент-В; летний спад Q3</td><td>сайты, КП, статистика прошлых лет</td><td>РО</td><td>20.06.2026</td></tr>
       </table>
     </div>
 
@@ -351,10 +361,10 @@
 
   <!-- FOOTER -->
   <div class="foot">
-    <b>Методология:</b> апрель — закрытый факт; май и июнь — план/прогноз. ⚠️ Свод Q2 с пробелами (расходы апреля=0, план июня=0) — формальный финрез ненадёжен, выводы строятся на план-факте по месяцам. Величины округлены/относительны.
+    <b>Методология:</b> апрель — факт; май — факт; июнь — план/прогноз. ✅ Свод Q2 исправлен (расходы апреля 1,37 млн + план июня 2,61 млн заполнены) — финрез достоверен. Суммы из unit_metrics текущего прогона (11.06.2026), без НДС.
     <div class="grid">
-      <div><b>Источники</b><br>03 action_plan · 04 competitor_insights (web_access: available, 6 реальных конкурентов, verified 05.06) · 05 dashboard_handoff + market_check</div>
-      <div><b>Статус данных</b><br>агент 03 — получены ✓ · агент 04 — получены ✓ (6 реальных, обезличены) · агент 05 — получены ✓ · ⚠️ свод требует починки</div>
+      <div><b>Источники</b><br>03 action_plan · 04 competitor_insights (web_access: available, 6 реальных конкурентов, Tier 1, verified 11.06) · 05 dashboard_handoff + market_check</div>
+      <div><b>Статус данных</b><br>агент 03 — получены ✓ · агент 04 — получены ✓ (6 реальных) · агент 05 — получены ✓ · ✅ свод исправлен</div>
       <div><b>DEMO</b><br>реальные ФИО, клиенты, конкуренты, компания, ИНН и абсолютные суммы скрыты; конкуренты обезличены (Конкурент-А/Б/В…); величины округлены/относительны.<br><b>Rostec design · Visual Trial 3 «Visual Report»</b></div>
     </div>
   </div>

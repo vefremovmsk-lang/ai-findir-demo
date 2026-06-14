@@ -128,7 +128,7 @@
 </style>
 </head>
 <body>
-<div class="demo">DEMO · обезличенная версия · реальные имена, компания, клиенты, конкуренты, ИНН и абсолютные суммы скрыты · величины показаны относительно (% дефицита, диапазоны)</div>
+<div class="demo">DEMO · данные обезличены · реальные ФИО, клиенты, конкуренты, компания и абсолютные суммы скрыты · суммы округлены/относительны</div>
 <div class="sheet">
   <div class="inner">
 
@@ -147,80 +147,83 @@
           <div class="sub">Что делать прямо сейчас, чтобы закрыть Q2 в плюс — с учётом рынка и конкурентов</div>
         </div>
       </div>
-      <div class="meta">Компания (демо)<br>контрольная дата 05.06.2026<br>апрель = факт · май/июнь = план<br>данные: 03 ✓ · 04 ✓ · 05 ✓</div>
+      <div class="meta">Компания (демо)<br>контрольная дата 11.06.2026<br>апрель = факт · май/июнь = план<br>данные: 03 ✓ · 04 ✓ · 05 ✓</div>
     </div>
 
     <!-- HERO -->
     <div class="hero">
       <div>
         <div class="dlabel">Диагноз</div>
-        <div class="dtext">Квартал идёт к отрицательному финрезу (прогнозная маржа <b>−910%</b>). Чтобы закрыть Q2 ≥ 0, нужно заактировать выручку мая+июня в объёме <b>100% дефицита</b>. Объём pipeline есть (заявленные сделки &gt; 130% дефицита), но контракт-факт квартала — лишь <b>5,7% плана</b>. Главный рычаг — довести 4 якорные сделки до договора и акта до cash-cutoff 19.06.</div>
-        <div class="heronum"><div class="big">−910%</div><div class="cap">прогнозная маржа Q2 при текущем плане выручки</div></div>
+        <div class="dtext"><b>Перелом в контрактации:</b> contract_fact Q2 вырос с 0,25 до <b>2,62 млн ₽ (59% плана)</b> — якорная ОПК-сделка законтрактован (июнь fact 2,28 млн). Но в выручку Q2 идут только <b>акты — 381 тыс ₽</b>; разрыв «контракт ↔ акт» = 2,24 млн. Q2 финрез <b>−2,98 млн ₽</b>. Рычаг сместился: не «подписать», а <b>заактировать законтрактованное до 30.06</b> (cash-cutoff 25.06).</div>
+        <div class="heronum"><div class="big">−2,98 млн ₽</div><div class="cap">прогноз финреза Q2; контрактация 59%, но акты лишь 381 тыс ₽</div></div>
       </div>
       <div class="chartcard">
-        <h4>Покрытие дефицита Q2 по сценариям выручки май+июнь</h4>
-        <svg width="100%" viewBox="0 0 440 220" preserveAspectRatio="xMidYMid meet" aria-label="Сценарии покрытия: консервативный 36, целевой 52, оптимистичный 100 процентов; цель 100">
+        <h4>Покрытие дефицита Q2 актированием (% от 2,98 млн)</h4>
+        <svg width="100%" viewBox="0 0 440 220" preserveAspectRatio="xMidYMid meet" aria-label="Покрытие актированием: законтрактованная сделка 7, плюс якорная ОПК-сделка 63, плюс крупная новая сделка 97 процентов">
           <line x1="40" y1="180" x2="430" y2="180" stroke="#d3cdc1" stroke-width="1"/>
           <line x1="40" y1="30" x2="430" y2="30" stroke="#1a1c22" stroke-width="1.5" stroke-dasharray="5 3"/>
-          <text x="430" y="26" text-anchor="end" font-size="11" fill="#1a1c22" font-family="monospace">дефицит 100%</text>
-          <rect x="80" y="126" width="80" height="54" rx="4" fill="#b91032"/>
-          <text x="120" y="119" text-anchor="middle" font-size="16" font-weight="800" fill="#b91032" font-family="monospace">36%</text>
-          <text x="120" y="197" text-anchor="middle" font-size="11" fill="#5c6470">консерв.</text>
-          <rect x="200" y="102" width="80" height="78" rx="4" fill="#bd7a12"/>
-          <text x="240" y="95" text-anchor="middle" font-size="16" font-weight="800" fill="#bd7a12" font-family="monospace">52%</text>
-          <text x="240" y="197" text-anchor="middle" font-size="11" fill="#5c6470">целевой</text>
-          <rect x="320" y="30" width="80" height="150" rx="4" fill="#1f8f4e"/>
-          <text x="360" y="23" text-anchor="middle" font-size="16" font-weight="800" fill="#1f8f4e" font-family="monospace">100%</text>
-          <text x="360" y="197" text-anchor="middle" font-size="11" fill="#5c6470">оптим.</text>
+          <text x="430" y="26" text-anchor="end" font-size="11" fill="#1a1c22" font-family="monospace">дефицит 100% = 2,98 млн</text>
+          <!-- законтрактованная сделка 7% -> h=10.5 -> y=169.5 -->
+          <rect x="80" y="169" width="80" height="11" rx="4" fill="#b91032"/>
+          <text x="120" y="162" text-anchor="middle" font-size="16" font-weight="800" fill="#b91032" font-family="monospace">7%</text>
+          <text x="120" y="197" text-anchor="middle" font-size="11" fill="#5c6470">законтрактованная сделка 0,22</text>
+          <!-- +якорная ОПК-сделка 63% -> h=94.5 -> y=85.5 -->
+          <rect x="200" y="85" width="80" height="95" rx="4" fill="#bd7a12"/>
+          <text x="240" y="78" text-anchor="middle" font-size="16" font-weight="800" fill="#bd7a12" font-family="monospace">63%</text>
+          <text x="240" y="197" text-anchor="middle" font-size="11" fill="#5c6470">+якорная ОПК-сделка 1,9</text>
+          <!-- +крупная новая сделка 97% -> h=145.5 -> y=34.5 -->
+          <rect x="320" y="34" width="80" height="146" rx="4" fill="#1f8f4e"/>
+          <text x="360" y="27" text-anchor="middle" font-size="16" font-weight="800" fill="#1f8f4e" font-family="monospace">97%</text>
+          <text x="360" y="197" text-anchor="middle" font-size="11" fill="#5c6470">+крупная новая сделка 2,9</text>
         </svg>
-        <div class="tag" style="margin-top:6px;">высота столбца ∝ % покрытия дефицита · пунктир = уровень дефицита (100%) · оптимистичный требует всех якорей до 19.06</div>
+        <div class="tag" style="margin-top:6px;">высота ∝ % покрытия дефицита актами · пунктир = дефицит (100%) · акты по законтрактованному (якорная ОПК-сделка, законтрактованная сделка) почти закрывают Q2</div>
       </div>
     </div>
 
     <!-- KPI tiles -->
     <div class="kpis">
-      <div class="kpi d"><div class="ktop"><div><div class="kl">Дефицит Q2 (≥0)</div><div class="kv">100%</div></div><div class="ks">выручка<br>май+июнь</div></div><div class="bullet"><div class="bf" style="width:100%;background:var(--dng);"></div></div></div>
-      <div class="kpi d"><div class="ktop"><div><div class="kl">Прогноз маржи Q2</div><div class="kv">−910%</div></div><div class="ks">финрез<br>отрицательный</div></div><div class="bullet"><div class="bf" style="width:100%;background:var(--dng);"></div></div></div>
-      <div class="kpi s"><div class="ktop"><div><div class="kl">Cash-cutoff</div><div class="kv">19.06</div></div><div class="ks">быстрый 14 дн<br>конец Q2 30.06</div></div><div class="bullet"><div class="bf" style="width:56%;background:var(--steel);"></div><div class="bm" style="left:100%;"></div></div></div>
-      <div class="kpi w"><div class="ktop"><div><div class="kl">Контракт-факт Q2</div><div class="kv">5,7%</div></div><div class="ks">от плана<br>контрактации</div></div><div class="bullet"><div class="bf" style="width:6%;background:var(--warn);"></div></div></div>
+      <div class="kpi d"><div class="ktop"><div><div class="kl">Дефицит Q2 (акты ≥0)</div><div class="kv">2,98 млн</div></div><div class="ks">выручка<br>(акты)</div></div><div class="bullet"><div class="bf" style="width:100%;background:var(--dng);"></div></div></div>
+      <div class="kpi d"><div class="ktop"><div><div class="kl">Прогноз финреза Q2</div><div class="kv">−2,98 млн</div></div><div class="ks">маржа<br>−888%</div></div><div class="bullet"><div class="bf" style="width:100%;background:var(--dng);"></div></div></div>
+      <div class="kpi w"><div class="ktop"><div><div class="kl">Контракт vs акт</div><div class="kv">59% / 13%</div></div><div class="ks">контракт 2,62 млн<br>акты 0,38 млн</div></div><div class="bullet"><div class="bf" style="width:59%;background:var(--ok);"></div><div class="bm" style="left:13%;"></div></div></div>
+      <div class="kpi s"><div class="ktop"><div><div class="kl">Cash-cutoff актов</div><div class="kv">25.06</div></div><div class="ks">быстрый 14 дн<br>конец Q2 30.06</div></div><div class="bullet"><div class="bf" style="width:74%;background:var(--steel);"></div><div class="bm" style="left:100%;"></div></div></div>
     </div>
 
     <!-- ALERTS -->
     <div class="sec">
       <div class="secnum">01</div><div class="eyebrow">Сигналы</div><h2>Критичные алерты</h2>
       <div class="atl">
-        <div class="ai high"><div class="node">!</div><div class="at">Якорная ОПК-сделка (&gt;50% дефицита) рискует уйти в Q3</div><div class="ab">Сделка в pipeline с середины мая, контрактации пока нет и <b>на 05.06 не подписана</b>. Задержка <b>[ВЕРОЯТНО]</b> связана с внутренними процедурами согласования закупок материнской ГК, а не с ценой конкурента. Без подписи до 13.06 — половина дефицита под угрозой (эскалация уровня собственника).</div></div>
-        <div class="ai high"><div class="node">!</div><div class="at">Перенос в Q3 — около 76% заявленного pipeline</div><div class="ab">Под вопросом / маловероятно в Q2: якорная ОПК-сделка + тендерная сделка + сделка-КП ≈ <b>76% pipeline</b>. Реалистичная выручка май+июнь ≈ 36–52% дефицита → <b>Q2 финрез остаётся отрицательным</b>.</div></div>
-        <div class="ai med"><div class="node">▲</div><div class="at">Cash-cutoff 19.06 · тендерная сделка завязана на тендер</div><div class="ab">КП отправлено, договора нет; цикл тендера обычно &gt; 14 дней → решение, вероятно, в июле. Всё, не законтрактованное к 19.06, в Q2-акты не попадёт.</div></div>
+        <div class="ai high"><div class="node">!</div><div class="at">Акты по якорная ОПК-сделка (1,68 млн) ещё не выставлены</div><div class="ab">Сделка <b>законтрактована</b> (июнь fact 2,28 млн), но в выручку Q2 идёт только акт. Без актирования до cash-cutoff <b>25.06</b> — &gt;50% дефицита остаётся незакрытым. Приоритет №1 — выставить акты.</div></div>
+        <div class="ai high"><div class="node">!</div><div class="at">Разрыв «контракт ↔ акт» = 2,24 млн ₽</div><div class="ab">Контрактация Q2 <b>2,62 млн</b>, но заактировано лишь <b>0,38 млн</b>. 2,24 млн законтрактовано, но не превращено в выручку. Сверить и закрыть разрыв (готовность протоколов/оплаты).</div></div>
+        <div class="ai med"><div class="node">▲</div><div class="at">Cash-cutoff актов 25.06 · крупная новая сделка (1 млн) — новый</div><div class="ab">~19 дней до конца Q2. «крупная новая сделка» (крупная сделка, 1 млн) — новый рычаг, договор+акт до 25.06. Всё, не заактированное к 25.06, в Q2 не попадёт.</div></div>
       </div>
     </div>
 
     <!-- ACTION PIPELINE -->
     <div class="sec">
-      <div class="secnum">02</div><div class="eyebrow">Действия · план</div><h2>Конвейер сделок до 30.06</h2>
+      <div class="secnum">02</div><div class="eyebrow">Действия · план</div><h2>Конвейер актирования до 30.06</h2>
       <div class="chartcard">
-        <div class="gx"><span class="t" style="left:0%;">05.06</span><span class="t" style="left:12%;">08.06</span><span class="t" style="left:32%;">13.06</span><span class="t" style="left:56%;">19.06</span><span class="t" style="left:100%;">30.06</span></div>
-        <div class="gr"><div class="gl"><b>A1</b> Якорная ОПК-сделка · Менеджер А+РО</div><div class="gt"><div class="cut" style="left:56%;"><span>cash-cutoff 19.06</span></div><div class="gb" style="left:0;width:32%;background:#bd7a12;">13.06 · риск → Q3</div></div></div>
-        <div class="gr"><div class="gl"><b>A3</b> Якорная сделка-2 · Менеджер А</div><div class="gt"><div class="gb" style="left:0;width:28%;background:#1f8f4e;">12.06</div></div></div>
-        <div class="gr"><div class="gl"><b>A2</b> Тендерная сделка КП→дог. · Менеджер Б+РО</div><div class="gt"><div class="gb" style="left:0;width:56%;background:#b91032;">19.06 · тендер → июль</div></div></div>
-        <div class="gr"><div class="gl"><b>A4</b> Сделка-КП → договор · Менеджер Б</div><div class="gt"><div class="gb" style="left:0;width:52%;background:#bd7a12;">18.06</div></div></div>
-        <div class="gr"><div class="gl"><b>A5</b> Законтрактованная сделка → акт · Менеджер А</div><div class="gt"><div class="gb" style="left:0;width:53%;background:#1f8f4e;">15.06</div></div></div>
-        <div class="gr"><div class="gl"><b>A6</b> Мелкий добор · Менеджер А</div><div class="gt"><div class="gb" style="left:0;width:100%;background:#1f8f4e;">весь июнь</div></div></div>
-        <div class="tag" style="margin-top:8px;">Сегодня (05.06): эскалация статуса якорной сделки; запустить недельный план-факт (РО, старт 08.06). Зелёный — надёжный Q2-рычаг · жёлтый — под вопросом · кримсон — риск переноса в Q3.</div>
+        <div class="gx"><span class="t" style="left:0%;">11.06</span><span class="t" style="left:16%;">14.06</span><span class="t" style="left:47%;">20.06</span><span class="t" style="left:74%;">25.06</span><span class="t" style="left:100%;">30.06</span></div>
+        <div class="gr"><div class="gl"><b>A8</b> Сверка контракт↔акт · РО</div><div class="gt"><div class="cut" style="left:74%;"><span>cash-cutoff 25.06</span></div><div class="gb" style="left:0;width:21%;background:#1f8f4e;">15.06</div></div></div>
+        <div class="gr"><div class="gl"><b>A2</b> Акт законтрактованная сделка · Менеджер А</div><div class="gt"><div class="gb" style="left:0;width:47%;background:#1f8f4e;">20.06</div></div></div>
+        <div class="gr"><div class="gl"><b>A1</b> Акты якорная ОПК-сделка (законтр.) · Менеджер А+РО</div><div class="gt"><div class="gb" style="left:0;width:74%;background:#bd7a12;">25.06 · приоритет №1</div></div></div>
+        <div class="gr"><div class="gl"><b>A3</b> крупная новая сделка договор+акт · Менеджер А</div><div class="gt"><div class="gb" style="left:0;width:74%;background:#bd7a12;">25.06 · новый 1 млн</div></div></div>
+        <div class="gr"><div class="gl"><b>A5</b> Менеджер Б: июньские сделки в акты · Менеджер Б</div><div class="gt"><div class="gb" style="left:0;width:74%;background:#bd7a12;">25.06</div></div></div>
+        <div class="gr"><div class="gl"><b>A4</b> Добор хвостов (добор и др.) · Менеджер А</div><div class="gt"><div class="gb" style="left:0;width:100%;background:#1f8f4e;">весь июнь</div></div></div>
+        <div class="tag" style="margin-top:8px;">Сегодня (11.06): сверка контракт↔акт (A8); график актирования якорная ОПК-сделка. Зелёный — надёжный Q2-рычаг · жёлтый — под вопросом/новый · кримсон-линия — cash-cutoff актов 25.06.</div>
       </div>
     </div>
 
     <!-- COVERAGE waterfall -->
     <div class="sec">
-      <div class="secnum">03</div><div class="eyebrow">Покрытие</div><h2>Как набирается покрытие дефицита Q2</h2>
+      <div class="secnum">03</div><div class="eyebrow">Покрытие</div><h2>Как набирается покрытие дефицита Q2 актами</h2>
       <div class="chartcard">
         <div class="wf">
-          <div class="seg s1" style="flex:36;">консерв. 36%</div>
-          <div class="seg s2" style="flex:16;">+ → 52%</div>
-          <div class="seg s3" style="flex:48;">+ якоря → 100%</div>
-          <div class="tline" style="left:100%;"><span>дефицит 100%</span></div>
+          <div class="seg s1" style="flex:7;">законтрактованная сделка 7%</div>
+          <div class="seg s2" style="flex:56;">+якорная ОПК-сделка → 63%</div>
+          <div class="seg s3" style="flex:34;">+крупная новая сделка → 97%</div>
+          <div class="tline" style="left:100%;"><span>дефицит 100% = 2,98 млн</span></div>
         </div>
-        <div class="tag" style="margin-top:10px;">Накопительно: консервативный (надёжные A3+A5+A6) <b style="color:var(--ink);">36%</b> → целевой (+ добор) <b style="color:var(--ink);">52%</b> → оптимистичный (+ якорные сделки до 19.06) <b style="color:var(--ink);">100%</b>. <b style="color:var(--ink);">Вывод: базовый сценарий закрывает ~треть.</b> Остаток (≈ половина дефицита) переносится в управляемый Q3-задел, если якорные сделки не подпишутся к cash-cutoff.</div>
+        <div class="tag" style="margin-top:10px;">Накопительно по актам: законтрактованная сделка (0,22 млн) <b style="color:var(--ink);">7%</b> → + якорная ОПК-сделка (1,68 млн, законтрактовано) <b style="color:var(--ink);">63%</b> → + крупная новая сделка (1,0 млн) <b style="color:var(--ink);">97%</b>. <b style="color:var(--ink);">Вывод: акты по законтрактованному почти закрывают Q2.</b> Узкое место — успеть выставить акты до cash-cutoff 25.06, иначе перенос в Q3.</div>
       </div>
     </div>
 
@@ -229,53 +232,47 @@
       <div class="secnum">04</div><div class="eyebrow">Горизонт</div><h2>Эффект Q2 vs перенос в Q3</h2>
       <div class="two">
         <div class="chartcard">
-          <h4>Распределение заявленного pipeline</h4>
+          <h4>Распределение актируемого эффекта (≈ 2,9 млн ₽)</h4>
           <div class="donutwrap">
-            <svg width="150" height="150" viewBox="0 0 42 42" aria-label="Q2 надёжно около 24 процентов, перенос в Q3 около 66 процентов, под вопросом около 10 процентов">
+            <svg width="150" height="150" viewBox="0 0 42 42" aria-label="Q2 надёжно около 64 процентов, под вопросом около 36 процентов">
               <circle cx="21" cy="21" r="15.915" fill="none" stroke="#ece8e0" stroke-width="6"/>
-              <circle cx="21" cy="21" r="15.915" fill="none" stroke="#1f8f4e" stroke-width="6" stroke-dasharray="24 76" stroke-dashoffset="25"/>
-              <circle cx="21" cy="21" r="15.915" fill="none" stroke="#b91032" stroke-width="6" stroke-dasharray="66 34" stroke-dashoffset="1"/>
-              <circle cx="21" cy="21" r="15.915" fill="none" stroke="#bd7a12" stroke-width="6" stroke-dasharray="10 90" stroke-dashoffset="-65"/>
+              <circle cx="21" cy="21" r="15.915" fill="none" stroke="#1f8f4e" stroke-width="6" stroke-dasharray="64 36" stroke-dashoffset="25"/>
+              <circle cx="21" cy="21" r="15.915" fill="none" stroke="#bd7a12" stroke-width="6" stroke-dasharray="36 64" stroke-dashoffset="-39"/>
               <text x="21" y="22" text-anchor="middle" font-size="6" font-weight="800" fill="#1a1c22" font-family="monospace">Q2/Q3</text>
             </svg>
             <div class="leg">
-              <div><span class="sw" style="background:#1f8f4e;"></span>Q2 надёжно ≈ <b>24%</b> (сделка-2 + законтракт. + добор)</div>
-              <div><span class="sw" style="background:#b91032;"></span>Риск Q3 ≈ <b>66%</b> (якорная ОПК + тендерная) · &gt;20%</div>
-              <div><span class="sw" style="background:#bd7a12;"></span>Под вопросом ≈ <b>10%</b> (сделка-КП)</div>
+              <div><span class="sw" style="background:#1f8f4e;"></span>Q2 надёжно ≈ <b>64%</b> (акты якорная ОПК-сделка+законтрактованная сделка, ~1,9 млн — законтрактовано)</div>
+              <div><span class="sw" style="background:#bd7a12;"></span>Под вопросом ≈ <b>36%</b> (крупная новая сделка + Менеджер Б, ~1,3 млн) — успеть до 25.06</div>
             </div>
           </div>
           <div class="heat">
-            <div class="hc hg">A3</div><div class="hc hg">A5</div><div class="hc hg">A6</div>
-            <div class="hc hy">A1</div><div class="hc hy">A4</div><div class="hc hy">A7</div><div class="hc hy">A8</div>
-            <div class="hc hr">A2</div>
+            <div class="hc hg">A2</div><div class="hc hg">A4</div><div class="hc hg">A8</div>
+            <div class="hc hy">A1</div><div class="hc hy">A3</div><div class="hc hy">A5</div>
           </div>
-          <div class="tag">🟢 вероятен Q2 · 🟡 под вопросом · 🔴 маловероятен Q2</div>
+          <div class="tag">🟢 надёжно Q2 · 🟡 под вопросом (успеть заактировать до 25.06)</div>
         </div>
         <div class="chartcard">
-          <h4>Q2-эффект по сделкам, % дефицита (верх диапазона)</h4>
+          <h4>Q2-эффект по действиям, % дефицита (акты)</h4>
           <div class="cols">
-            <div class="col"><div class="vlab">55</div><div class="rng y" style="height:100%;"></div><div class="xlab">A1</div></div>
-            <div class="col"><div class="vlab">46</div><div class="rng r" style="height:84%;"></div><div class="xlab">A2</div></div>
-            <div class="col"><div class="vlab">20</div><div class="rng g" style="height:36%;"></div><div class="xlab">A3</div></div>
-            <div class="col"><div class="vlab">16</div><div class="rng y" style="height:29%;"></div><div class="xlab">A4</div></div>
-            <div class="col"><div class="vlab">7</div><div class="rng g" style="height:13%;"></div><div class="xlab">A5</div></div>
-            <div class="col"><div class="vlab">11</div><div class="rng g" style="height:20%;"></div><div class="xlab">A6</div></div>
+            <div class="col"><div class="vlab">56</div><div class="rng y" style="height:100%;"></div><div class="xlab">A1</div></div>
+            <div class="col"><div class="vlab">34</div><div class="rng y" style="height:61%;"></div><div class="xlab">A3</div></div>
+            <div class="col"><div class="vlab">16</div><div class="rng y" style="height:29%;"></div><div class="xlab">A5</div></div>
+            <div class="col"><div class="vlab">13</div><div class="rng g" style="height:23%;"></div><div class="xlab">A4</div></div>
+            <div class="col"><div class="vlab">7</div><div class="rng g" style="height:13%;"></div><div class="xlab">A2</div></div>
           </div>
-          <div class="tag" style="margin-top:8px;">верхняя граница диапазона, шкала 0 → 55% дефицита · цвет = статус Q2 · A1 крупнейший, но под вопросом</div>
+          <div class="tag" style="margin-top:8px;">шкала 0 → 56% дефицита · A1 (якорная ОПК-сделка) законтрактован, нужен акт; A3 (крупная новая сделка) — новый</div>
         </div>
       </div>
       <table style="margin-top:18px;">
-        <tr><th>ID</th><th>Сделка / действие</th><th>Ответственный</th><th>% дефицита</th><th>Статус</th><th>Q3-риск</th></tr>
-        <tr><td>A1</td><td>Якорная ОПК-сделка</td><td>Менеджер А + РО</td><td>55%</td><td><span class="pill py">под вопросом</span></td><td><b style="color:var(--dng);">высокий</b></td></tr>
-        <tr><td>A2</td><td>Тендерная сделка (КП)</td><td>Менеджер Б + РО</td><td>46%</td><td><span class="pill pr">маловероятен</span></td><td><b style="color:var(--dng);">высокий</b></td></tr>
-        <tr><td>A3</td><td>Якорная сделка-2</td><td>Менеджер А</td><td>20%</td><td><span class="pill pg">вероятен</span></td><td>низкий</td></tr>
-        <tr><td>A4</td><td>Сделка-КП</td><td>Менеджер Б</td><td>16%</td><td><span class="pill py">под вопросом</span></td><td>средний</td></tr>
-        <tr><td>A5</td><td>Законтрактованная сделка (актирование)</td><td>Менеджер А</td><td>7%</td><td><span class="pill pg">вероятен</span></td><td>низкий</td></tr>
-        <tr><td>A6</td><td>Мелкий добор</td><td>Менеджер А</td><td>8–11%</td><td><span class="pill pg">вероятен</span></td><td>низкий</td></tr>
-        <tr><td>A7</td><td>Недельный план-факт (крупные сделки)</td><td>РО</td><td>—</td><td><span class="pill py">запустить</span></td><td>—</td></tr>
-        <tr><td>A8</td><td>Перенос платежей вправо</td><td>РО</td><td>—</td><td><span class="pill py">под вопросом</span></td><td>—</td></tr>
+        <tr><th>ID</th><th>Действие (акт)</th><th>Ответственный</th><th>Эффект Q2 (₽)</th><th>% деф.</th><th>Статус</th><th>Риск</th></tr>
+        <tr><td>A1</td><td>Акты якорная ОПК-сделка (законтрактовано)</td><td>Менеджер А + РО</td><td>~1,68 млн</td><td>56%</td><td><span class="pill py">акт до 25.06</span></td><td><b style="color:var(--dng);">высокий</b></td></tr>
+        <tr><td>A2</td><td>Акт «законтрактованная сделка» (законтрактовано)</td><td>Менеджер А</td><td>~0,22 млн</td><td>7%</td><td><span class="pill pg">вероятен</span></td><td>низкий</td></tr>
+        <tr><td>A3</td><td>«крупная новая сделка» (договор+акт)</td><td>Менеджер А</td><td>до ~1,0 млн</td><td>34%</td><td><span class="pill py">под вопросом</span></td><td>средний</td></tr>
+        <tr><td>A4</td><td>Добор хвостов (добор и др.)</td><td>Менеджер А</td><td>300–500 тыс</td><td>10–17%</td><td><span class="pill pg">вероятен</span></td><td>низкий</td></tr>
+        <tr><td>A5</td><td>Менеджер Б: июньские сделки в акты</td><td>Менеджер Б</td><td>300–475 тыс</td><td>10–16%</td><td><span class="pill py">под вопросом</span></td><td>средний</td></tr>
+        <tr><td>A8</td><td>Сверка контракт↔акт (разрыв 2,24 млн)</td><td>РО</td><td>прозрачность</td><td>—</td><td><span class="pill pg">критично</span></td><td>—</td></tr>
       </table>
-      <div class="tag" style="margin-top:8px;">🟢 надёжно Q2 (A3+A5+A6) ≈ 37% дефицита. 🔴 риск переноса в Q3 (A1+A2) ≈ 66% pipeline — это &gt;20% совокупного эффекта.</div>
+      <div class="tag" style="margin-top:8px;">🟢 надёжно Q2 (акты по законтрактованному A1+A2 ≈ 1,9 млн = 63% деф.). 🟡 под вопросом — успеть выставить акты до cash-cutoff 25.06.</div>
     </div>
 
     <!-- MARKET -->
@@ -283,23 +280,23 @@
       <div class="secnum">05</div><div class="eyebrow">Рынок</div><h2>Что рынок подтвердил / не подтвердил</h2>
       <div class="two">
         <div class="box ok"><h3>✓ Рынок подтвердил</h3><ul class="cl">
-          <li><b>H1 — объём pipeline достаточен</b>: заявленные сделки &gt; 130% дефицита. <span class="tag">A1–A4</span></li>
-          <li><b>Рычаг = контур материнской ГК</b> (B2G/ОПК-доступ), а не цена — снижает риск ценового проигрыша по якорной сделке.</li>
-          <li><b>Законтрактованная сделка (A5)</b> — надёжный Q2-эффект.</li>
-          <li><b>Расходный рычаг</b> (A8): перенос платежей реалистичен (умеренное снижение оттока).</li>
+          <li><b>H1 — объём pipeline достаточен</b>: контрактация 2,62 млн (59%) — якорная ОПК-сделка законтрактован. <span class="tag">A1–A4</span></li>
+          <li><b>Рычаг = контур материнской ГК</b> (B2G/ОПК-доступ), а не цена — снижает риск ценового проигрыша по якорная ОПК-сделка.</li>
+          <li><b>законтрактованная сделка (A5)</b> уже законтрактован — надёжный Q2-эффект.</li>
+          <li><b>Расходный рычаг</b> (A8): перенос платежей ФАУ/ИЛ реалистичен (−150…−300 тыс ₽ оттока).</li>
         </ul></div>
         <div class="box no"><h3>✗ Рынок не подтвердил / под вопросом</h3><ul class="cl">
-          <li><b>Сроки якорных сделок</b>: ОПК-сделка и тендерная — длинный/неуправляемый цикл → риск Q3.</li>
-          <li><b>Область аккредитации компании</b> по ряду ТР ТС не подтверждена — часть сегментов может быть недоступна.</li>
-          <li><b>Win rate / цикл сделки</b> в тяжпроме: нет верифицированных данных [проверить].</li>
-          <li><b>Волна нового техрегламента в H2 2026</b>: [ВЕРОЯТНО], дату подтвердить по тексту регламента.</li>
+          <li><b>Скорость актирования</b>: контракт 2,62 млн, акты 0,38 млн — разрыв 2,24 млн надо закрыть до 25.06.</li>
+          <li><b>ОА компания по 004/020/007/017</b> не подтверждена — часть сегментов может быть недоступна.</li>
+          <li><b>Win rate / цикл сделки</b> 010/032: нет верифицированных данных [проверить].</li>
+          <li><b>Волна ТР ТС 010 в H2 2026</b>: [ВЕРОЯТНО], дату подтвердить по тексту регламента.</li>
         </ul></div>
       </div>
     </div>
 
     <!-- COMPETITORS -->
     <div class="sec">
-      <div class="secnum">06</div><div class="eyebrow">Конкуренты</div><h2>Конкуренты · матрица угрозы <span class="tag">(агент 04, web-verified 05.06, Tier 1 источники)</span></h2>
+      <div class="secnum">06</div><div class="eyebrow">Конкуренты</div><h2>Конкуренты · матрица угрозы <span class="tag">(агент 04, web-verified 11.06, Tier 1 источники)</span></h2>
       <div class="two">
         <div>
           <div class="matrix">
@@ -308,48 +305,54 @@
             <div class="axl" style="right:8px;bottom:4px;">широта портфеля ТР ТС →</div>
             <div class="quad" style="right:14px;top:26px;">лидеры рынка</div>
             <div class="quad" style="left:60px;bottom:26px;">нишевые</div>
+            <!-- Конкурент-Б: threat 8, broadest -> top-right -->
             <div class="pt" style="left:85%;top:18%;"><div class="bub" style="--s:58px;background:#b91032;">8</div><div class="pl">Конкурент-Б</div></div>
+            <!-- Конкурент-А: threat 8, industrial focus -> top-mid -->
             <div class="pt" style="left:55%;top:20%;"><div class="bub" style="--s:58px;background:#b91032;">8</div><div class="pl">Конкурент-А</div></div>
+            <!-- Конкурент-В: threat 7, narrow 010 -> top-left -->
             <div class="pt" style="left:33%;top:30%;"><div class="bub" style="--s:50px;background:#cf2a48;">7</div><div class="pl">Конкурент-В</div></div>
+            <!-- Конкурент-Г: threat 6, broad -> mid-right -->
             <div class="pt" style="left:78%;top:52%;"><div class="bub" style="--s:44px;background:#bd7a12;">6</div><div class="pl">Конкурент-Г</div></div>
+            <!-- Конкурент-Е: threat 6, broad -> mid-right -->
             <div class="pt" style="left:68%;top:64%;"><div class="bub" style="--s:44px;background:#bd7a12;">6</div><div class="pl">Конкурент-Е</div></div>
+            <!-- Конкурент-Д: threat 5, medium -> mid -->
             <div class="pt" style="left:50%;top:70%;"><div class="bub" style="--s:38px;background:#d3a13e;">5</div><div class="pl">Конкурент-Д</div></div>
           </div>
           <div class="tag" style="margin-top:8px;text-align:center;">размер/цвет пузыря ∝ threat_score · low 0–4 · medium 5–6 · high 7–10</div>
         </div>
         <div>
           <div class="box no" style="margin-bottom:16px;"><h3>Где конкуренты сильнее</h3><ul class="cl">
-            <li><b>ОПК/тяжпром 010/032</b>: Конкурент-А и Конкурент-В давят по цене/скорости на якорные сделки.</li>
-            <li><b>Бренд/маркетинг</b>: Конкурент-Б — федеральная сеть, узнаваемость (слабая сторона компании).</li>
-            <li><b>Декларации/ЭМС</b>: Конкурент-Д, Конкурент-Е — быстрый сегмент 020/деклараций.</li>
+            <li><b>ОПК/тяжпром 010/032</b>: Конкурент-А  и Конкурент-В давят по цене/скорости на сделки якорная ОПК-сделка, ТОНАР.</li>
+            <li><b>Бренд/маркетинг</b>: Конкурент-Б (офиц. сайт) — федеральная сеть, узнаваемость (слабая сторона компания).</li>
+            <li><b>Декларации/ЭМС</b>: Конкурент-Д (офиц. сайт), Конкурент-Е — быстрый сегмент 020/деклараций (законтрактованная сделка).</li>
           </ul></div>
           <div class="box ok"><h3>Что усилить из-за конкурентов</h3><ul class="cl">
-            <li><b>A1 якорная сделка</b> → играть на контуре материнской ГК (B2G-доступ), не на цене против Конкурента-А.</li>
-            <li><b>A5 (004/020)</b> → подтвердить область аккредитации компании до конкуренции с Конкурентом-Д/Е.</li>
-            <li><b>Скорость актирования</b> → отстроиться от онлайн-демпинга Конкурента-В качеством и сроком.</li>
+            <li><b>A1 якорная ОПК-сделка</b> → играть на контуре материнской ГК (B2G-доступ), не на цене против Конкурент-А.</li>
+            <li><b>A5 законтрактованная сделка (004/020)</b> → подтвердить ОА компания (реестр Росаккредитации, GAP_1) до конкуренции с Конкурент-Д/Конкурент-Е.</li>
+            <li><b>Скорость актирования</b> → отстроиться от онлайн-демпинга Конкурент-В качеством и сроком.</li>
           </ul></div>
         </div>
       </div>
       <table style="margin-top:16px;">
-        <tr><th>Конкурент</th><th>Тип источника</th><th>Профиль ТР ТС</th><th>Threat</th><th>Давление</th></tr>
-        <tr><td><b>Конкурент-А</b></td><td>офиц. сайт (Tier 1)</td><td>010, 012, 032</td><td>8</td><td><span class="pill pr">high</span></td></tr>
-        <tr><td><b>Конкурент-Б</b></td><td>офиц. сайт (Tier 1)</td><td>004, 010, широкий</td><td>8</td><td><span class="pill pr">high</span></td></tr>
-        <tr><td><b>Конкурент-В</b></td><td>офиц. сайт (Tier 1)</td><td>010 (машины, краны)</td><td>7</td><td><span class="pill pr">high</span></td></tr>
-        <tr><td><b>Конкурент-Г</b></td><td>офиц. сайт (Tier 1)</td><td>010/004, ГОСТ Р, декл.</td><td>6</td><td><span class="pill py">medium</span></td></tr>
-        <tr><td><b>Конкурент-Е</b></td><td>офиц. сайт (Tier 1)</td><td>004/007/017/020</td><td>6</td><td><span class="pill py">medium</span></td></tr>
-        <tr><td><b>Конкурент-Д</b></td><td>офиц. сайт (Tier 1)</td><td>020/017, декларации</td><td>5</td><td><span class="pill py">medium</span></td></tr>
+        <tr><th>Конкурент</th><th>Источник (Tier 1)</th><th>Профиль ТР ТС</th><th>Threat</th><th>Давление</th></tr>
+        <tr><td><b>Конкурент-А</b></td><td>офиц. сайт</td><td>010, 012, 032</td><td>8</td><td><span class="pill pr">high</span></td></tr>
+        <tr><td><b>Конкурент-Б</b></td><td>офиц. сайт</td><td>004, 010, широкий</td><td>8</td><td><span class="pill pr">high</span></td></tr>
+        <tr><td><b>Конкурент-В</b></td><td>офиц. сайт</td><td>010 (машины, краны)</td><td>7</td><td><span class="pill pr">high</span></td></tr>
+        <tr><td><b>Конкурент-Г</b></td><td>офиц. сайт</td><td>010/004, ГОСТ Р, декл.</td><td>6</td><td><span class="pill py">medium</span></td></tr>
+        <tr><td><b>Конкурент-Е</b></td><td>офиц. сайт</td><td>004/007/017/020</td><td>6</td><td><span class="pill py">medium</span></td></tr>
+        <tr><td><b>Конкурент-Д</b></td><td>офиц. сайт</td><td>020/017, декларации</td><td>5</td><td><span class="pill py">medium</span></td></tr>
       </table>
     </div>
 
     <!-- EARLY INDICATORS -->
     <div class="sec">
-      <div class="secnum">07</div><div class="eyebrow">Индикаторы</div><h2>Ранние индикаторы · к 12.06.2026</h2>
+      <div class="secnum">07</div><div class="eyebrow">Индикаторы</div><h2>Ранние индикаторы · к 18.06.2026</h2>
       <div class="steps">
-        <div class="st r"><div class="circ">○</div><div class="sn">Якорная ОПК-сделка — подписанный договор</div><div class="stgt">договор (не переговоры)</div><div class="srz">нет подписи → эскалация</div></div>
-        <div class="st y"><div class="circ">◑</div><div class="sn">Якорная сделка-2 — договор подписан</div><div class="stgt">подписан до 12.06</div><div class="srz">нет движения</div></div>
-        <div class="st r"><div class="circ">○</div><div class="sn">Тендерная сделка — дата решения</div><div class="stgt">назначена дата</div><div class="srz">нет ясности → Q3</div></div>
-        <div class="st g"><div class="circ">●</div><div class="sn">Недельный план-факт запущен</div><div class="stgt">старт 08.06</div><div class="srz">не запущен</div></div>
-        <div class="st y"><div class="circ">◑</div><div class="sn">Перенос платежей согласован</div><div class="stgt">подтверждён</div><div class="srz">отказ</div></div>
+        <div class="st r"><div class="circ">○</div><div class="sn">якорная ОПК-сделка — выставлены акты</div><div class="stgt">акты (не только договор)</div><div class="srz">нет актов → Q3</div></div>
+        <div class="st y"><div class="circ">◑</div><div class="sn">законтрактованная сделка — заактирован</div><div class="stgt">акт выставлен</div><div class="srz">нет</div></div>
+        <div class="st y"><div class="circ">◑</div><div class="sn">крупная новая сделка — договор подписан</div><div class="stgt">договор</div><div class="srz">нет движения</div></div>
+        <div class="st r"><div class="circ">○</div><div class="sn">Разрыв контракт↔акт сокращается</div><div class="stgt">&lt; 1 млн</div><div class="srz">&gt; 2 млн</div></div>
+        <div class="st y"><div class="circ">◑</div><div class="sn">Менеджер Б — ≥1 сделка в акте</div><div class="stgt">акт</div><div class="srz">нет</div></div>
       </div>
     </div>
 
@@ -358,11 +361,11 @@
       <div class="secnum">08</div><div class="eyebrow">Контроль</div><h2>Что нужно проверить вручную</h2>
       <table>
         <tr><th>Статус</th><th>Параметр</th><th>Где искать</th><th>Кто</th><th>Срок</th></tr>
-        <tr><td><span class="sdot"></span></td><td>Причина задержки якорной сделки (цена конкурента vs процедуры ГК)</td><td>прямой вопрос клиенту о статусе согласования</td><td>Менеджер А</td><td>08.06.2026</td></tr>
-        <tr><td><span class="sdot"></span></td><td>Фактическая область аккредитации компании</td><td>реестр Росаккредитации</td><td>РО / руководство</td><td>10.06.2026</td></tr>
-        <tr><td><span class="sdot"></span></td><td>Дата решения по тендерной сделке</td><td>тендерная процедура / клиент</td><td>Менеджер Б</td><td>12.06.2026</td></tr>
-        <tr><td><span class="sdot"></span></td><td>Фактический средний цикл сделки в тяжпроме</td><td>закрытые сделки за 6 мес (CRM)</td><td>РО</td><td>12.06.2026</td></tr>
-        <tr><td><span class="sdot"></span></td><td>Дата/перечень изменений профильного техрегламента</td><td>официальный текст регламента ЕАЭС</td><td>юр. служба</td><td>15.06.2026</td></tr>
+        <tr><td><span class="sdot"></span></td><td>Причина задержки актов по законтрактованному (протоколы/оплата)</td><td>операционная сверка контракт↔акт</td><td>РО / Менеджер А</td><td>15.06.2026</td></tr>
+        <tr><td><span class="sdot"></span></td><td>Статус «крупная новая сделка» (крупная сделка, 1 млн)</td><td>клиент / CRM</td><td>Менеджер А</td><td>18.06.2026</td></tr>
+        <tr><td><span class="sdot"></span></td><td>Фактическая область аккредитации компании</td><td>реестр Росаккредитации</td><td>РО / руководство</td><td>18.06.2026</td></tr>
+        <tr><td><span class="sdot"></span></td><td>Фактический средний цикл актирования 010/032</td><td>закрытые акты за 6 мес (CRM)</td><td>РО</td><td>18.06.2026</td></tr>
+        <tr><td><span class="sdot"></span></td><td>Дата/перечень изменений ТР ТС 010/2011</td><td>офиц. текст регламента ЕАЭС</td><td>юр. служба</td><td>15.06.2026</td></tr>
       </table>
     </div>
 
@@ -370,11 +373,11 @@
 
   <!-- FOOTER -->
   <div class="foot">
-    <b>Методология:</b> апрель — закрытый факт; май и июнь — план/прогноз (факта нет). Расходы апреля в источнике = 0 (поле не заполнено). Величины показаны относительно (% дефицита, диапазоны).
+    <b>Методология:</b> апрель — закрытый факт; май и июнь — план/прогноз (факта нет). Расходы апреля в источнике = 0 (поле не заполнено). Суммы из unit_metrics текущего прогона.
     <div class="grid">
-      <div><b>Источники</b><br>03 action_plan · 04 competitor_insights (web_access: available, 6 реальных конкурентов, Tier 1, verified 05.06) · 05 dashboard_handoff + market_check · дефицит верифицирован по unit_metrics</div>
+      <div><b>Источники</b><br>03 action_plan · 04 competitor_insights (web_access: available, 6 реальных конкурентов, Tier 1 сайты, verified 11.06) · 05 dashboard_handoff + market_check · дефицит верифицирован по unit_metrics</div>
       <div><b>Статус данных</b><br>агент 03 — получены ✓ · агент 04 — получены ✓ (usable_for_agent_05=true) · агент 05 — получены ✓</div>
-      <div><b>DEMO</b><br>реальные имена сотрудников, клиентов, конкурентов, название компании, ИНН и абсолютные суммы скрыты; величины показаны относительно.<br><b>Rostec design · Visual Trial 3 «Visual Report»</b></div>
+      <div><b>DEMO</b><br>реальные ФИО, клиенты, конкуренты, компания, ИНН и абсолютные суммы скрыты; конкуренты обезличены (Конкурент-А/Б/В…); величины округлены/относительны.<br><b>Rostec design · Visual Trial 3 «Visual Report»</b></div>
     </div>
   </div>
 
