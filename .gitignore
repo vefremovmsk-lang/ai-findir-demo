@@ -8,3 +8,4 @@ agent_prompts/
 agent_outputs/
 out/**/ledger_store/
 out/MANIFEST.txt
+_demo_fill.py
