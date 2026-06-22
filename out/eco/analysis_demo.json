@@ -1,0 +1,330 @@
+{
+  "meta": {
+    "slug": "eco",
+    "department": "Экологические услуги · ДЕМО",
+    "title": "Экология",
+    "company": "«Клиент 1»(демо)",
+    "generated_by": "findir unified engine (build_dept)",
+    "source_file": "ecology_q2_2026_0619.xlsx",
+    "note": "ДЕМО: данные обезличены (ФИО и клиенты вымышлены, суммы масштабированы). Структура и механика — как в проде.",
+    "demo": true
+  },
+  "diagnosis": {
+    "period": "Q1 8506",
+    "control_date": "2026-06-19",
+    "finrez": -1390961,
+    "revenue_acts": 3082986,
+    "expenses": 4473948,
+    "deficit_to_zero": 1390961,
+    "contract_plan": 4163820,
+    "contract_fact": 2530045,
+    "contract_pct": 0.608,
+    "act_plan": 4344922,
+    "act_forecast": 0
+  },
+  "calibration": {
+    "Алексеев": {
+      "plan": 935063,
+      "fact": 767154,
+      "forecast": 0,
+      "attainment": 0.82,
+      "forecast_realism": null,
+      "reliability": "—",
+      "deals": 8,
+      "avg_check": 95894
+    },
+    "Борисова": {
+      "plan": 1098988,
+      "fact": 523052,
+      "forecast": 0,
+      "attainment": 0.476,
+      "forecast_realism": null,
+      "reliability": "—",
+      "deals": 5,
+      "avg_check": 104610
+    },
+    "Власов": {
+      "plan": 696666,
+      "fact": 393795,
+      "forecast": 0,
+      "attainment": 0.565,
+      "forecast_realism": null,
+      "reliability": "—",
+      "deals": 9,
+      "avg_check": 43755
+    }
+  },
+  "seasonality": {
+    "products": [
+      {
+        "name": "Экологический аудит",
+        "strength": "нет",
+        "quarters": [],
+        "raw": "Нет",
+        "cycle": "2 нед – 3 мес",
+        "avg_check": 134400
+      },
+      {
+        "name": "Экологическая отчётность",
+        "strength": "сильная",
+        "quarters": [
+          "Q2",
+          "Q3"
+        ],
+        "raw": "Сильная (апрель, июль)",
+        "cycle": "2–4 недели",
+        "avg_check": 22680
+      },
+      {
+        "name": "ПЭК",
+        "strength": "нет",
+        "quarters": [],
+        "raw": "Нет",
+        "cycle": "2–6 недель",
+        "avg_check": 39900
+      }
+    ],
+    "q2_push": [
+      {
+        "name": "Экологическая отчётность",
+        "strength": "сильная",
+        "quarters": [
+          "Q2",
+          "Q3"
+        ],
+        "raw": "Сильная (апрель, июль)",
+        "cycle": "2–4 недели",
+        "avg_check": 22680
+      }
+    ]
+  },
+  "waterfall": {
+    "finrez_bridge": {
+      "start": {
+        "label": "финрез при плановых актах",
+        "value": -129026
+      },
+      "steps": [
+        {
+          "label": "акты апрель",
+          "delta": -514140,
+          "note": null
+        },
+        {
+          "label": "акты май",
+          "delta": -481554,
+          "note": null
+        },
+        {
+          "label": "акты июнь",
+          "delta": -266242,
+          "note": "месяц открыт; прогноз актов 0 ₽"
+        }
+      ],
+      "end": {
+        "label": "финрез факт",
+        "value": -1390961
+      },
+      "reading": "При плановом актировании квартал был бы -129 026 ₽; весь минус — недобор актов."
+    },
+    "contract_bridge": {
+      "plan": 4163820,
+      "fact": 2530045,
+      "delta": -1633775,
+      "by_manager": [
+        {
+          "manager": "Борисова",
+          "plan": 1431749,
+          "fact": 615064,
+          "delta": -816685
+        },
+        {
+          "manager": "Власов",
+          "plan": 1044383,
+          "fact": 574026,
+          "delta": -470357
+        },
+        {
+          "manager": "Алексеев",
+          "plan": 1446841,
+          "fact": 1354613,
+          "delta": -92229
+        }
+      ]
+    }
+  },
+  "executors": [
+    {
+      "executor": "Громова",
+      "act_plan": 1691384,
+      "act_fact": 1185284,
+      "acts_count": 22,
+      "portfolio": 845693,
+      "attainment": 0.701
+    },
+    {
+      "executor": "Дроздов",
+      "act_plan": 1488142,
+      "act_fact": 1144445,
+      "acts_count": 23,
+      "portfolio": 744071,
+      "attainment": 0.769
+    }
+  ],
+  "funnel": {
+    "Алексеев": {
+      "calls_fact": 0,
+      "kp_fact": 48,
+      "deals": 13,
+      "contract_fact": 1354613,
+      "avg_check": 104201,
+      "conv_call_kp": null,
+      "conv_kp_deal": 0.271
+    },
+    "Борисова": {
+      "calls_fact": 0,
+      "kp_fact": 34,
+      "deals": 11,
+      "contract_fact": 615064,
+      "avg_check": 55915,
+      "conv_call_kp": null,
+      "conv_kp_deal": 0.324
+    },
+    "Власов": {
+      "calls_fact": 0,
+      "kp_fact": 44,
+      "deals": 10,
+      "contract_fact": 574026,
+      "avg_check": 57402,
+      "conv_call_kp": null,
+      "conv_kp_deal": 0.227
+    }
+  },
+  "radar": {
+    "source": "seed (доменные знания, офлайн)",
+    "push_now": [
+      {
+        "title": "Плата за НВОС — квартальные авансы",
+        "obligation": "Внести авансовый платёж за НВОС за квартал",
+        "deadline": "2026-07-20",
+        "weeks": 4,
+        "products": [
+          "Экологическая отчётность"
+        ],
+        "source": "ст.16.4 ФЗ-7; авансы до 20 числа след. за кварталом месяца"
+      }
+    ],
+    "product_gaps": [
+      {
+        "title": "РОП / утилизационный сбор (отчётность)",
+        "obligation": "Отчитаться по нормативам утилизации и уплатить утильсбор",
+        "deadline": "2027-04-15",
+        "weeks": 42,
+        "products": [],
+        "source": "реформа РОП 2024–2025; ежегодная отчётность производителей/импортёров"
+      },
+      {
+        "title": "Углеродная отчётность (296-ФЗ)",
+        "obligation": "Сдать годовой отчёт о выбросах парниковых газов (регулируемые лица)",
+        "deadline": "2026-07-01",
+        "weeks": 1,
+        "products": [],
+        "source": "296-ФЗ; порог >150 тыс. т CO2-экв (далее >50 тыс.), до 1 июля"
+      }
+    ]
+  },
+  "commitments": [],
+  "commitments_kind": "grounding",
+  "competitors": {
+    "top_rivals": [
+      {
+        "name": "Конкурент А",
+        "appears": 2,
+        "note": ""
+      },
+      {
+        "name": "Конкурент Б",
+        "appears": 2,
+        "note": ""
+      },
+      {
+        "name": "Конкурент В",
+        "appears": 1,
+        "note": ""
+      }
+    ],
+    "by_product": [
+      {
+        "product": "Экологический аудит",
+        "avg_check": "16 800 – 252 000",
+        "competitors": [
+          "Конкурент А",
+          "Конкурент Б"
+        ]
+      },
+      {
+        "product": "Экологическая отчётность",
+        "avg_check": "3 360 – 42 000",
+        "competitors": [
+          "Конкурент А",
+          "Конкурент В"
+        ]
+      },
+      {
+        "product": "ПЭК",
+        "avg_check": "16 800 – 63 000",
+        "competitors": [
+          "Конкурент Б"
+        ]
+      }
+    ],
+    "our_edge": null,
+    "our_gap": null,
+    "channels": null
+  },
+  "alerts": [
+    {
+      "level": "critical",
+      "tag": "Финрез",
+      "text": "Квартал убыточный: операционный финрез -1 390 961 ₽, до нуля не хватает выручки 1 390 961 ₽."
+    },
+    {
+      "level": "warn",
+      "tag": "План",
+      "text": "Недобор плана: Борисова, Власов — выполнение от 48%. Пересмотреть план/ресурсы."
+    },
+    {
+      "level": "opportunity",
+      "tag": "Дедлайн",
+      "text": "«Клиент 2» через 4 нед → продавать Экологическая отчётность сейчас."
+    }
+  ],
+  "head_urgent": [
+    "Продавать под дедлайн «Клиент 2» (через 4 нед): Экологическая отчётность.",
+    "Закрыть дефицит 1 390 961 ₽ до нуля — направление в операционном минусе."
+  ],
+  "action_pipeline": [
+    {
+      "action": "Добрать контрактацию +1 633 775 ₽ до конца квартала",
+      "owner": "РОП",
+      "deadline": "30.06.2026",
+      "effect": "закрыть разрыв плана, выйти из минуса",
+      "basis": "контрактация 61% плана"
+    },
+    {
+      "action": "Продавать Экологическая отчётность под дедлайн «Клиент 2»",
+      "owner": "РОП",
+      "deadline": "2026-07-20",
+      "effect": "выручка под пиковый регуляторный спрос",
+      "basis": "дедлайн через 4 нед (радар)"
+    },
+    {
+      "action": "Добрать выручку под дефицит 1 390 961 ₽ до нуля",
+      "owner": "РОП",
+      "deadline": "30.06.2026",
+      "effect": "выход направления в безубыток",
+      "basis": "финрез -1 390 961 ₽"
+    }
+  ],
+  "analysis": {}
+}

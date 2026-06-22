@@ -1,0 +1,442 @@
+{
+  "meta": {
+    "slug": "uc",
+    "department": "Учебный центр",
+    "title": "Учебный центр",
+    "company": "ООО «ПримерСерт» (демо)",
+    "generated_by": "findir unified engine (build_dept)",
+    "source_file": "training_center_q2_2026_0619.xlsx",
+    "note": "Числа считает движок; рендереры и LLM читают только этот контракт."
+  },
+  "diagnosis": {
+    "period": "Q2 2026",
+    "control_date": "2026-06-19",
+    "finrez": -875265,
+    "revenue_acts": 2088857,
+    "expenses": 2964122,
+    "deficit_to_zero": 875265,
+    "contract_plan": 3506661,
+    "contract_fact": 2571344,
+    "contract_pct": 0.733,
+    "act_plan": 2878591,
+    "act_forecast": 0
+  },
+  "calibration": {
+    "Соколов": {
+      "plan": 724137,
+      "fact": 448601,
+      "forecast": 0,
+      "attainment": 0.619,
+      "forecast_realism": null,
+      "reliability": "—",
+      "deals": 7,
+      "avg_check": 64086
+    },
+    "Зимин": {
+      "plan": 446850,
+      "fact": 379656,
+      "forecast": 0,
+      "attainment": 0.85,
+      "forecast_realism": null,
+      "reliability": "—",
+      "deals": 7,
+      "avg_check": 54237
+    },
+    "Орлова": {
+      "plan": 737372,
+      "fact": 700602,
+      "forecast": 0,
+      "attainment": 0.95,
+      "forecast_realism": null,
+      "reliability": "—",
+      "deals": 4,
+      "avg_check": 175150
+    }
+  },
+  "seasonality": {
+    "products": [
+      {
+        "name": "Повышение квалификации",
+        "strength": "нет",
+        "quarters": [],
+        "raw": "Не выражена",
+        "cycle": "1–2 недели",
+        "avg_check": 35000
+      },
+      {
+        "name": "Корпоративное обучение",
+        "strength": "слабая",
+        "quarters": [
+          "Q4"
+        ],
+        "raw": "Слабая (осень)",
+        "cycle": "1–3 месяца",
+        "avg_check": 215000
+      }
+    ],
+    "q2_push": []
+  },
+  "waterfall": {
+    "finrez_bridge": {
+      "start": {
+        "label": "финрез при плановых актах",
+        "value": -85531
+      },
+      "steps": [
+        {
+          "label": "акты апрель",
+          "delta": -156041,
+          "note": null
+        },
+        {
+          "label": "акты май",
+          "delta": -464475,
+          "note": null
+        },
+        {
+          "label": "акты июнь",
+          "delta": -169218,
+          "note": "месяц открыт; прогноз актов 0 ₽"
+        }
+      ],
+      "end": {
+        "label": "финрез факт",
+        "value": -875265
+      },
+      "reading": "При плановом актировании квартал был бы -85 531 ₽; весь минус — недобор актов."
+    },
+    "contract_bridge": {
+      "plan": 3506661,
+      "fact": 2571344,
+      "delta": -935317,
+      "by_manager": [
+        {
+          "manager": "Соколов",
+          "plan": 954030,
+          "fact": 617390,
+          "delta": -336640
+        },
+        {
+          "manager": "Зимин",
+          "plan": 886245,
+          "fact": 903717,
+          "delta": 17472
+        },
+        {
+          "manager": "Орлова",
+          "plan": 1031064,
+          "fact": 1077655,
+          "delta": 46591
+        }
+      ]
+    }
+  },
+  "executors": [
+    {
+      "executor": "Тихонова",
+      "act_plan": 1417237,
+      "act_fact": 943716,
+      "acts_count": 21,
+      "portfolio": 708618,
+      "attainment": 0.666
+    },
+    {
+      "executor": "Зорин",
+      "act_plan": 953064,
+      "act_fact": 942063,
+      "acts_count": 34,
+      "portfolio": 476532,
+      "attainment": 0.988
+    }
+  ],
+  "radar": {
+    "source": "—",
+    "push_now": [],
+    "product_gaps": []
+  },
+  "smart_control": {
+    "as_of": null,
+    "rows": [
+      {
+        "week": null,
+        "manager": "Соколов",
+        "initiative": "Партнёрская программа с дистрибьютором",
+        "status": null,
+        "expected": 537564.0,
+        "score": 20,
+        "verdict": "тема, не действие",
+        "checks": {
+          "verb": {
+            "ok": false,
+            "label": "глагол действия",
+            "note": "это тема, а не действие — что именно сделать?"
+          },
+          "expected": {
+            "ok": true,
+            "label": "ожидаемый ₽",
+            "note": null
+          },
+          "due": {
+            "ok": false,
+            "label": "срок",
+            "note": "к какой неделе результат?"
+          },
+          "product": {
+            "ok": false,
+            "inferred": false,
+            "value": null,
+            "label": "продукт",
+            "note": "к какому продукту относится?"
+          },
+          "client": {
+            "ok": false,
+            "inferred": false,
+            "value": null,
+            "label": "клиент/сделка",
+            "note": "по какому клиенту/сделке?"
+          },
+          "lever": {
+            "ok": false,
+            "label": "рычаг",
+            "note": "за счёт чего (звонки/тендер/партнёр)?"
+          },
+          "grounding": {
+            "ok": null,
+            "label": "реалистичность",
+            "note": "не оценить: нет среднего чека/продукта",
+            "kp_need": null,
+            "kp_have": null,
+            "avg_check": null
+          }
+        },
+        "rewrite": "⟨действие: что сделать по «Партнёрская программа с дистрибьютором»?⟩ · ⟨продукт?⟩ · ⟨клиент/список?⟩ → 537 564 ₽ до ⟨срок: неделя?⟩"
+      },
+      {
+        "week": null,
+        "manager": "Зимин",
+        "initiative": "Партнёрская программа с дистрибьютором",
+        "status": null,
+        "expected": 429915.0,
+        "score": 20,
+        "verdict": "тема, не действие",
+        "checks": {
+          "verb": {
+            "ok": false,
+            "label": "глагол действия",
+            "note": "это тема, а не действие — что именно сделать?"
+          },
+          "expected": {
+            "ok": true,
+            "label": "ожидаемый ₽",
+            "note": null
+          },
+          "due": {
+            "ok": false,
+            "label": "срок",
+            "note": "к какой неделе результат?"
+          },
+          "product": {
+            "ok": false,
+            "inferred": false,
+            "value": null,
+            "label": "продукт",
+            "note": "к какому продукту относится?"
+          },
+          "client": {
+            "ok": false,
+            "inferred": false,
+            "value": null,
+            "label": "клиент/сделка",
+            "note": "по какому клиенту/сделке?"
+          },
+          "lever": {
+            "ok": false,
+            "label": "рычаг",
+            "note": "за счёт чего (звонки/тендер/партнёр)?"
+          },
+          "grounding": {
+            "ok": null,
+            "label": "реалистичность",
+            "note": "не оценить: нет среднего чека/продукта",
+            "kp_need": null,
+            "kp_have": null,
+            "avg_check": null
+          }
+        },
+        "rewrite": "⟨действие: что сделать по «Партнёрская программа с дистрибьютором»?⟩ · ⟨продукт?⟩ · ⟨клиент/список?⟩ → 429 915 ₽ до ⟨срок: неделя?⟩"
+      },
+      {
+        "week": null,
+        "manager": "Орлова",
+        "initiative": "Заключение договора с новым клиентом",
+        "status": null,
+        "expected": 349586.0,
+        "score": 40,
+        "verdict": "слабое действие",
+        "checks": {
+          "verb": {
+            "ok": true,
+            "label": "глагол действия",
+            "note": null
+          },
+          "expected": {
+            "ok": true,
+            "label": "ожидаемый ₽",
+            "note": null
+          },
+          "due": {
+            "ok": false,
+            "label": "срок",
+            "note": "к какой неделе результат?"
+          },
+          "product": {
+            "ok": false,
+            "inferred": false,
+            "value": null,
+            "label": "продукт",
+            "note": "к какому продукту относится?"
+          },
+          "client": {
+            "ok": false,
+            "inferred": false,
+            "value": null,
+            "label": "клиент/сделка",
+            "note": "по какому клиенту/сделке?"
+          },
+          "lever": {
+            "ok": false,
+            "label": "рычаг",
+            "note": "за счёт чего (звонки/тендер/партнёр)?"
+          },
+          "grounding": {
+            "ok": null,
+            "label": "реалистичность",
+            "note": "не оценить: нет среднего чека/продукта",
+            "kp_need": null,
+            "kp_have": null,
+            "avg_check": null
+          }
+        },
+        "rewrite": "Заключение договора с новым клиентом · ⟨продукт?⟩ · ⟨клиент/список?⟩ → 349 586 ₽ до ⟨срок: неделя?⟩"
+      }
+    ],
+    "funnel_week": {
+      "rows": 0,
+      "filled": 0,
+      "ok": [],
+      "note": "воронка недели пуста у 0 из 0 менеджеров — обещания не проверяемы"
+    },
+    "summary": {
+      "total": 3,
+      "avg_score": 27,
+      "ok": 0,
+      "rework": 1,
+      "trash": 2
+    }
+  },
+  "commitments": [
+    {
+      "manager": "Соколов",
+      "initiative": "Партнёрская программа с дистрибьютором",
+      "expected": 537564,
+      "fact": 0,
+      "avg_check": null,
+      "kp_need": null,
+      "kp_have": null,
+      "verdict": "в работе",
+      "week": null,
+      "closed": false
+    },
+    {
+      "manager": "Зимин",
+      "initiative": "Партнёрская программа с дистрибьютором",
+      "expected": 429915,
+      "fact": 0,
+      "avg_check": null,
+      "kp_need": null,
+      "kp_have": null,
+      "verdict": "в работе",
+      "week": null,
+      "closed": false
+    },
+    {
+      "manager": "Орлова",
+      "initiative": "Заключение договора с новым клиентом",
+      "expected": 349586,
+      "fact": 0,
+      "avg_check": null,
+      "kp_need": null,
+      "kp_have": null,
+      "verdict": "в работе",
+      "week": null,
+      "closed": false
+    }
+  ],
+  "commitments_kind": "fact",
+  "competitors": {
+    "top_rivals": [
+      {
+        "name": "Конкурент Ж",
+        "appears": 2,
+        "note": ""
+      },
+      {
+        "name": "Конкурент Е",
+        "appears": 1,
+        "note": ""
+      }
+    ],
+    "by_product": [
+      {
+        "product": "Повышение квалификации",
+        "avg_check": "25 000 – 45 000",
+        "competitors": [
+          "Конкурент Е",
+          "Конкурент Ж"
+        ]
+      },
+      {
+        "product": "Корпоративное обучение",
+        "avg_check": "80 000 – 350 000",
+        "competitors": [
+          "Конкурент Ж"
+        ]
+      }
+    ],
+    "our_edge": null,
+    "our_gap": null,
+    "channels": null
+  },
+  "alerts": [
+    {
+      "level": "critical",
+      "tag": "Финрез",
+      "text": "Квартал убыточный: операционный финрез -875 265 ₽, до нуля не хватает выручки 875 265 ₽."
+    },
+    {
+      "level": "warn",
+      "tag": "План",
+      "text": "Недобор плана: Соколов — выполнение от 62%. Пересмотреть план/ресурсы."
+    }
+  ],
+  "head_urgent": [
+    "Закрыть дефицит 875 265 ₽ до нуля — направление в операционном минусе."
+  ],
+  "action_pipeline": [
+    {
+      "action": "Добрать контрактацию +935 317 ₽ до конца квартала",
+      "owner": "РОП",
+      "deadline": "30.06.2026",
+      "effect": "закрыть разрыв плана, выйти из минуса",
+      "basis": "контрактация 73% плана"
+    },
+    {
+      "action": "Добрать выручку под дефицит 875 265 ₽ до нуля",
+      "owner": "РОП",
+      "deadline": "30.06.2026",
+      "effect": "выход направления в безубыток",
+      "basis": "финрез -875 265 ₽"
+    }
+  ],
+  "analysis": {}
+}

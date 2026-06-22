@@ -1,0 +1,435 @@
+{
+  "meta": {
+    "slug": "smk",
+    "department": "Сертификация СМК (ОССМ)",
+    "title": "Сертификация СМК",
+    "company": "ООО «ПримерСерт» (демо)",
+    "generated_by": "findir unified engine (build_dept)",
+    "source_file": "qms_q2_2026_0619.xlsx",
+    "note": "Числа считает движок; рендереры и LLM читают только этот контракт."
+  },
+  "diagnosis": {
+    "period": "Q2 2026",
+    "control_date": "2026-06-19",
+    "finrez": -2739694,
+    "revenue_acts": 3150312,
+    "expenses": 5890006,
+    "deficit_to_zero": 2739694,
+    "contract_plan": 5667873,
+    "contract_fact": 3830262,
+    "contract_pct": 0.676,
+    "act_plan": 5626411,
+    "act_forecast": 0
+  },
+  "calibration": {
+    "Зимин": {
+      "plan": 1069274,
+      "fact": 1092220,
+      "forecast": 0,
+      "attainment": 1.021,
+      "forecast_realism": null,
+      "reliability": "—",
+      "deals": 7,
+      "avg_check": 156031
+    },
+    "Лебедев": {
+      "plan": 1434516,
+      "fact": 1073771,
+      "forecast": 0,
+      "attainment": 0.749,
+      "forecast_realism": null,
+      "reliability": "—",
+      "deals": 7,
+      "avg_check": 153396
+    },
+    "Соколов": {
+      "plan": 1065660,
+      "fact": 915294,
+      "forecast": 0,
+      "attainment": 0.859,
+      "forecast_realism": null,
+      "reliability": "—",
+      "deals": 5,
+      "avg_check": 183059
+    }
+  },
+  "seasonality": {
+    "products": [
+      {
+        "name": "Сертификация ISO 9001",
+        "strength": "нет",
+        "quarters": [],
+        "raw": "Не выражена",
+        "cycle": "1–3 месяца",
+        "avg_check": 325000
+      },
+      {
+        "name": "Консалтинг и аудит СМ",
+        "strength": "слабая",
+        "quarters": [],
+        "raw": "Слабая",
+        "cycle": "3–8 месяцев",
+        "avg_check": 650000
+      }
+    ],
+    "q2_push": []
+  },
+  "waterfall": {
+    "finrez_bridge": {
+      "start": {
+        "label": "финрез при плановых актах",
+        "value": -263595
+      },
+      "steps": [
+        {
+          "label": "акты апрель",
+          "delta": -779431,
+          "note": null
+        },
+        {
+          "label": "акты май",
+          "delta": -721750,
+          "note": null
+        },
+        {
+          "label": "акты июнь",
+          "delta": -974918,
+          "note": "месяц открыт; прогноз актов 0 ₽"
+        }
+      ],
+      "end": {
+        "label": "финрез факт",
+        "value": -2739694
+      },
+      "reading": "При плановом актировании квартал был бы -263 595 ₽; весь минус — недобор актов."
+    },
+    "contract_bridge": {
+      "plan": 5667873,
+      "fact": 3830262,
+      "delta": -1837611,
+      "by_manager": [
+        {
+          "manager": "Лебедев",
+          "plan": 2068789,
+          "fact": 1390643,
+          "delta": -678146
+        },
+        {
+          "manager": "Соколов",
+          "plan": 1511506,
+          "fact": 1172622,
+          "delta": -338884
+        },
+        {
+          "manager": "Зимин",
+          "plan": 1544730,
+          "fact": 1652632,
+          "delta": 107902
+        }
+      ]
+    }
+  },
+  "executors": [
+    {
+      "executor": "Тихонова",
+      "act_plan": 1785789,
+      "act_fact": 1333999,
+      "acts_count": 11,
+      "portfolio": 892894,
+      "attainment": 0.747
+    },
+    {
+      "executor": "Ковалёв",
+      "act_plan": 2070007,
+      "act_fact": 1119536,
+      "acts_count": 27,
+      "portfolio": 1035004,
+      "attainment": 0.541
+    }
+  ],
+  "radar": {
+    "source": "—",
+    "push_now": [],
+    "product_gaps": []
+  },
+  "smart_control": {
+    "as_of": null,
+    "rows": [
+      {
+        "week": null,
+        "manager": "Зимин",
+        "initiative": "Заключение договора с новым клиентом",
+        "status": null,
+        "expected": 750105.0,
+        "score": 40,
+        "verdict": "слабое действие",
+        "checks": {
+          "verb": {
+            "ok": true,
+            "label": "глагол действия",
+            "note": null
+          },
+          "expected": {
+            "ok": true,
+            "label": "ожидаемый ₽",
+            "note": null
+          },
+          "due": {
+            "ok": false,
+            "label": "срок",
+            "note": "к какой неделе результат?"
+          },
+          "product": {
+            "ok": false,
+            "inferred": false,
+            "value": null,
+            "label": "продукт",
+            "note": "к какому продукту относится?"
+          },
+          "client": {
+            "ok": false,
+            "inferred": false,
+            "value": null,
+            "label": "клиент/сделка",
+            "note": "по какому клиенту/сделке?"
+          },
+          "lever": {
+            "ok": false,
+            "label": "рычаг",
+            "note": "за счёт чего (звонки/тендер/партнёр)?"
+          },
+          "grounding": {
+            "ok": null,
+            "label": "реалистичность",
+            "note": "не оценить: нет среднего чека/продукта",
+            "kp_need": null,
+            "kp_have": null,
+            "avg_check": null
+          }
+        },
+        "rewrite": "Заключение договора с новым клиентом · ⟨продукт?⟩ · ⟨клиент/список?⟩ → 750 105 ₽ до ⟨срок: неделя?⟩"
+      },
+      {
+        "week": null,
+        "manager": "Лебедев",
+        "initiative": "Допродажа сопровождения базе",
+        "status": null,
+        "expected": 778532.0,
+        "score": 40,
+        "verdict": "слабое действие",
+        "checks": {
+          "verb": {
+            "ok": true,
+            "label": "глагол действия",
+            "note": null
+          },
+          "expected": {
+            "ok": true,
+            "label": "ожидаемый ₽",
+            "note": null
+          },
+          "due": {
+            "ok": false,
+            "label": "срок",
+            "note": "к какой неделе результат?"
+          },
+          "product": {
+            "ok": false,
+            "inferred": false,
+            "value": null,
+            "label": "продукт",
+            "note": "к какому продукту относится?"
+          },
+          "client": {
+            "ok": false,
+            "inferred": false,
+            "value": null,
+            "label": "клиент/сделка",
+            "note": "по какому клиенту/сделке?"
+          },
+          "lever": {
+            "ok": false,
+            "label": "рычаг",
+            "note": "за счёт чего (звонки/тендер/партнёр)?"
+          },
+          "grounding": {
+            "ok": null,
+            "label": "реалистичность",
+            "note": "не оценить: нет среднего чека/продукта",
+            "kp_need": null,
+            "kp_have": null,
+            "avg_check": null
+          }
+        },
+        "rewrite": "Допродажа сопровождения базе · ⟨продукт?⟩ · ⟨клиент/список?⟩ → 778 532 ₽ до ⟨срок: неделя?⟩"
+      },
+      {
+        "week": null,
+        "manager": "Соколов",
+        "initiative": "Заключение договора с новым клиентом",
+        "status": null,
+        "expected": 660936.0,
+        "score": 40,
+        "verdict": "слабое действие",
+        "checks": {
+          "verb": {
+            "ok": true,
+            "label": "глагол действия",
+            "note": null
+          },
+          "expected": {
+            "ok": true,
+            "label": "ожидаемый ₽",
+            "note": null
+          },
+          "due": {
+            "ok": false,
+            "label": "срок",
+            "note": "к какой неделе результат?"
+          },
+          "product": {
+            "ok": false,
+            "inferred": false,
+            "value": null,
+            "label": "продукт",
+            "note": "к какому продукту относится?"
+          },
+          "client": {
+            "ok": false,
+            "inferred": false,
+            "value": null,
+            "label": "клиент/сделка",
+            "note": "по какому клиенту/сделке?"
+          },
+          "lever": {
+            "ok": false,
+            "label": "рычаг",
+            "note": "за счёт чего (звонки/тендер/партнёр)?"
+          },
+          "grounding": {
+            "ok": null,
+            "label": "реалистичность",
+            "note": "не оценить: нет среднего чека/продукта",
+            "kp_need": null,
+            "kp_have": null,
+            "avg_check": null
+          }
+        },
+        "rewrite": "Заключение договора с новым клиентом · ⟨продукт?⟩ · ⟨клиент/список?⟩ → 660 936 ₽ до ⟨срок: неделя?⟩"
+      }
+    ],
+    "funnel_week": {
+      "rows": 0,
+      "filled": 0,
+      "ok": [],
+      "note": "воронка недели пуста у 0 из 0 менеджеров — обещания не проверяемы"
+    },
+    "summary": {
+      "total": 3,
+      "avg_score": 40,
+      "ok": 0,
+      "rework": 3,
+      "trash": 0
+    }
+  },
+  "commitments": [
+    {
+      "manager": "Зимин",
+      "initiative": "Заключение договора с новым клиентом",
+      "expected": 750105,
+      "fact": 0,
+      "avg_check": null,
+      "kp_need": null,
+      "kp_have": null,
+      "verdict": "в работе",
+      "week": null,
+      "closed": false
+    },
+    {
+      "manager": "Лебедев",
+      "initiative": "Допродажа сопровождения базе",
+      "expected": 778532,
+      "fact": 0,
+      "avg_check": null,
+      "kp_need": null,
+      "kp_have": null,
+      "verdict": "в работе",
+      "week": null,
+      "closed": false
+    },
+    {
+      "manager": "Соколов",
+      "initiative": "Заключение договора с новым клиентом",
+      "expected": 660936,
+      "fact": 0,
+      "avg_check": null,
+      "kp_need": null,
+      "kp_have": null,
+      "verdict": "в работе",
+      "week": null,
+      "closed": false
+    }
+  ],
+  "commitments_kind": "fact",
+  "competitors": {
+    "top_rivals": [
+      {
+        "name": "Конкурент З",
+        "appears": 2,
+        "note": ""
+      },
+      {
+        "name": "Конкурент И",
+        "appears": 1,
+        "note": ""
+      }
+    ],
+    "by_product": [
+      {
+        "product": "Сертификация ISO 9001",
+        "avg_check": "150 000 – 500 000",
+        "competitors": [
+          "Конкурент З",
+          "Конкурент И"
+        ]
+      },
+      {
+        "product": "Консалтинг и аудит СМ",
+        "avg_check": "450 000 – 850 000",
+        "competitors": [
+          "Конкурент З"
+        ]
+      }
+    ],
+    "our_edge": null,
+    "our_gap": null,
+    "channels": null
+  },
+  "alerts": [
+    {
+      "level": "critical",
+      "tag": "Финрез",
+      "text": "Квартал убыточный: операционный финрез -2 739 694 ₽, до нуля не хватает выручки 2 739 694 ₽."
+    }
+  ],
+  "head_urgent": [
+    "Закрыть дефицит 2 739 694 ₽ до нуля — направление в операционном минусе."
+  ],
+  "action_pipeline": [
+    {
+      "action": "Добрать контрактацию +1 837 611 ₽ до конца квартала",
+      "owner": "РОП",
+      "deadline": "30.06.2026",
+      "effect": "закрыть разрыв плана, выйти из минуса",
+      "basis": "контрактация 68% плана"
+    },
+    {
+      "action": "Добрать выручку под дефицит 2 739 694 ₽ до нуля",
+      "owner": "РОП",
+      "deadline": "30.06.2026",
+      "effect": "выход направления в безубыток",
+      "basis": "финрез -2 739 694 ₽"
+    }
+  ],
+  "analysis": {}
+}

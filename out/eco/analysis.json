@@ -1,0 +1,329 @@
+{
+  "meta": {
+    "slug": "eco",
+    "department": "Экологические услуги",
+    "title": "Экология",
+    "company": "ООО «ПримерСерт» (демо)",
+    "generated_by": "findir unified engine (build_dept)",
+    "source_file": "ecology_q2_2026_0619.xlsx",
+    "note": "Числа считает движок; рендереры и LLM читают только этот контракт."
+  },
+  "diagnosis": {
+    "period": "Q2 2026",
+    "control_date": "2026-06-19",
+    "finrez": -1655906,
+    "revenue_acts": 3670222,
+    "expenses": 5326128,
+    "deficit_to_zero": 1655906,
+    "contract_plan": 4956928,
+    "contract_fact": 3011958,
+    "contract_pct": 0.608,
+    "act_plan": 5172526,
+    "act_forecast": 0
+  },
+  "calibration": {
+    "Соколов": {
+      "plan": 1113170,
+      "fact": 913278,
+      "forecast": 0,
+      "attainment": 0.82,
+      "forecast_realism": null,
+      "reliability": "—",
+      "deals": 8,
+      "avg_check": 114160
+    },
+    "Орлова": {
+      "plan": 1308319,
+      "fact": 622681,
+      "forecast": 0,
+      "attainment": 0.476,
+      "forecast_realism": null,
+      "reliability": "—",
+      "deals": 5,
+      "avg_check": 124536
+    },
+    "Зимин": {
+      "plan": 829364,
+      "fact": 468803,
+      "forecast": 0,
+      "attainment": 0.565,
+      "forecast_realism": null,
+      "reliability": "—",
+      "deals": 9,
+      "avg_check": 52089
+    }
+  },
+  "seasonality": {
+    "products": [
+      {
+        "name": "Экологический аудит",
+        "strength": "нет",
+        "quarters": [],
+        "raw": "Нет",
+        "cycle": "2 нед – 3 мес",
+        "avg_check": 160000
+      },
+      {
+        "name": "Экологическая отчётность",
+        "strength": "сильная",
+        "quarters": [
+          "Q2",
+          "Q3"
+        ],
+        "raw": "Сильная (апрель, июль)",
+        "cycle": "2–4 недели",
+        "avg_check": 27000
+      },
+      {
+        "name": "ПЭК",
+        "strength": "нет",
+        "quarters": [],
+        "raw": "Нет",
+        "cycle": "2–6 недель",
+        "avg_check": 47500
+      }
+    ],
+    "q2_push": [
+      {
+        "name": "Экологическая отчётность",
+        "strength": "сильная",
+        "quarters": [
+          "Q2",
+          "Q3"
+        ],
+        "raw": "Сильная (апрель, июль)",
+        "cycle": "2–4 недели",
+        "avg_check": 27000
+      }
+    ]
+  },
+  "waterfall": {
+    "finrez_bridge": {
+      "start": {
+        "label": "финрез при плановых актах",
+        "value": -153602
+      },
+      "steps": [
+        {
+          "label": "акты апрель",
+          "delta": -612071,
+          "note": null
+        },
+        {
+          "label": "акты май",
+          "delta": -573278,
+          "note": null
+        },
+        {
+          "label": "акты июнь",
+          "delta": -316955,
+          "note": "месяц открыт; прогноз актов 0 ₽"
+        }
+      ],
+      "end": {
+        "label": "финрез факт",
+        "value": -1655906
+      },
+      "reading": "При плановом актировании квартал был бы -153 602 ₽; весь минус — недобор актов."
+    },
+    "contract_bridge": {
+      "plan": 4956928,
+      "fact": 3011958,
+      "delta": -1944970,
+      "by_manager": [
+        {
+          "manager": "Орлова",
+          "plan": 1704463,
+          "fact": 732219,
+          "delta": -972244
+        },
+        {
+          "manager": "Зимин",
+          "plan": 1243313,
+          "fact": 683364,
+          "delta": -559949
+        },
+        {
+          "manager": "Соколов",
+          "plan": 1722430,
+          "fact": 1612634,
+          "delta": -109796
+        }
+      ]
+    }
+  },
+  "executors": [
+    {
+      "executor": "Тихонова",
+      "act_plan": 2013552,
+      "act_fact": 1411052,
+      "acts_count": 22,
+      "portfolio": 1006777,
+      "attainment": 0.701
+    },
+    {
+      "executor": "Ковалёв",
+      "act_plan": 1771598,
+      "act_fact": 1362434,
+      "acts_count": 23,
+      "portfolio": 885799,
+      "attainment": 0.769
+    }
+  ],
+  "funnel": {
+    "Соколов": {
+      "calls_fact": 0,
+      "kp_fact": 48,
+      "deals": 13,
+      "contract_fact": 1612634,
+      "avg_check": 124049,
+      "conv_call_kp": null,
+      "conv_kp_deal": 0.271
+    },
+    "Орлова": {
+      "calls_fact": 0,
+      "kp_fact": 34,
+      "deals": 11,
+      "contract_fact": 732219,
+      "avg_check": 66565,
+      "conv_call_kp": null,
+      "conv_kp_deal": 0.324
+    },
+    "Зимин": {
+      "calls_fact": 0,
+      "kp_fact": 44,
+      "deals": 10,
+      "contract_fact": 683364,
+      "avg_check": 68336,
+      "conv_call_kp": null,
+      "conv_kp_deal": 0.227
+    }
+  },
+  "radar": {
+    "source": "seed (доменные знания, офлайн)",
+    "push_now": [
+      {
+        "title": "Плата за НВОС — квартальные авансы",
+        "obligation": "Внести авансовый платёж за НВОС за квартал",
+        "deadline": "2026-07-20",
+        "weeks": 4,
+        "products": [
+          "Экологическая отчётность"
+        ],
+        "source": "ст.16.4 ФЗ-7; авансы до 20 числа след. за кварталом месяца"
+      }
+    ],
+    "product_gaps": [
+      {
+        "title": "РОП / утилизационный сбор (отчётность)",
+        "obligation": "Отчитаться по нормативам утилизации и уплатить утильсбор",
+        "deadline": "2027-04-15",
+        "weeks": 42,
+        "products": [],
+        "source": "реформа РОП 2024–2025; ежегодная отчётность производителей/импортёров"
+      },
+      {
+        "title": "Углеродная отчётность (296-ФЗ)",
+        "obligation": "Сдать годовой отчёт о выбросах парниковых газов (регулируемые лица)",
+        "deadline": "2026-07-01",
+        "weeks": 1,
+        "products": [],
+        "source": "296-ФЗ; порог >150 тыс. т CO2-экв (далее >50 тыс.), до 1 июля"
+      }
+    ]
+  },
+  "commitments": [],
+  "commitments_kind": "grounding",
+  "competitors": {
+    "top_rivals": [
+      {
+        "name": "Конкурент А",
+        "appears": 2,
+        "note": ""
+      },
+      {
+        "name": "Конкурент Б",
+        "appears": 2,
+        "note": ""
+      },
+      {
+        "name": "Конкурент В",
+        "appears": 1,
+        "note": ""
+      }
+    ],
+    "by_product": [
+      {
+        "product": "Экологический аудит",
+        "avg_check": "20 000 – 300 000",
+        "competitors": [
+          "Конкурент А",
+          "Конкурент Б"
+        ]
+      },
+      {
+        "product": "Экологическая отчётность",
+        "avg_check": "4 000 – 50 000",
+        "competitors": [
+          "Конкурент А",
+          "Конкурент В"
+        ]
+      },
+      {
+        "product": "ПЭК",
+        "avg_check": "20 000 – 75 000",
+        "competitors": [
+          "Конкурент Б"
+        ]
+      }
+    ],
+    "our_edge": null,
+    "our_gap": null,
+    "channels": null
+  },
+  "alerts": [
+    {
+      "level": "critical",
+      "tag": "Финрез",
+      "text": "Квартал убыточный: операционный финрез -1 655 906 ₽, до нуля не хватает выручки 1 655 906 ₽."
+    },
+    {
+      "level": "warn",
+      "tag": "План",
+      "text": "Недобор плана: Орлова, Зимин — выполнение от 48%. Пересмотреть план/ресурсы."
+    },
+    {
+      "level": "opportunity",
+      "tag": "Дедлайн",
+      "text": "«Плата за НВОС — квартальные авансы» через 4 нед → продавать Экологическая отчётность сейчас."
+    }
+  ],
+  "head_urgent": [
+    "Продавать под дедлайн «Плата за НВОС — квартальные авансы» (через 4 нед): Экологическая отчётность.",
+    "Закрыть дефицит 1 655 906 ₽ до нуля — направление в операционном минусе."
+  ],
+  "action_pipeline": [
+    {
+      "action": "Добрать контрактацию +1 944 970 ₽ до конца квартала",
+      "owner": "РОП",
+      "deadline": "30.06.2026",
+      "effect": "закрыть разрыв плана, выйти из минуса",
+      "basis": "контрактация 61% плана"
+    },
+    {
+      "action": "Продавать Экологическая отчётность под дедлайн «Плата за НВОС — квартальные авансы»",
+      "owner": "РОП",
+      "deadline": "2026-07-20",
+      "effect": "выручка под пиковый регуляторный спрос",
+      "basis": "дедлайн через 4 нед (радар)"
+    },
+    {
+      "action": "Добрать выручку под дефицит 1 655 906 ₽ до нуля",
+      "owner": "РОП",
+      "deadline": "30.06.2026",
+      "effect": "выход направления в безубыток",
+      "basis": "финрез -1 655 906 ₽"
+    }
+  ],
+  "analysis": {}
+}

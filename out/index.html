@@ -1,0 +1,199 @@
+<!DOCTYPE html><html lang="ru"><head><meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>AI-Findir · отделы Q2 2026</title><style>
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+:root{--ink:#15151a;--mut:#6e6e78;--paper:#faf9f7;--card:#ffffff;--line:#e8e7e2;
+--crimson:#d12b3b;--amber:#df9426;--green:#2e9e5b;--indigo:#3b4cc0;--slate:#3d4654;
+--display:Georgia,'Times New Roman',serif;--body:'Segoe UI',system-ui,-apple-system,sans-serif;--mono:'Cascadia Mono','Consolas',monospace}
+html{scroll-behavior:smooth}
+body{font-family:var(--body);background:var(--paper);color:var(--ink);line-height:1.55;-webkit-font-smoothing:antialiased}
+.wrap{max-width:1120px;margin:0 auto;padding:0 30px 70px}
+
+/* шапка */
+.top{display:flex;justify-content:space-between;align-items:flex-end;padding:26px 0 18px;border-bottom:2px solid var(--ink);margin-bottom:0}
+.brand{font-size:12px;font-weight:700;letter-spacing:.14em;text-transform:uppercase;color:var(--mut)}
+.brand b{color:var(--crimson)}
+.h1{font-family:var(--display);font-size:30px;font-weight:700;letter-spacing:-.01em;margin-top:6px}
+.top-meta{font-size:11.5px;color:var(--mut);text-align:right;font-family:var(--mono);line-height:1.7}
+
+/* навигация-повестка */
+.nav{position:sticky;top:0;z-index:50;background:color-mix(in srgb,var(--paper) 92%,transparent);
+backdrop-filter:blur(6px);border-bottom:1px solid var(--line);margin:0 -30px;padding:8px 30px;
+display:flex;gap:4px;overflow-x:auto;scrollbar-width:none}
+.nav a{font-size:11px;font-weight:600;color:var(--mut);text-decoration:none;padding:5px 10px;
+border-radius:999px;white-space:nowrap;font-family:var(--mono)}
+.nav a:hover{background:#efeeea;color:var(--ink)}
+.nav a.hot{color:var(--crimson)}
+
+/* герой-тезис */
+.hero2{display:grid;grid-template-columns:330px 1fr;gap:0;border:1px solid var(--line);
+border-radius:16px;background:var(--card);margin-top:24px;overflow:hidden;box-shadow:0 1px 3px rgba(20,20,26,.05)}
+.hero2 .left{padding:26px 28px;border-right:1px solid var(--line);display:flex;flex-direction:column;justify-content:center}
+.hero2 .lbl{font-size:11px;text-transform:uppercase;letter-spacing:.1em;color:var(--mut);font-weight:700}
+.hero2 .big{font-family:var(--display);font-size:46px;font-weight:700;color:var(--crimson);line-height:1.05;margin:8px 0 4px;letter-spacing:-.02em}
+.hero2 .sub{font-size:13px;color:var(--mut)}
+.hero2 .kpis{display:flex;gap:22px;margin-top:20px;padding-top:16px;border-top:1px solid var(--line)}
+.hero2 .kpis .k .v{font-family:var(--mono);font-size:14.5px;font-weight:700;white-space:nowrap}
+.hero2 .kpis .k .l{font-size:10.5px;color:var(--mut);text-transform:uppercase;letter-spacing:.05em}
+.hero2 .right{padding:14px 18px 6px}
+.hero2 .right .cap{font-size:11px;color:var(--mut);font-family:var(--mono);padding:4px 6px 0}
+
+/* секции */
+.sec{margin:40px 0}
+.eyebrow{font-size:11px;font-weight:700;letter-spacing:.16em;text-transform:uppercase;color:var(--crimson);font-family:var(--mono)}
+.sec h2{font-family:var(--display);font-size:23px;font-weight:700;margin:6px 0 6px;letter-spacing:-.01em}
+.sec .lead{font-size:13.5px;color:var(--mut);margin-bottom:18px;max-width:720px}
+.card{background:var(--card);border:1px solid var(--line);border-radius:14px;padding:20px 24px;box-shadow:0 1px 2px rgba(20,20,26,.04)}
+
+/* алерты */
+.alertband{border:1px solid var(--line);border-radius:14px;overflow:hidden;box-shadow:0 1px 2px rgba(20,20,26,.04);margin-top:18px}
+.alert{display:flex;gap:12px;align-items:flex-start;padding:12px 18px;border-bottom:1px solid #f1f0ec;font-size:13.5px;background:var(--card)}
+.alert:last-child{border-bottom:none}
+.alert .atag{font-size:10px;font-weight:700;text-transform:uppercase;letter-spacing:.05em;padding:3px 8px;border-radius:6px;flex:none;margin-top:1px;font-family:var(--mono)}
+.alert.critical{border-left:4px solid var(--crimson)}.alert.critical .atag{background:#fbe9eb;color:var(--crimson)}
+.alert.warn{border-left:4px solid var(--amber)}.alert.warn .atag{background:#fcf1e0;color:#9a6512}
+.alert.opportunity{border-left:4px solid var(--green)}.alert.opportunity .atag{background:#e6f4ec;color:#1e6e40}
+
+/* срочно */
+.urgent{background:var(--card);border:1px solid var(--line);border-left:5px solid var(--crimson);border-radius:14px;padding:18px 24px;box-shadow:0 1px 2px rgba(20,20,26,.04)}
+.urgent h3{font-family:var(--display);font-size:16px;color:var(--crimson);margin-bottom:8px}
+.uitem{display:flex;gap:12px;font-size:14.5px;padding:8px 0;border-bottom:1px solid #f4f3ef}
+.uitem:last-child{border-bottom:none}
+.uitem .n{font-family:var(--mono);color:var(--crimson);font-weight:800;flex:none;width:18px}
+
+/* таблицы */
+table{width:100%;border-collapse:collapse;font-size:13px}
+th{font-size:10px;text-transform:uppercase;letter-spacing:.07em;color:var(--mut);text-align:left;padding:8px 10px;border-bottom:2px solid var(--ink);font-family:var(--mono)}
+td{padding:9px 10px;border-bottom:1px solid #f1f0ec;vertical-align:top}
+td.num{text-align:right;font-family:var(--mono);white-space:nowrap}
+tr:last-child td{border-bottom:none}
+.pill{display:inline-block;padding:2px 10px;border-radius:999px;font-size:11px;font-weight:600}
+.pill.r{background:#fbe9eb;color:var(--crimson)}.pill.a{background:#fcf1e0;color:#9a6512}.pill.g{background:#e6f4ec;color:#1e6e40}
+
+/* SMART-контроль */
+.scsum{display:flex;gap:14px;align-items:center;margin-bottom:14px;font-size:14px;font-weight:600}
+.scscore{font-family:var(--display);font-size:34px;font-weight:700;padding:4px 16px;border-radius:12px}
+.scscore.r{background:#fbe9eb;color:var(--crimson)}.scscore.a{background:#fcf1e0;color:#9a6512}.scscore.g{background:#e6f4ec;color:#1e6e40}
+.scrow{background:var(--card);border:1px solid var(--line);border-radius:12px;padding:13px 16px;margin-bottom:10px}
+.schead{display:flex;gap:10px;align-items:center;font-size:13px;flex-wrap:wrap}
+.scbadge{font-family:var(--mono);font-weight:800;font-size:14px;padding:2px 9px;border-radius:8px}
+.scbadge.r{background:#fbe9eb;color:var(--crimson)}.scbadge.a{background:#fcf1e0;color:#9a6512}.scbadge.g{background:#e6f4ec;color:#1e6e40}
+.misses{display:flex;flex-wrap:wrap;gap:6px;margin-top:8px}
+.miss{font-size:11px;background:#f6f5f1;border:1px solid var(--line);border-radius:999px;padding:2px 10px;color:#7a4a12}
+.rwline{margin-top:9px;font-size:12.5px;font-family:var(--mono);background:#f2f7f3;border-left:3px solid var(--green);border-radius:0 8px 8px 0;padding:8px 12px;line-height:1.6}
+.rwlab{display:inline-block;font-size:10px;font-weight:700;text-transform:uppercase;letter-spacing:.06em;color:#1e6e40;margin-right:8px}
+
+/* ledger */
+.ledsum{display:grid;grid-template-columns:1.4fr 1fr 1fr 1fr;gap:14px;margin-bottom:14px}
+.kpi{background:var(--card);border:1px solid var(--line);border-radius:14px;padding:14px 18px}
+.kpi .lbl{font-size:10.5px;text-transform:uppercase;letter-spacing:.06em;color:var(--mut);font-weight:700;font-family:var(--mono)}
+.kpi .val{font-family:var(--mono);font-size:19px;font-weight:700;margin-top:5px}
+.age{display:inline-block;font-family:var(--mono);font-size:11px;font-weight:700;padding:2px 9px;border-radius:999px;white-space:nowrap}
+.age.n{background:#f3f2ee;color:var(--mut)}.age.a{background:#fcf1e0;color:#9a6512}
+.age.r{background:#fbe9eb;color:var(--crimson)}.age.g{background:#e6f4ec;color:#1e6e40}
+
+/* конкуренты */
+.rivals{display:flex;flex-wrap:wrap;gap:8px;margin-bottom:16px}
+.rchip{border:1px solid var(--line);border-radius:999px;padding:6px 13px;font-size:12px;background:var(--card)}
+.rchip .cnt{color:var(--crimson);font-family:var(--mono);font-weight:700}.rchip .nt{color:var(--mut)}
+.poscols{display:grid;grid-template-columns:1fr 1fr;gap:14px;margin-top:16px}
+.posbox{border:1px solid var(--line);border-radius:12px;padding:14px 16px;font-size:13px;white-space:pre-line;line-height:1.65;background:var(--card)}
+.posbox.edge{border-left:4px solid var(--green)}.posbox.gap{border-left:4px solid var(--amber)}
+.posbox h4{font-family:var(--display);font-size:13px;margin-bottom:8px}
+
+/* радар */
+.rcard{border:1px solid var(--line);border-radius:12px;padding:14px 16px;background:var(--card);margin-bottom:10px}
+.rcard.push{border-left:4px solid var(--green)}.rcard.gap{border-left:4px solid var(--amber)}
+.rcard.wave{border-left:4px solid var(--crimson)}.rcard.stable{border-left:4px solid var(--amber)}
+.rcard .rt{font-size:13px;font-weight:700}
+.rcard .rd{font-size:12px;color:var(--mut);margin-top:4px}
+.rcard .rdl{font-family:var(--mono);font-size:12px;margin-top:6px}
+.radar2{display:grid;grid-template-columns:1fr 1fr;gap:14px}
+
+/* конвейер */
+.pipe td.pn{font-family:var(--mono);font-weight:800;color:var(--indigo);width:24px}
+.pipe .bs{font-size:11px;color:var(--mut);margin-top:3px}
+.pipe .ow{display:inline-block;background:#eef0fb;color:var(--indigo);padding:2px 9px;border-radius:6px;font-size:11px;font-weight:700;white-space:nowrap}
+.pipe .dl{font-family:var(--mono);font-size:12px;white-space:nowrap}
+
+.chart{width:100%}
+.foot{margin-top:50px;padding-top:16px;border-top:2px solid var(--ink);font-size:11px;color:var(--mut);font-family:var(--mono);display:flex;justify-content:space-between;flex-wrap:wrap;gap:8px}
+@media (max-width:900px){.hero2{grid-template-columns:1fr}.hero2 .left{border-right:none;border-bottom:1px solid var(--line)}
+.radar2,.poscols,.ledsum{grid-template-columns:1fr}}
+@media (prefers-reduced-motion:reduce){html{scroll-behavior:auto}}
+
+.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(300px,1fr));gap:18px;margin-top:24px}
+.card .dep{font-family:var(--display);font-size:20px;font-weight:700}
+.card .fr{font-family:var(--display);font-size:32px;font-weight:700;color:var(--crimson);margin:6px 0}
+.card .meta{font-size:12.5px;color:var(--mut)}
+.card .links{display:flex;gap:10px;margin:14px 0 8px}
+.card .links a{flex:1;text-align:center;padding:9px 12px;border-radius:10px;font-size:13px;font-weight:600;text-decoration:none}
+.card .links a.real{background:var(--indigo);color:#fff}
+.card .links a.demo{background:#eef0fb;color:var(--indigo);border:1px solid var(--line)}
+.card .cnt{font-family:var(--mono);font-size:11px;color:var(--mut)}
+</style></head><body><div class="wrap">
+<div class="top"><div><div class="brand">AI-<b>Findir</b> · управленческая сводка</div>
+<div class="h1">Отделы — ООО «ПримерСерт» (демо) · 2026</div></div>
+<div class="top-meta">единый движок · 4 отдела<br>контроль: 2026-06-19</div></div>
+<div class="sec"><div class="eyebrow">Свод собственнику</div>
+<div class="lead">Портфель целиком одним экраном: финрез всех отделов, рейтинг, кому верить,
+что оспорить, что пушить.</div>
+<div class="links" style="display:flex;gap:10px;margin-top:12px;max-width:520px">
+<a class="real" href="owner.html" style="flex:1;text-align:center;padding:11px;border-radius:10px;background:var(--crimson);color:#fff;font-weight:600;text-decoration:none">Свод собственнику (реальный)</a>
+<a class="demo" href="owner_demo.html" style="flex:1;text-align:center;padding:11px;border-radius:10px;background:#fff3f4;color:var(--crimson);border:1px solid #f3c9cd;font-weight:600;text-decoration:none">Свод (демо)</a>
+</div></div>
+<div class="sec"><div class="eyebrow">Навигация по отделам</div>
+<div class="lead">Один движок (extract → контракт → дашборд) на все отделы. «Реальный» —
+рабочий дашборд по фактическим данным; «Демо» — обезличенная версия для показа.</div>
+<div class="grid">
+        <div class="card">
+          <div class="dep">Экологические услуги</div>
+          <div class="fr">-1 655 906 ₽</div>
+          <div class="meta">контрактация 61% ·
+            дефицит до нуля 1 655 906 ₽</div>
+          <div class="links">
+            <a class="real" href="eco/dashboard.html">Дашборд (реальный)</a>
+            <a class="demo" href="eco/demo.html">Демо (обезличено)</a>
+          </div>
+          <div class="cnt">7 графиков · 10 секций ·
+            обещаний 0 · алертов 3</div>
+        </div>
+        <div class="card">
+          <div class="dep">Сертификация продукции</div>
+          <div class="fr">-2 570 172 ₽</div>
+          <div class="meta">контрактация 68% ·
+            дефицит до нуля 2 570 172 ₽</div>
+          <div class="links">
+            <a class="real" href="prod/dashboard.html">Дашборд (реальный)</a>
+            <a class="demo" href="prod/demo.html">Демо (обезличено)</a>
+          </div>
+          <div class="cnt">4 графиков · 9 секций ·
+            обещаний 3 · алертов 2</div>
+        </div>
+        <div class="card">
+          <div class="dep">Учебный центр</div>
+          <div class="fr">-875 265 ₽</div>
+          <div class="meta">контрактация 73% ·
+            дефицит до нуля 875 265 ₽</div>
+          <div class="links">
+            <a class="real" href="uc/dashboard.html">Дашборд (реальный)</a>
+            <a class="demo" href="uc/demo.html">Демо (обезличено)</a>
+          </div>
+          <div class="cnt">4 графиков · 9 секций ·
+            обещаний 3 · алертов 2</div>
+        </div>
+        <div class="card">
+          <div class="dep">Сертификация СМК (ОССМ)</div>
+          <div class="fr">-2 739 694 ₽</div>
+          <div class="meta">контрактация 68% ·
+            дефицит до нуля 2 739 694 ₽</div>
+          <div class="links">
+            <a class="real" href="smk/dashboard.html">Дашборд (реальный)</a>
+            <a class="demo" href="smk/demo.html">Демо (обезличено)</a>
+          </div>
+          <div class="cnt">4 графиков · 9 секций ·
+            обещаний 3 · алертов 1</div>
+        </div></div></div>
+<div class="foot"><div>Единый источник: out/&lt;отдел&gt;/analysis.json</div>
+<div>AI-Findir · унифицированный движок</div></div>
+</div></body></html>

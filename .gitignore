@@ -1,0 +1,10 @@
+__pycache__/
+*.pyc
+.venv/
+venv/
+.env
+competitors/
+agent_prompts/
+agent_outputs/
+out/**/ledger_store/
+out/MANIFEST.txt
