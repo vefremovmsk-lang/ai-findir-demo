@@ -1,0 +1,310 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>ZodchAI · ИИ-финдиректор — презентация</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Manrope:wght@500;700;800&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+:root{
+  --ink:#1D1712; --ink2:#241D16; --card:#2A2118; --cream:#F3ECDF;
+  --terra:#C25E2D; --terra-soft:#d8794a; --mut:#9b8e7c; --line:rgba(243,236,223,.12);
+  --display:'Manrope',system-ui,sans-serif; --body:'Inter',system-ui,sans-serif;
+}
+*{margin:0;padding:0;box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{background:var(--ink);color:var(--cream);font-family:var(--body);overflow:hidden}
+.deck{height:100vh;overflow-y:scroll;scroll-snap-type:y mandatory;scroll-behavior:smooth}
+.deck::-webkit-scrollbar{width:0}
+.slide{position:relative;min-height:100vh;scroll-snap-align:start;display:flex;flex-direction:column;
+  justify-content:center;padding:7vh 8vw;overflow:hidden}
+.slide::before{content:"";position:absolute;inset:0;background:
+  radial-gradient(900px 600px at 92% 8%, rgba(194,94,45,.10), transparent 60%);pointer-events:none}
+/* орбиты */
+.orbit{position:absolute;top:-18vw;right:-12vw;width:46vw;height:46vw;pointer-events:none;opacity:.5}
+.orbit circle{fill:none;stroke:var(--terra);stroke-width:1;opacity:.18}
+.orbit .spin{transform-origin:center;animation:spin 60s linear infinite}
+@keyframes spin{to{transform:rotate(360deg)}}
+/* шапка секции */
+.eyebrow{font-family:var(--display);font-weight:700;font-size:.82rem;letter-spacing:.22em;
+  text-transform:uppercase;color:var(--mut);display:flex;align-items:center;gap:14px;margin-bottom:5vh}
+.eyebrow .num{color:var(--terra);border-bottom:2px solid var(--terra);padding-bottom:2px}
+h1{font-family:var(--display);font-weight:800;line-height:1.02;letter-spacing:-.02em}
+h2{font-family:var(--display);font-weight:800;line-height:1.06;letter-spacing:-.01em;font-size:clamp(2rem,4.4vw,4rem)}
+.lead{font-size:clamp(1.05rem,1.6vw,1.5rem);color:#d9cfbe;max-width:46ch;line-height:1.5;margin-top:3vh;font-weight:400}
+.terra{color:var(--terra)}
+.cream{color:var(--cream)}
+/* футер */
+.foot{position:absolute;left:8vw;right:8vw;bottom:4vh;display:flex;justify-content:space-between;
+  align-items:center;font-family:var(--display);font-size:.72rem;letter-spacing:.12em;color:var(--mut);
+  border-top:1px solid var(--line);padding-top:14px;text-transform:uppercase}
+.foot b{color:var(--cream);font-weight:700}
+.foot .ai{color:var(--terra)}
+/* анимация появления */
+.an{opacity:0;transform:translateY(26px);transition:opacity .8s cubic-bezier(.2,.7,.2,1),transform .8s cubic-bezier(.2,.7,.2,1)}
+.slide.visible .an{opacity:1;transform:none}
+.an:nth-child(2){transition-delay:.08s}.an:nth-child(3){transition-delay:.16s}
+.an:nth-child(4){transition-delay:.24s}.an:nth-child(5){transition-delay:.32s}
+/* лого */
+.logo-row{display:flex;align-items:center;gap:18px}
+.logo-row svg{height:74px;width:auto}
+.wordmark{font-family:var(--display);font-weight:800;font-size:3.4rem;letter-spacing:-.01em}
+.wordmark .ai{color:var(--terra)}
+/* карточки */
+.cards{display:grid;gap:18px;margin-top:4vh}
+.cards.c3{grid-template-columns:repeat(3,1fr)}.cards.c2{grid-template-columns:repeat(2,1fr)}
+.cards.c4{grid-template-columns:repeat(4,1fr)}
+.card{background:var(--ink2);border:1px solid var(--line);border-radius:16px;padding:26px 24px}
+.card .k{font-family:var(--display);font-weight:800;font-size:2.2rem;color:var(--terra);line-height:1}
+.card .t{font-family:var(--display);font-weight:700;font-size:1.12rem;margin-bottom:8px}
+.card .d{color:var(--mut);font-size:.98rem;line-height:1.45}
+.card .ic{font-family:var(--display);font-weight:800;color:var(--terra);font-size:1rem;letter-spacing:.1em;margin-bottom:14px}
+/* большие числа боли */
+.bignums{display:grid;grid-template-columns:repeat(3,1fr);gap:26px;margin-top:5vh}
+.bignums .n{font-family:var(--display);font-weight:800;font-size:clamp(2.4rem,5vw,4.4rem);color:var(--terra);line-height:1}
+.bignums .l{color:#d9cfbe;font-size:1.02rem;margin-top:10px;max-width:24ch}
+/* шаги конвейера */
+.flow{display:flex;align-items:stretch;gap:0;margin-top:5vh;flex-wrap:wrap}
+.step{flex:1;min-width:120px;background:var(--ink2);border:1px solid var(--line);border-radius:14px;
+  padding:18px 16px;position:relative;margin-right:26px}
+.step:last-child{margin-right:0}
+.step::after{content:"→";position:absolute;right:-20px;top:50%;transform:translateY(-50%);color:var(--terra);font-weight:700}
+.step:last-child::after{content:""}
+.step .s{font-family:var(--display);font-weight:800;color:var(--terra);font-size:.8rem;letter-spacing:.08em}
+.step .n{font-family:var(--display);font-weight:700;font-size:1.05rem;margin-top:8px}
+.step .x{color:var(--mut);font-size:.85rem;margin-top:6px;line-height:1.35}
+/* двухколоночный слайд со скрином */
+.split{display:grid;grid-template-columns:0.82fr 1.18fr;gap:5vw;align-items:center}
+.frame{background:#0f0c09;border:1px solid var(--line);border-radius:14px;overflow:hidden;
+  box-shadow:0 40px 80px -30px rgba(0,0,0,.8);width:100%}
+.frame .bar{display:flex;align-items:center;gap:8px;padding:11px 14px;background:#191510;border-bottom:1px solid var(--line)}
+.frame .bar i{width:11px;height:11px;border-radius:50%;display:inline-block;background:#3a3128}
+.frame .bar i:nth-child(1){background:#C25E2D}
+.frame .bar .u{margin-left:12px;font-family:var(--body);font-size:.74rem;color:var(--mut);
+  background:#0f0c09;border:1px solid var(--line);border-radius:6px;padding:4px 12px;flex:1;overflow:hidden;white-space:nowrap;text-overflow:ellipsis}
+.frame .vp{position:relative;width:100%;height:56vh;overflow:hidden;background:#1b1b1f}
+.frame .vp iframe{position:absolute;top:0;left:0;width:1440px;height:1600px;border:0;
+  transform:scale(.62);transform-origin:top left}
+.bullets{list-style:none;margin-top:3vh}
+.bullets li{position:relative;padding-left:30px;margin-bottom:18px;font-size:1.06rem;color:#d9cfbe;line-height:1.4}
+.bullets li::before{content:"";position:absolute;left:0;top:.5em;width:11px;height:11px;
+  background:var(--terra);clip-path:polygon(50% 0,61% 39%,100% 50%,61% 61%,50% 100%,39% 61%,0 50%,39% 39%)}
+.bullets li b{color:var(--cream);font-weight:600}
+/* hint */
+.hint{position:fixed;bottom:18px;left:50%;transform:translateX(-50%);font-family:var(--display);
+  font-size:.7rem;letter-spacing:.14em;text-transform:uppercase;color:var(--mut);z-index:50;
+  background:rgba(36,29,22,.7);border:1px solid var(--line);border-radius:30px;padding:8px 18px;backdrop-filter:blur(6px)}
+.dots{position:fixed;right:26px;top:50%;transform:translateY(-50%);display:flex;flex-direction:column;gap:11px;z-index:50}
+.dots b{width:8px;height:8px;border-radius:50%;background:#4a4035;cursor:pointer;transition:.3s;border:0;padding:0}
+.dots b.on{background:var(--terra);transform:scale(1.4)}
+.cta{display:inline-flex;align-items:center;gap:12px;background:var(--terra);color:#1a130d;
+  font-family:var(--display);font-weight:800;font-size:1.05rem;padding:16px 30px;border-radius:12px;
+  text-decoration:none;margin-top:4vh}
+.linklist{margin-top:3vh;font-size:.92rem;line-height:1.9}
+.linklist a{color:var(--terra-soft);text-decoration:none;border-bottom:1px solid var(--line)}
+.kpi-row{display:flex;gap:40px;margin-top:4vh;flex-wrap:wrap}
+.kpi .v{font-family:var(--display);font-weight:800;font-size:2.6rem;color:var(--terra)}
+.kpi .l{color:var(--mut);font-size:.92rem;margin-top:4px}
+@media(max-width:900px){.split{grid-template-columns:1fr}.cards.c3,.cards.c4{grid-template-columns:1fr 1fr}.frame .vp{height:42vh}}
+</style>
+</head>
+<body>
+<div class="deck" id="deck">
+
+<!-- 01 COVER -->
+<section class="slide" data-foot="">
+  <svg class="orbit" viewBox="0 0 100 100"><g class="spin"><circle cx="50" cy="50" r="49"/><circle cx="50" cy="50" r="38"/><circle cx="50" cy="50" r="27"/></g></svg>
+  <div class="an" style="margin-bottom:6vh">
+    <div class="logo-row">
+      <svg viewBox="0 0 120 120" aria-label="ZodchAI"><path d="M 24.5,96.5 L 24.5,77.5 Q 24.5,70 32,70 Q 39.5,70 39.5,77.5 L 39.5,96.5 Q 39.5,104 32,104 Q 24.5,104 24.5,96.5 Z" fill="#F3ECDF"/><path d="M 52.5,96.5 L 52.5,61.5 Q 52.5,54 60,54 Q 67.5,54 67.5,61.5 L 67.5,96.5 Q 67.5,104 60,104 Q 52.5,104 52.5,96.5 Z" fill="#F3ECDF"/><path d="M 80.5,96.5 L 80.5,45.5 Q 80.5,38 88,38 Q 95.5,38 95.5,45.5 L 95.5,96.5 Q 95.5,104 88,104 Q 80.5,104 80.5,96.5 Z" fill="#F3ECDF"/><circle cx="32" cy="77" r="4.1" fill="#C25E2D"/><circle cx="60" cy="61" r="4.1" fill="#C25E2D"/><path d="M 88,12.8 L 90.93,22.07 L 100.2,25 L 90.93,27.93 L 88,37.2 L 85.07,27.93 L 75.8,25 L 85.07,22.07 Z" fill="#C25E2D"/></svg>
+      <span class="wordmark">ЗОДЧ<span class="ai">AI</span></span>
+    </div>
+  </div>
+  <div class="eyebrow an">Презентация продукта · 2026</div>
+  <h1 class="an" style="font-size:clamp(2.6rem,6.4vw,6rem);max-width:18ch">ИИ-финдиректор,<br>который говорит правду<br>о ваших <span class="terra">цифрах</span></h1>
+  <p class="lead an">Еженедельная юнит-экономика отделов превращается в управленческие дашборды, разбор от ИИ-аналитика и конкретные решения собственнику. Без хайпа — измеримый эффект.</p>
+  <div class="foot"><span><b>ЗОДЧ</b><span class="ai">AI</span> · <a href="https://zodchai.ru" target="_blank" rel="noopener" style="color:var(--mut);text-decoration:none">zodchai.ru</a> · <a href="https://t.me/zodchai" target="_blank" rel="noopener" style="color:var(--mut);text-decoration:none">@zodchai</a></span><span>01</span></div>
+</section>
+
+<!-- 02 ПРОБЛЕМА -->
+<section class="slide">
+  <svg class="orbit" viewBox="0 0 100 100"><g class="spin"><circle cx="50" cy="50" r="49"/><circle cx="50" cy="50" r="34"/></g></svg>
+  <div class="eyebrow an"><span class="num">01</span> Проблема</div>
+  <h2 class="an">Собственник видит отчёты.<br>Но не видит <span class="terra">правды</span>.</h2>
+  <div class="bignums an">
+    <div><div class="n">9%</div><div class="l">прогнозов менеджеров реально сбывается</div></div>
+    <div><div class="n">−10 млн</div><div class="l">скрытый дефицит портфеля, размазанный по отделам</div></div>
+    <div><div class="n">7 дней</div><div class="l">уходит на сборку отчёта, который устарел к планёрке</div></div>
+  </div>
+  <p class="lead an">Менеджеры завышают планы, цифры в разных файлах не сходятся, а решения принимаются на ощущениях. Классические дашборды показывают «что», но не отвечают «кому верить» и «что делать».</p>
+  <div class="foot"><span><b>ЗОДЧ</b><span class="ai">AI</span></span><span>02</span></div>
+</section>
+
+<!-- 03 РЕШЕНИЕ -->
+<section class="slide">
+  <svg class="orbit" viewBox="0 0 100 100"><g class="spin"><circle cx="50" cy="50" r="49"/><circle cx="50" cy="50" r="38"/><circle cx="50" cy="50" r="27"/></g></svg>
+  <div class="eyebrow an"><span class="num">02</span> Решение</div>
+  <h2 class="an">Положил Excel — получил <span class="terra">повестку планёрки</span></h2>
+  <p class="lead an">ZodchAI берёт еженедельные юнит-экономики отделов и одной командой собирает дашборды для руководителей и собственника: где горит, кому верить, что оспорить, что делать.</p>
+  <div class="cards c3 an">
+    <div class="card"><div class="ic">ЦИФРЫ</div><div class="t">Считает код</div><div class="d">P&L, калибровка руководителей, воронка, обещания — детерминированно, без «галлюцинаций».</div></div>
+    <div class="card"><div class="ic">ВЫВОДЫ</div><div class="t">Анализирует ИИ</div><div class="d">Агент-аналитик поверх готовых цифр: разбор, риски, следующий шаг. Числа сверяются с контрактом.</div></div>
+    <div class="card"><div class="ic">РЫНОК</div><div class="t">Видит конкурентов</div><div class="d">Находит активных игроков рынка в вебе и сравнивает вас с ними — 3 отличия по каждому.</div></div>
+  </div>
+  <div class="foot"><span><b>ЗОДЧ</b><span class="ai">AI</span></span><span>03</span></div>
+</section>
+
+<!-- 04 КАК РАБОТАЕТ -->
+<section class="slide">
+  <svg class="orbit" viewBox="0 0 100 100"><g class="spin"><circle cx="50" cy="50" r="49"/><circle cx="50" cy="50" r="34"/></g></svg>
+  <div class="eyebrow an"><span class="num">03</span> Как это работает</div>
+  <h2 class="an">Один конвейер — от файла до <span class="terra">решения</span></h2>
+  <div class="flow an">
+    <div class="step"><div class="s">00–01</div><div class="n">Данные</div><div class="x">Excel-юнит-экономики отделов в папку</div></div>
+    <div class="step"><div class="s">02</div><div class="n">Расчёт</div><div class="x">Движок строит контракт: P&L, калибровка</div></div>
+    <div class="step"><div class="s">03</div><div class="n">Разбор</div><div class="x">ИИ-аналитик: кому верить, что оспорить</div></div>
+    <div class="step"><div class="s">04</div><div class="n">Конкуренты</div><div class="x">Поиск рынка + сравнение с вами</div></div>
+    <div class="step"><div class="s">06</div><div class="n">Дашборды</div><div class="x">Отделы + свод собственнику</div></div>
+  </div>
+  <p class="lead an" style="max-width:60ch">Одна команда — и на выходе 4 дашборда отделов, обезличенные демо для показа и свод собственнику по всему портфелю. Дашборды открываются офлайн, в одном файле.</p>
+  <div class="foot"><span><b>ЗОДЧ</b><span class="ai">AI</span></span><span>04</span></div>
+</section>
+
+<!-- 05 СВОД СОБСТВЕННИКУ (screenshot) -->
+<section class="slide">
+  <div class="eyebrow an"><span class="num">04</span> Свод собственнику</div>
+  <div class="split">
+    <div>
+      <h2 class="an">Весь бизнес —<br><span class="terra">на одном экране</span></h2>
+      <ul class="bullets an">
+        <li><b>Финрез портфеля</b> и дефицит до нуля — сразу, без сведения файлов</li>
+        <li><b>Рейтинг отделов</b> — где глубже минус, с чего начинать</li>
+        <li><b>Где горит</b> — критичные алерты всех отделов в одном месте</li>
+        <li>Кому верить, что оспорить, что пушить — <b>повестка, а не таблица</b></li>
+      </ul>
+    </div>
+    <div class="frame an">
+      <div class="bar"><i></i><i></i><i></i><span class="u">zodchai · свод собственнику · демо</span></div>
+      <div class="vp"><iframe loading="lazy" src="https://vefremovmsk-lang.github.io/ai-findir-demo/out/owner_demo.html"></iframe></div>
+    </div>
+  </div>
+  <div class="foot"><span><b>ЗОДЧ</b><span class="ai">AI</span></span><span>05</span></div>
+</section>
+
+<!-- 06 ИИ-РАЗБОР + ДАШБОРД ОТДЕЛА (screenshot) -->
+<section class="slide">
+  <div class="eyebrow an"><span class="num">05</span> Дашборд отдела + ИИ-разбор</div>
+  <div class="split">
+    <div>
+      <h2 class="an">ИИ объясняет,<br>а не <span class="terra">выдумывает</span></h2>
+      <ul class="bullets an">
+        <li><b>План-факт мост</b>: откуда взялся минус, по причинам</li>
+        <li><b>Калибровка</b>: кто из руководителей завышает прогноз</li>
+        <li><b>Разбор аналитика</b> — диагноз, кому верить, следующий шаг</li>
+        <li>Каждая сумма в тексте <b>сверена с контрактом</b> — ноль фантазий</li>
+      </ul>
+    </div>
+    <div class="frame an">
+      <div class="bar"><i></i><i></i><i></i><span class="u">zodchai · дашборд отдела · демо</span></div>
+      <div class="vp"><iframe loading="lazy" src="https://vefremovmsk-lang.github.io/ai-findir-demo/out/eco/demo.html"></iframe></div>
+    </div>
+  </div>
+  <div class="foot"><span><b>ЗОДЧ</b><span class="ai">AI</span></span><span>06</span></div>
+</section>
+
+<!-- 07 КОНКУРЕНТЫ -->
+<section class="slide">
+  <svg class="orbit" viewBox="0 0 100 100"><g class="spin"><circle cx="50" cy="50" r="49"/><circle cx="50" cy="50" r="38"/><circle cx="50" cy="50" r="27"/></g></svg>
+  <div class="eyebrow an"><span class="num">06</span> Конкурентный анализ</div>
+  <h2 class="an">Знает рынок <span class="terra">за вас</span></h2>
+  <div class="cards c3 an">
+    <div class="card"><div class="ic">ПОИСК</div><div class="t">Находит активных</div><div class="d">ИИ ищет в вебе реальных игроков рынка по вашим направлениям — не фиксированный список.</div></div>
+    <div class="card"><div class="ic">РАЗБОР</div><div class="t">Сравнивает с вами</div><div class="d">Услуги, ценники, позиционирование, новые продукты — и ровно 3 отличия по каждому конкуренту.</div></div>
+    <div class="card"><div class="ic">ВЫВОД</div><div class="t">Показывает пробелы</div><div class="d">Где конкуренты сильнее и какие продукты вы упускаете — на стол собственнику.</div></div>
+  </div>
+  <p class="lead an" style="max-width:60ch">Факты собирает инструмент (источник у каждого утверждения), сравнение делает ИИ. Чего нет в источнике — помечается «проверить», а не выдумывается.</p>
+  <div class="foot"><span><b>ЗОДЧ</b><span class="ai">AI</span></span><span>07</span></div>
+</section>
+
+<!-- 08 ПРИНЦИП ДОВЕРИЯ -->
+<section class="slide">
+  <svg class="orbit" viewBox="0 0 100 100"><g class="spin"><circle cx="50" cy="50" r="49"/><circle cx="50" cy="50" r="34"/></g></svg>
+  <div class="eyebrow an"><span class="num">07</span> Почему этому можно верить</div>
+  <h2 class="an">Цифры считает код.<br>ИИ делает <span class="terra">выводы</span>.</h2>
+  <div class="cards c3 an">
+    <div class="card"><div class="t">Один источник</div><div class="d">Все дашборды и тексты читают единый контракт. Никто ничего не пересчитывает «от себя».</div></div>
+    <div class="card"><div class="t">Сверка чисел</div><div class="d">Верификатор блокирует любую сумму в тексте ИИ, которой нет в контракте.</div></div>
+    <div class="card"><div class="t">Обезличивание</div><div class="d">Демо для показа автоматически чистит ФИО и клиентов. Реальные данные наружу не уходят.</div></div>
+  </div>
+  <div class="foot"><span><b>ЗОДЧ</b><span class="ai">AI</span></span><span>08</span></div>
+</section>
+
+<!-- 09 ЭФФЕКТ -->
+<section class="slide">
+  <svg class="orbit" viewBox="0 0 100 100"><g class="spin"><circle cx="50" cy="50" r="49"/><circle cx="50" cy="50" r="38"/><circle cx="50" cy="50" r="27"/></g></svg>
+  <div class="eyebrow an"><span class="num">08</span> Что получает собственник</div>
+  <h2 class="an">Решения за <span class="terra">60 секунд</span>, а не за неделю</h2>
+  <div class="kpi-row an">
+    <div class="kpi"><div class="v">1 команда</div><div class="l">весь цикл от файла до дашбордов</div></div>
+    <div class="kpi"><div class="v">4 отдела</div><div class="l">+ единый свод по портфелю</div></div>
+    <div class="kpi"><div class="v">0 фантазий</div><div class="l">каждое число сверено с данными</div></div>
+    <div class="kpi"><div class="v">еженедельно</div><div class="l">свежая картина к каждой планёрке</div></div>
+  </div>
+  <p class="lead an" style="max-width:62ch">Вы видите не «красивые графики», а ответы: где теряются деньги, кому из руководителей верить, какие обещания не подкреплены и что делать на этой неделе.</p>
+  <div class="foot"><span><b>ЗОДЧ</b><span class="ai">AI</span></span><span>09</span></div>
+</section>
+
+<!-- 10 CTA -->
+<section class="slide" style="align-items:flex-start">
+  <svg class="orbit" viewBox="0 0 100 100"><g class="spin"><circle cx="50" cy="50" r="49"/><circle cx="50" cy="50" r="38"/><circle cx="50" cy="50" r="27"/><circle cx="50" cy="50" r="16"/></g></svg>
+  <div class="logo-row an" style="margin-bottom:5vh">
+    <svg viewBox="0 0 120 120" style="height:58px"><path d="M 24.5,96.5 L 24.5,77.5 Q 24.5,70 32,70 Q 39.5,70 39.5,77.5 L 39.5,96.5 Q 39.5,104 32,104 Q 24.5,104 24.5,96.5 Z" fill="#F3ECDF"/><path d="M 52.5,96.5 L 52.5,61.5 Q 52.5,54 60,54 Q 67.5,54 67.5,61.5 L 67.5,96.5 Q 67.5,104 60,104 Q 52.5,104 52.5,96.5 Z" fill="#F3ECDF"/><path d="M 80.5,96.5 L 80.5,45.5 Q 80.5,38 88,38 Q 95.5,38 95.5,45.5 L 95.5,96.5 Q 95.5,104 88,104 Q 80.5,104 80.5,96.5 Z" fill="#F3ECDF"/><circle cx="32" cy="77" r="4.1" fill="#C25E2D"/><circle cx="60" cy="61" r="4.1" fill="#C25E2D"/><path d="M 88,12.8 L 90.93,22.07 L 100.2,25 L 90.93,27.93 L 88,37.2 L 85.07,27.93 L 75.8,25 L 85.07,22.07 Z" fill="#C25E2D"/></svg>
+    <span class="wordmark" style="font-size:2.4rem">ЗОДЧ<span class="ai">AI</span></span>
+  </div>
+  <h1 class="an" style="font-size:clamp(2.4rem,5.6vw,5rem);max-width:16ch">Посмотрите продукт<br>в деле — <span class="terra">прямо сейчас</span></h1>
+  <p class="lead an">Живые демо-дашборды (данные синтетические, обезличенные):</p>
+  <div class="linklist an">
+    <a href="https://vefremovmsk-lang.github.io/ai-findir-demo/out/index.html" target="_blank">Свод и навигация по отделам →</a><br>
+    <a href="https://vefremovmsk-lang.github.io/ai-findir-demo/out/owner_demo.html" target="_blank">Свод собственнику →</a><br>
+    <a href="https://vefremovmsk-lang.github.io/ai-findir-demo/out/eco/demo.html" target="_blank">Дашборд отдела (экология) →</a>
+  </div>
+  <div class="an" style="display:flex;gap:16px;align-items:center;flex-wrap:wrap;margin-top:4vh">
+    <a class="cta" href="https://zodchai.ru" target="_blank" rel="noopener" style="margin-top:0">Перейти на zodchai.ru →</a>
+    <a class="cta" href="https://t.me/zodchai" target="_blank" rel="noopener" style="margin-top:0;background:transparent;color:var(--terra);border:1px solid var(--terra)">Telegram · @zodchai</a>
+  </div>
+  <div class="foot"><span><b>ЗОДЧ</b><span class="ai">AI</span> · <a href="https://zodchai.ru" target="_blank" rel="noopener" style="color:var(--mut);text-decoration:none">zodchai.ru</a> · <a href="https://t.me/zodchai" target="_blank" rel="noopener" style="color:var(--mut);text-decoration:none">@zodchai</a></span><span>10</span></div>
+</section>
+
+</div>
+
+<div class="dots" id="dots"></div>
+<div class="hint" id="hint">↑ ↓ или колесо — листать · F11 — полный экран</div>
+
+<script>
+const deck=document.getElementById('deck');
+const slides=[...document.querySelectorAll('.slide')];
+// появление
+const io=new IntersectionObserver((es)=>es.forEach(e=>{if(e.isIntersecting)e.target.classList.add('visible')}),{threshold:.4});
+slides.forEach(s=>io.observe(s));
+// точки навигации
+const dots=document.getElementById('dots');
+slides.forEach((s,i)=>{const b=document.createElement('button');b.className='b';b.onclick=()=>s.scrollIntoView();dots.appendChild(b);});
+const dotEls=[...dots.children];
+const io2=new IntersectionObserver((es)=>es.forEach(e=>{if(e.isIntersecting){const i=slides.indexOf(e.target);dotEls.forEach((d,j)=>d.classList.toggle('on',j===i));}}),{threshold:.5});
+slides.forEach(s=>io2.observe(s));
+// клавиши
+let idx=0;
+function go(n){idx=Math.max(0,Math.min(slides.length-1,n));slides[idx].scrollIntoView();}
+function cur(){const h=window.innerHeight;return Math.round(deck.scrollTop/h);}
+document.addEventListener('keydown',e=>{
+  if(['ArrowDown','PageDown',' '].includes(e.key)){e.preventDefault();go(cur()+1);}
+  if(['ArrowUp','PageUp'].includes(e.key)){e.preventDefault();go(cur()-1);}
+  if(e.key==='Home'){e.preventDefault();go(0);}
+  if(e.key==='End'){e.preventDefault();go(slides.length-1);}
+});
+setTimeout(()=>{document.getElementById('hint').style.opacity=.0;},6000);
+</script>
+</body>
+</html>
